@@ -1,0 +1,44 @@
+export ZSH_CONFIG_HOME="$XDG_CONFIG_HOME/zsh"
+
+export LC_ALL="en_US.UTF-8"
+export LANG='en_US.UTF-8'
+export LANGUAGE=en_US.UTF-8
+export TERM="xterm-24bit"
+export ARCHFLAGS="-arch x86_64"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+export MANPATH="/usr/local/man:$MANPATH"
+_is_callable nvim && export MANPAGER="nvim +Man!"
+
+# No github credentials
+export HOMEBREW_NO_GITHUB_API=1
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=30
+
+export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
+
+# paths
+typeset -gU cdpath fpath mailpath path
+path=( $XDG_BIN_HOME $DOTTY_CONFIG_HOME/bin $DOTTY_DATA_HOME/*.topic/bin(N) $path )
+fpath=( $XDG_BIN_HOME $fpath )
+
+# envvars
+# export SHELL=$(command -v zsh)
+export LANG=${LANG:-en_US.UTF-8}
+export PAGER=less
+export LESS='-R -i -w -M -z-4'
+export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+
+# wget
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+# ripgep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgreprc"
+
+[[ -f ${ZSH_CONFIG_HOME}/extra.zshenv ]] && _load ${ZSH_CONFIG_HOME}/extra.zshenv
+
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export GRADLE_USER_HOME="$XDG_CONFIG_HOME/gradle"
+
+export MRU_File="$XDg_CACHE_HOME/.vim_mru_files"

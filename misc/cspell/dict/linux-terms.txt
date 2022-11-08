@@ -1,0 +1,10 @@
+ctags
+magit
+jdtls
+flycheck
+posframe
+clipetty
+ripgrep
+coreutils
+zstd
+codelldb

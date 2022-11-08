@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install git libressl openssl git-lfs gh git-secrets pre-commit \
+      git-delta git-extras fzf
+  case $(_os) in
+    macos)
+      # homebrew sometimes will pop "git-lfs: command not found"
+      ln -Fs "$(which git-lfs)" "$(git --exec-path)/"
+
+      brew tap microsoft/git
+      brew install --cask git-credential-manager-core
+      ;;
+    linux-*)
+      local tempdir=/tmp/temp-install
+      mkdir -p $tempdir
+      (
+        cd $tempdir
+        wget --no-check-certificate \
+          $(get_github_latest_release_url GitCredentialManager/git-credential-manager ".*linux.*\d+\.tar\.gz") -O gcm.tar.gz
+        tar -zxvf gcm.tar.gz
+        sudo cp -f git-credential-manager-core /usr/local/bin/
+      )
+      rm -rf $tempdir
+      ;;
+  esac
+
+  if [[ -f $DOTTY_ASSETS_HOME/git-local.sh ]]; then
+    $DOTTY_ASSETS_HOME/git-local.sh
+  else
+    echo-info "Setup git using following command:"
+    head -n 16 ${0:A:h}/README.md
+  fi
+}
+
+# update() {}
+
+link() {
+  # Check all the rules with `git config --list --show-origin`
+  rm -fv ~/.gitconfig /usr/local/etc/gitconfig
+  mklink $DOTTY_CONFIG_HOME/shell/git/config/git $XDG_CONFIG_HOME/
+  mklink $DOTTY_CONFIG_HOME/shell/git/.ignore ~/
+}
+
+clean() {
+  rm -rf $XDG_CONFIG_HOME/git
+}
+
+init "$@"

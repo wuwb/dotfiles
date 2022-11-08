@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+source $DOTTY_CONFIG_HOME/wm/gnome/rc.zsh
+
+install() {
+  case $(_os) in
+    linux-arch)
+      sudo pacman -S gdm gnome-extra gnome-shell gnome-tweaks
+      ;;
+    linux-RHEL)
+      # TODO:
+      ;;
+    linux-debian)
+      APT_INSTALL gdm3 gnome-session gnome-shell gnome-tweaks
+      ;;
+  esac
+
+  sudo systemctl enable gdm.service --force
+
+  zsh $DOTTY_CONFIG_HOME/wm/general/install_white_sur_theme.sh
+  zsh $DOTTY_CONFIG_HOME/wm/general/install_qogir_cursor.sh
+}
+
+# update() {}
+
+link() {
+  dconf-load-gnome
+}
+
+clean() {}
+
+init "$@"

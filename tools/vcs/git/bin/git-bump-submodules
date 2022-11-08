@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+# Usaeg: In a git repo, do `git-bump-submodules "shell/zsh: update config"`
+set -euo pipefail
+
+function _is_git_submodule() {
+  if (cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree) &> /dev/null ; then
+    return 0
+  fi
+  return 1
+}
+
+if [[ -z $1 ]]; then
+  echo "Missing commit message parameter. Usage: git-bump-submodules 'shell/zsh: update config'"
+  return 1
+fi
+if ! (git rev-parse --is-inside-work-tree) &> /dev/null; then
+  echo "Not inside a git repository..."
+  return 1
+fi
+local git_root=$(git rev-parse --show-toplevel)
+if _is_git_submodule; then
+  git_root=$git_root/..
+fi
+pushd $git_root
+local submodules=($(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'))
+local updated_submodules=()
+for submodule in ${submodules[@]}; do
+  pushd $git_root/$submodule
+  if ! (git diff --staged --quiet && git diff --quiet); then
+    echo "Commit $submodule"
+    git add .
+    git cm -m $1
+    git push
+    updated_submodules+=($submodule)
+  fi
+  popd
+  git add $submodule
+done
+git cm -m "BUMP ${updated_submodules[@]}"
+git push
+popd &>/dev/null

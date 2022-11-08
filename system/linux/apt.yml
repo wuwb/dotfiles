@@ -1,0 +1,16 @@
+- apt:
+    - git
+    - curl
+    - wget
+    - tree
+    - zsh
+    - vim
+    - tmux
+    - jdupes
+    - htop
+    - zip
+    - unzip
+    - iftop
+    - nethogs
+    - ripgrep
+    - jq

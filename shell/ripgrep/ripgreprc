@@ -1,0 +1,14 @@
+# Check `man rg` CONFIGURATION FILES section
+--type-add
+web:*.{html,css,js}*
+
+--type-add
+test:*test*.*
+
+--type-add
+ctest:*test*.{cc,cpp,c,cxx}
+
+--type-add
+pytest:*test*.py
+
+# --type-add='src:include:cpp,py,md' --type-add='src:*.foo'

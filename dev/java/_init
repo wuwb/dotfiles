@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install jdtls gradle maven jenv
+  case $(_os) in
+    macos)
+      brew install openjdk@11
+      sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+      ;;
+    linux-*)
+      brew install openjdk@11
+      ;;
+    # linux-RHEL)
+    #   sudo yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+    #   sudo yum -y install java-11-amazon-corretto-headless
+    #   ;;
+  esac
+  # Note: JAVA_HOME is reset by jenv, use jenv to set global and local
+  eval "$(jenv init -)"
+  jenv add $(brew --prefix openjdk@11)
+  jenv global 11
+}
+
+# update() {}
+
+# link() {}
+
+clean() {
+  rm -f $XDG_CACHE_HOME/${SHELL##*/}/jenv
+}
+
+init "$@"

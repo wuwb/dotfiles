@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install phpenv php-build libmcrypt
+}
+
+update() {
+  brew upgrade phpenv php-build libmcrypt
+}
+
+# link() { }
+
+clean() {
+  rm -rf $PHPENV_ROOT
+  rm -f $XDG_CACHE_HOME/${SHELL##*/}/phpenv
+}
+
+init "$@"

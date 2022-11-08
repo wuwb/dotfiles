@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+local default_browser=$(default-browser)
+
+case $(_os) in
+  macos)
+    case $default_browser in
+      *chrome) open -a "/Applications/Google Chrome.app" $@ ;;
+      *edgemac) open -a "/Applications/Microsoft Edge.app" $@ ;;
+      *firefox) open -a "/Applications/Firefox.app" $@ ;;
+      *safari) open -a "/Applications/Safari.app" $@ ;;
+    esac
+    ;;
+  linux-*)
+    xdg-open $@
+    ;;
+esac

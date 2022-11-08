@@ -1,0 +1,63 @@
+#!/usr/bin/env zsh
+
+install() {
+  brew install gcc
+  case $(_os) in
+    linux-debian)
+      sudo apt-get update -y
+      # Core essentials
+      APT_INSTALL build-essential dnsutils
+      # Extra packages
+      APT_INSTALL net-tools exfat-fuse exfat-utils p7zip-full wmctrl
+      ;;
+    linux-arch)
+      # Recommend to use add/remove software app to update packages
+      # Otherwise use the following command to ensure keys are up to date
+      sudo pacman-key --refresh-keys
+      sudo pacman -Syyu
+      sudo pacman --needed --noconfirm -S dnsutils base-devel net-tools
+
+      # Set up yay (AUR helper)
+      if ! _is_callable yay; then
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        (
+          cd /tmp/yay
+          makepkg -sri --noconfirm --needed
+        )
+        if ! _is_callable yay; then
+          echo >&2 "Could not find pacaur" && return 3
+        fi
+      fi
+      # install misc programs
+      yay --needed --noconfirm -S xorg-xmodmap inxi dfc
+      ;;
+    linux-RHEL)
+      sudo yum -y groupinstall "Development Tools" "Development Libraries"
+      ;;
+  esac
+}
+
+update() {
+  case $(_os) in
+    linux-debian)
+      sudo apt-get update -y
+      ;;
+    linux-arch)
+      _is_callable yay && local pac=yay
+      ${pac:-sudo pacman} -Syu --noconfirm
+      ;;
+  esac
+
+}
+
+link() {
+  mkdir -p $XDG_DATA_HOME/fonts/
+  [[ -d ${DOTTY_ASSETS_HOME}/fonts ]] && find "$DOTTY_ASSETS_HOME/fonts/general" -iname "*.ttf" -or -iname "*.otf" -print0 |
+    xargs -0 -n 1 -I{} rsync -a --ignore-existing "{}" $XDG_DATA_HOME/fonts/
+}
+
+clean() {
+  rm -fv ~/.xprofile
+  rm -rf $XDG_DATA_HOME/assets/fonts/
+}
+

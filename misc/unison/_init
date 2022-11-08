@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install unison
+
+  # Deploy rust if not yet deployed
+  ! topic-enabled-p dev/rust && dotty dev/rust
+
+  cargo install unison-fsmonitor
+}
+
+update() {
+  brew upgrade unison
+}
+
+link() {
+  mklink $DOTTY_CONFIG_HOME/misc/unison/default.prf ~/.unison/default.prf
+}
+
+clean() {
+  brew uninstall unison
+  rm -f ~/.unison/default.prf
+}
+
+init "$@"

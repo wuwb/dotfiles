@@ -1,0 +1,2 @@
+- Naming should be `*.ctags`, `.ctags` does not work.
+- You can list excludes with `ctags --list-excludes`.

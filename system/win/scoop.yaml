@@ -1,0 +1,6 @@
+- scoop:
+    buckets:
+      - extras
+    apps:
+      - firefox
+      - win32yank

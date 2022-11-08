@@ -1,0 +1,339 @@
+# https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
+[user]
+	name = WuWenbin
+	email = 541330190@qq.com
+	; signingkey =
+[github]
+	user = WuWenbin
+[gitlab]
+	user = WuWenbin
+[alias]
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	  #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+    recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+ 
+    # via http://philjackson.github.io/2013/04/07/handy-git-tips-to-stop-you-getting-fired.html
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+    snapshots = !git stash list --grep snapshot
+
+
+	remotes = remote -v
+
+	# List aliases
+	aliases = config --get-regexp alias
+
+	# Show the user email for the current repository.
+	whoami = config user.email
+    a = add                           # add
+	aa = add --all
+    ap = add --patch
+
+	# commit
+	c = commit -m                     # commit with message
+	ca = commit -am                   # commit all with message
+	ci = commit -v
+	
+	amend = commit --amend            # ammend your last commit
+	ammend = commit --amend           # ammend your last commit
+
+
+	co = checkout
+	st = status -sb
+	br = branch
+	fo = fetch origin
+	d = !git --no-pager diff
+	dt  = difftool
+	stat = !git --no-pager diff --stat
+    pf = push --force-with-lease
+
+	# Set remotes/origin/HEAD -> defaultBranch (copied from https://stackoverflow.com/a/67672350/14870317)
+	remoteSetHead = remote set-head origin --auto
+
+	# Get default branch name (copied from https://stackoverflow.com/a/67672350/14870317)
+	defaultBranch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+
+	# Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
+	sweep = !git branch --merged $(git defaultBranch) | grep -E -v " $(git defaultBranch)$" | xargs -r git branch -d && git remote prune origin
+
+	# http://www.jukie.net/bart/blog/pimping-out-git-log
+	lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+
+	# Serve local repo. http://coderwall.com/p/eybtga
+	# Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
+	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+
+	# Checkout to defaultBranch
+	m = !git checkout $(git defaultBranch)
+
+	# Removes a file from the index
+	unstage = reset HEAD --
+	# add
+	a = add                           # add
+	chunkyadd = add --patch           # stage commits chunk by chunk
+	# Shows list of contributors of a repository.
+	contributors = shortlog --summary --numbered --email
+
+	# checkout
+	co = checkout                     # checkout
+	nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
+
+	# cherry-pick
+	cp = cherry-pick -x               # grab a change from a branch
+
+	# diff
+	d = diff                          # diff unstaged changes
+	dc = diff --cached                # diff staged changes
+	last = diff HEAD^                 # diff last committed change
+
+	# log
+	l = log --graph --date=short
+	changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+	short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+	simple = log --pretty=format:\" * %s\"
+	shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+
+	# pull
+	pl = pull                         # pull
+
+	# push
+	ps = push                         # push
+
+	# rebase
+	rc = rebase --continue            # continue rebase
+	rs = rebase --skip                # skip rebase
+
+	# remote
+	r = remote -v                     # show remotes (verbose)
+
+	# reset
+	unstage = reset HEAD              # remove files from index (tracking)
+	uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+	filelog = log -u                  # show changes to a file
+	mt = mergetool                    # fire up the merge tool
+
+	# stash
+	ss = stash                        # stash changes
+	sl = stash list                   # list stashes
+	sa = stash apply                  # apply stash (restore changes)
+	sd = stash drop                   # drop stashes (destory changes)
+
+	# status
+	s = status                        # status
+	st = status                       # status
+	stat = status                     # status
+
+	# tag
+	t = tag -n                        # show tags with <n> lines of each tag message
+
+	# svn helpers
+	svnr = svn rebase
+	svnd = svn dcommit
+	svnl = svn log --oneline --show-commit
+
+	# View abbreviated SHA, description, and history graph of the latest 20 commits.
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+	# View the current working tree status using the short format.
+	s = status -s
+
+	# Show the diff between the latest commit and the current state.
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state.
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+	# Pull in remote changes for the current repository and all its submodules.
+	p = pull --recurse-submodules
+
+	# Clone a repository including all submodules.
+	c = clone --recursive
+
+	# Commit all changes.
+	ca = !git add -A && git commit -av
+
+	# Switch to a branch, creating it if necessary.
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
+
+	# List aliases.
+	aliases = config --get-regexp alias
+
+	# Amend the currently staged files to the latest commit.
+	amend = commit --amend --reuse-message=HEAD
+
+	# Credit an author on the latest commit.
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+	# Interactive rebase with the given number of latest commits.
+	reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+
+	# Find branches containing commit
+	fb = "!f() { git branch -a --contains $1; }; f"
+
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
+
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+	# Remove branches that have already been merged with main.
+	# a.k.a. ‘delete merged’
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# List contributors with number of commits.
+	contributors = shortlog --summary --numbered
+
+	# Show the user email for the current repository.
+	whoami = config user.email
+	unadd = reset HEAD
+	# data analysis
+	ranked-authors = !git authors | sort | uniq -c | sort -n
+	emails = !git log --format="%aE" | sort -u
+	email-domains = !git log --format="%aE" | awk -F'@' '{print $2}' | sort -u
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+    editor = vim
+	autocrlf = false
+	saftcrlf = true
+	quotepath = false
+	pager = less -FRSX
+  	editor = code --wait
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+	# Make `git rebase` safer on macOS.
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
+[color]
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[init]
+	defaultBranch = master
+	templatedir = ~/.local/share/dotfiles/shell/git/git_template
+
+[fetch]
+  prune = true
+[pull]
+	rebase = true
+[push]
+	default = simple
+	followTags = true
+	autoSetupRemote = true
+	gpgSign = if-asked
+	autoSquash = true
+[merge]
+  ff = only
+[commit]
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true
+	template = ~/.local/share/dotfiles/tools/vcs/git/gitmessage
+[tag]
+	gpgSign = true
+[rebase]
+  autosquash = true
+[diff]
+    # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+    # instead of a/b/c/d as prefixes for patches
+    mnemonicprefix = true
+	algorithm = patience
+    colorMoved = zebra
+	# Detect copies as well as renames.
+	renames = copies
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[merge]
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
+	# Make `git push` push relevant annotated tags when pushing branches out.
+	followTags = true
+	summary = true
+	verbosity = 1
+	tool = sourcetree
+    conflictstyle = diff3
+[mergetool "sourcetree"]
+	cmd = /Applications/Apps/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool "mvimdiff"]
+    cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+    keepbackup=false
+[mergetool "meld"]
+    cmd = meld $LOCAL $BASE $REMOTE --output=$MERGED --auto-merge
+[apply]
+	# Detect whitespace errors when applying a patch.
+    whitespace = fix # nowarn
+[remote "origin"]
+	proxy =
+[branch]
+	# Show most recently changed branches first.
+	sort = -committerdate
+    autosetupmerge = true
+[branch "master"]
+  mergeoptions = --no-edit
+[advice]
+  statusHints = false
+[rerere]
+  # Remember my merges
+  # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
+  enabled = true
+[include]
+  path = .gitconfig.user
+
+[http]
+	postBuffer = 524288000
+	sslverify = false
+	# Automatically correct and execute mistyped commands.
+	autocorrect = 1
+[url "ssh://git@"]
+	insteadOf = https://
+[url "https://"]
+	insteadOf = git://
+[gpg]
+	program = gpg
+[format]
+	pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[log]
+	date = local

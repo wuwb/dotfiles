@@ -1,0 +1,27 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+    shell:
+      stdout: true
+      stderr: true
+
+- clean: ["~", "~/.config"]
+
+- create:
+    - ~/.config
+    - ~/.local/share/zinit
+    - ~/.local/share/vim
+    - ~/.local/share/tmux
+    - ~/Tests
+
+- shell:
+    - ["git submodule update --init --recursive", "Installing submodules"]
+    # - command: read var && echo Your variable is $var
+    #   stdin: true
+    #   stdout: true
+    #   description: Reading and printing variable
+    #   quiet: true
+    # - command: read fail
+    # stderr: true

@@ -1,0 +1,160 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+# https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
+scrolling:
+  multiplier: 10
+
+cursor:
+  style: Block
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+font:
+  normal:
+    family: CartographCF Nerd Font
+    style: Regular
+  bold:
+    family: CartographCF Nerd Font
+    style: Bold
+  italic:
+    family: CartographCF Nerd Font
+    style: Regular Italic
+  bold_italic:
+    family: CartographCF Nerd Font
+    style: Bold Italic
+  size: 12
+  offset:
+    x: 0
+    y: 0
+
+colors:
+  # Default colors
+  primary:
+    background: "0xfafafa"
+    foreground: "0x383a42"
+
+  cursor:
+    text: "0xf0f0f0"
+    cursor: "0x4078f2"
+
+  selection:
+    text: "0xfafafa"
+    background: "0xa0bcf8"
+
+  # Normal colors
+  normal:
+    black: "0x1b2229"
+    red: "0xe45649"
+    green: "0x50a14f"
+    yellow: "0xf9a824"
+    blue: "0x4078f2"
+    magenta: "0xa626a4"
+    cyan: "0x0184bc"
+    white: "0xe7e7e7"
+
+  # Bright colors
+  bright:
+    black: "0x1b2229"
+    red: "0xe45649"
+    green: "0x50a14f"
+    yellow: "0xf9a824"
+    blue: "0x4078f2"
+    magenta: "0xa626a4"
+    cyan: "0x0184bc"
+    white: "0xe7e7e7"
+
+  # Dim colors
+  #
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  # dim:
+  #   black: "0x000000"
+  #   red: "0x8c3336"
+  #   green: "0x7a8530"
+  #   yellow: "0x97822e"
+  #   blue: "0x506d8f"
+  #   magenta: "0x80638e"
+  #   cyan: "0x497e7a"
+  #   white: "0x9a9a9a"
+# Background opacity
+#
+# Window opacity as a floating point number from `0.0` to `1.0`.
+# The value `0.0` is completely transparent and `1.0` is opaque.
+#background_opacity: 1.0
+
+# https://www.csee.umbc.edu/portal/help/theory/ascii.txt
+key_bindings:
+  - { key: C, mods: Alt, action: Copy }
+  - { key: V, mods: Alt, action: Paste }
+  - { key: L, mods: Control, action: ClearHistory }
+  - { key: L, mods: Control, chars: "\x0c" }
+  - { key: G, mods: Control, chars: "\x07" }
+  - { key: Space, mods: Control, chars: "\x00" }
+  - { key: NumpadEquals, mods: Alt, action: IncreaseFontSize }
+  - { key: NumpadSubtract, mods: Alt, action: DecreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
+  - { key: Key0, mods: Alt, action: ResetFontSize }
+
+  # https://github.com/alacritty/alacritty/issues/62
+  # Macos key
+  - { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: H, mods: Command, action: Minimize }
+  # Map command+* to alt+*
+  - { key: A, mods: Command, chars: "\x1ba" }
+  - { key: A, mods: Command|Shift, chars: "\x1bA" }
+  - { key: B, mods: Command, chars: "\x1bb" }
+  - { key: B, mods: Command|Shift, chars: "\x1bB" }
+  - { key: D, mods: Command, chars: "\x1bd" }
+  - { key: D, mods: Command|Shift, chars: "\x1bD" }
+  - { key: E, mods: Command, chars: "\x1be" }
+  - { key: E, mods: Command|Shift, chars: "\x1bE" }
+  - { key: F, mods: Command, chars: "\x1bf" }
+  - { key: F, mods: Command|Shift, chars: "\x1bF" }
+  - { key: G, mods: Command, chars: "\x1bg" }
+  - { key: G, mods: Command|Shift, chars: "\x1bG" }
+  - { key: H, mods: Command|Shift, chars: "\x1bH" }
+  - { key: I, mods: Command, chars: "\x1bi" }
+  - { key: I, mods: Command|Shift, chars: "\x1bI" }
+  - { key: J, mods: Command, chars: "\x1bj" }
+  - { key: J, mods: Command|Shift, chars: "\x1bJ" }
+  - { key: K, mods: Command, chars: "\x1bk" }
+  - { key: K, mods: Command|Shift, chars: "\x1bK" }
+  - { key: L, mods: Command, chars: "\x1bl" }
+  - { key: L, mods: Command|Shift, chars: "\x1bL" }
+  - { key: M, mods: Command, chars: "\x1bm" }
+  - { key: M, mods: Command|Shift, chars: "\x1bM" }
+  - { key: O, mods: Command, chars: "\x1bo" }
+  - { key: O, mods: Command|Shift, chars: "\x1bO" }
+  - { key: P, mods: Command, chars: "\x1bp" }
+  - { key: P, mods: Command|Shift, chars: "\x1bP" }
+  - { key: R, mods: Command, chars: "\x1br" }
+  - { key: R, mods: Command|Shift, chars: "\x1bR" }
+  - { key: S, mods: Command, chars: "\x1bs" }
+  - { key: S, mods: Command|Shift, chars: "\x1bS" }
+  - { key: T, mods: Command, chars: "\x1bt" }
+  - { key: T, mods: Command|Shift, chars: "\x1bT" }
+  - { key: U, mods: Command, chars: "\x1bu" }
+  - { key: U, mods: Command|Shift, chars: "\x1bU" }
+  - { key: W, mods: Command, chars: "\x1bw" }
+  - { key: W, mods: Command|Shift, chars: "\x1bW" }
+  - { key: X, mods: Command, chars: "\x1bx" }
+  - { key: X, mods: Command|Shift, chars: "\x1bX" }
+  - { key: Y, mods: Command, chars: "\x1by" }
+  - { key: Y, mods: Command|Shift, chars: "\x1bY" }
+  - { key: Z, mods: Command, chars: "\x1bz" }
+  - { key: Z, mods: Command|Shift, chars: "\x1bZ" }
+  - { key: Semicolon, mods: Command, chars: "\x1b;" }
+  - { key: Return,  mods: Command,  chars: "\x1b\x0d"   }
+  - { key: Colon, mods: Command, chars: "\x1b:" }
+  - { key: Comma, mods: Command, chars: "\x1b," }
+  - { key: Slash, mods: Command, chars: "\x1b/" }
+  - { key: Key1, mods: Command, chars: "\x1b1" }
+  - { key: Key2, mods: Command, chars: "\x1b2" }
+  - { key: Key3, mods: Command, chars: "\x1b3" }
+  - { key: Key4, mods: Command, chars: "\x1b4" }
+  - { key: Key5, mods: Command, chars: "\x1b5" }
+  - { key: Key6, mods: Command, chars: "\x1b6" }
+  - { key: Key7, mods: Command, chars: "\x1b7" }
+  - { key: Key8, mods: Command, chars: "\x1b8" }
+  - { key: Key9, mods: Command, chars: "\x1b9" }

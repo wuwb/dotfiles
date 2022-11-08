@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install asciinema
+}
+
+# update() {}
+
+# link() {}
+
+# clean() {}
+
+init "$@"

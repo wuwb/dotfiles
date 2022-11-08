@@ -1,0 +1,121 @@
+[alias]
+	root = rev-parse --show-toplevel
+	# Show the diff between the latest commit and the current state
+	d	= !"git diff"
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	di	= !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+	aa = add --all
+	rr = rm -r --cached .
+	rv = remote -v
+	cm	= commit
+	ca = commit -a -v
+	ps = push
+	pl = pull
+	prco = pr checkout
+	cl	= clone --recurse-submodules -j8
+    cl1 = clone --recurse-submodules -j8 --depth 1
+	br	= branch
+	bv = branch -vv
+	ba = branch -ra
+	bd = branch -d
+	st	= status -sb
+	co	= checkout
+	sm	= submodule
+    smr = delete-submodule
+    smd = submodule deinit -f .
+    smi = submodule update --init --recursive -j 8
+    smu = submodule update --remote --merge
+	clf	= clean -fdx -f
+	unst = reset HEAD
+	throw	= reset --hard HEAD
+	throwh	= reset --hard HEAD^
+	last	= log -1
+	glog	= log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	slog	= log --pretty=oneline
+	accept-ours = "!f() { git checkout --ours -- \"${@:-.}\"; git add -u \"${@:-.}\"; }; f"
+	accept-theirs = "!f() { git checkout --theirs -- \"${@:-.}\"; git add -u \"${@:-.}\"; }; f"
+	tagcommit = !sh -c 'git rev-list $0 | head -n 1'
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)%an <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+[init]
+	defaultBranch = main
+	templateDir = ~/.config/dotty/config/shell/git/template
+[core]
+	editor = nvim
+	ignorecase = false
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    light = true
+    # side-by-side = true
+    # delta --show-syntax-themes --light
+    syntax-theme = GitHub
+# [merge]
+#     conflictstyle = diff3
+[diff]
+    colorMoved = default
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[push]
+	default = simple
+[safe]
+	directory = ~/.config/dotty-nix
+[url "https://github.com/"]
+    insteadOf = gh:
+[url "git@github.com:"]
+    insteadOf = ssh+gh:
+[url "https://gitlab.com/"]
+    insteadOf = gl:
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+[url "https://bitbucket.org/"]
+    insteadOf = bb:
+[url "https://git.v0.com"]
+    insteadOf = v0:
+# Check all the rules with `git config --list --show-origin`
+# Use gh for github credentials
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+# Require git-remote-codecommit and aws cli installed
+[credential "https://git-codecommit.*.amazonaws.com"]
+    helper = !aws codecommit credential-helper $@
+    UseHttpPath = true
+[credential]
+	helper = !git-credential-manager-core
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+[http]
+	sslVerify = true
+[color]
+	ui = auto
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[magithub]
+	cache = always
+	online = false
+[magithub "status"]
+	includeStatusHeader = false
+	includePullRequestsSection = false
+	includeIssuesSection = false
+[diff "lisp"]
+	xfuncname = "^(((;;;+ )|\\(|([ \t]+\\(((cl-|el-patch-)?def(un|var|macro|method|custom)|gb/))).*)$"
+[diff "org"]
+	xfuncname = "^(\\*+ +.*)$"
+[include]
+	path = ~/dev/work/dots/git-user-config
+	path = ~/dev/work/dots/git-gpg-config
+[includeIf "gitdir:workplace/"]
+	path = ~/dev/work/dots/git-company-config

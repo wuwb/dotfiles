@@ -1,0 +1,5 @@
+- shell:
+    - description: Brew update
+      command: brew update
+    # - brew upgrade
+    - brew cleanup

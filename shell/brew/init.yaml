@@ -1,0 +1,80 @@
+# Sets default config for certain directives
+- defaults:
+    - brewfile:
+        - stdout: true
+    - brew:
+        - stderr: true
+        - stdout: true
+
+# Installs brew if missing
+- install-brew: true
+
+# - brewfile:
+#     - shell/brew/Brewfile
+
+# - tap:
+#     - caskroom/fonts
+
+- brew:
+    - git
+    # - git-lfs
+    # - emacs --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --HEAD --use-git-head
+    # - mas
+- cask:
+    # 预览，mac quicklook https://github.com/sindresorhus/quick-look-plugins
+    - qlcolorcode
+    - qlstephen
+    - qlmarkdown
+    - quicklook-json
+    - qlprettypatch
+    - quicklook-csv
+    - webpquicklook
+    - qlimagesize
+    - qlvideo
+
+    # 已经安装
+    # - syncthing
+    # - iterm2
+    # - iina
+    # - vscode
+    # - google-chrome
+    # - alfred # 付费
+    # - qq
+    # - sogouinput
+    # - bigwig-club/brew/upic
+    # - intellij-idea-ce
+
+    # 待定
+    # - colorpicker
+    # - cheatsheet
+    # - android-studio
+    # - pycharm-ce
+    # - java
+    # - qqmacmgr
+    # - youdao
+    # - flux
+    # - fluid # Turn any website into a real Mac app with Fluid
+    # - screenhero
+    # - karabiner-elements
+    # - rectangle
+    # - monitorcontrol
+    # - ticktick
+    # - keepingyouawake
+
+    # 不用
+    # - xquartz # Enable ssh X11 forwarding. Disabled now due to the pool usability
+    # - istat-menus
+    # - aerial # https://github.com/JohnCoates/Aerial Apple TV Aerial Views Screen Saver
+    # - transmit # 付费
+    # - textual # IRC
+    # - goofy # Your (unofficial) Facebook Messenger client for OS X
+
+    # 不再使用
+    # - qqmusic # 换网易云音乐
+    # - tower # 换 sourcetree
+    # - microsoft-edge # 换 chrome
+    # - evernote # 换 markdown
+    # - dropbox # 换 qnap
+    # - sequel-pro # 换 DBeaver
+    # - vlc # 换 iina
+    # - dash # 换 Devdocs

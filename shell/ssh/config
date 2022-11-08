@@ -1,0 +1,20 @@
+Include home.config
+Include cloud.config
+
+Host *
+  Protocol 2
+  ServerAliveInterval 30
+  ServerAliveCountMax 60
+  TCPKeepAlive yes
+  AddKeysToAgent yes
+  UseKeychain yes
+
+Host github.com
+  HostName ssh.github.com
+  Port 443
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa
+
+Host B1
+     HostName 192.168.68.14
+     Port 8022

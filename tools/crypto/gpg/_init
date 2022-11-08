@@ -1,0 +1,52 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install gnupg
+  ${DOTTY_CONFIG_HOME}/misc/gpg/gpg_import.sh
+  case $(_os) in
+    macos)
+      brew install gpg-suite
+      ;;
+    linux-*)
+      # https://github.com/microsoft/Git-Credential-Manager-Core/blob/main/docs/linuxcredstores.md
+      brew install pass # Required by git-credential-manager-core
+      if [[ ! -f $HOME/.local/share/password-store/.gpg-id ]]; then
+        if (git config --get user.email) >/dev/null; then
+          pass init $(git config --get user.email)
+        else
+          echo-fail "Please config git email first\!"
+        fi
+      fi
+      ;;
+  esac
+}
+
+# update() {}
+
+link() {
+  rm -f $HOME/.gnupg/gpg-agent.conf
+  mkdir -p $HOME/.gnupg && chmod 700 $HOME/.gnupg
+  cat <<EOF >$HOME/.gnupg/gpg-agent.conf
+default-cache-ttl 604800
+max-cache-ttl 1036800
+default-cache-ttl-ssh 604800
+max-cache-ttl-ssh 1036800
+EOF
+  case $(_os) in
+    macos)
+      cat <<EOF >>$HOME/.gnupg/gpg-agent.conf
+pinentry-program /usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac
+EOF
+      ;;
+  esac
+  # Restart gpg
+  # gpgconf --kill gpg-agent
+}
+
+clean() {
+  brew uninstall pass gunpg
+  rm -rf $HOME/.gnupg ${XDG_DATA_HOME}/password-store
+}
+
+init "$@"

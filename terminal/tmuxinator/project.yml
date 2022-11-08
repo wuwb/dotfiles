@@ -1,0 +1,21 @@
+# brew install tmux
+# brew install tmuxinator
+
+# ~/.tmuxinator/project0.yml
+name: project0
+root: ~/
+windows:
+  - editor: # 标题
+      layout: main-vertical # 支持 5 中 layout：
+      # even-horizontal even-vertical main-horizontal main-vertical tiled
+      # tmux list-windows 查看当前窗口值
+      # Synchronize all panes of this window,
+      # can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release,
+      # in favour of 'after' # synchronize: after
+      panes:
+        - vim # 执行的命令
+        - top
+  - ls: ls
+  - netconfig: ifconfig
+# 启动 mux start project

@@ -1,0 +1,3 @@
+- shell:
+    - rm -f ~/.zshrc
+    - rm -f ~/.zshenv

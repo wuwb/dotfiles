@@ -1,0 +1,112 @@
+# For emacs:
+*~
+*.*~
+\#*
+.\#*
+
+# For vim:
+*.swp
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+.nvimlog
+
+# Ignore tags (from etags and ctags)
+TAGS
+!TAGS/
+tags
+!tags/
+.tags
+
+# Logs and databases #
+######################
+*.log
+*.cache
+
+# OS generated files #
+######################
+.DS_Store?
+.DS_Store
+.CFUserTextEncoding
+.Trash
+.Xauthority
+thumbs.db
+Icon?
+Thumbs.db
+.cache
+.pid
+.sock
+
+# Code stuffs #
+###############
+.svn
+.git
+.swp
+.idea
+.*.swp
+*~
+.sass-cache
+tmp
+*.tmp
+.codekit-cache
+config.codekit
+
+# Compiled thangs #
+###################
+*.class
+*.exe
+*.o
+*.so
+*.dll
+*.pyc
+
+# C++ #
+#######
+build
+release
+cmake-build-debug
+.ccls-cache
+compile_commands.json
+.lldb-*
+
+# Python #
+##########
+.mypy_cache
+__pycache__
+.ipynb_checkpoints
+.pytest_cache
+.python-version
+pyproject.toml~1
+
+# Java #
+########
+.settings
+.project
+.classpath
+*.iml
+
+# Go #
+######
+__debug_bin
+
+# Custom #
+##########
+.idea
+.env
+.envrc
+.dir-locals.el
+.flycheck_*
+.projectile
+.osync_workdir
+*.parquet
+
+# Amazon #
+##########
+annotation-generated-src
+annotation-generated-tst
+.factorypath
+*.unison.tmp
+# https://stackoverflow.com/questions/43555850/git-gitignore-to-ignore-only-folder-in-root-directory
+# ^ forward slash before the folder name signifies root dir
+/out

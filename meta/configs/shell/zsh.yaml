@@ -1,0 +1,14 @@
+- link:
+    ~/.zshrc:
+      path: shell/zsh/zshrc
+      create: false
+      relink: false
+      force: false
+      relative: false
+      canonicalize: true
+      ignore-missing: true
+      glob: false
+    ~/.zprofile:
+      path: shell/zsh/zprofile
+- shell:
+    # - [chsh -s $(which zsh) $(whoami), Making zsh the default shell]

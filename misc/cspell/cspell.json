@@ -1,0 +1,22 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": ["ztlevi", "zhot"],
+  "dictionaries": [
+    "common-extra",
+    "linux-terms",
+    "machine-learning",
+    "python-extra",
+    "company-terms"
+  ],
+  "dictionaryDefinitions": [
+    { "name": "common-extra", "path": "./dict/common-extra.txt" },
+    { "name": "linux-terms", "path": "./dict/linux-terms.txt" },
+    { "name": "machine-learning", "path": "./dict/machine-learning.txt" },
+    { "name": "python-extra", "path": "./dict/python-extra.txt" },
+    { "name": "js-extra", "path": "./dict/js-extra.txt" },
+    { "name": "company-terms", "path": "./dict/company-terms.txt" }
+  ],
+  "ignorePaths": ["node_modules/**", "cmake-build-debug/**"],
+  "flagWords": ["hte"]
+}

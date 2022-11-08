@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  case $(_os) in
+    macos)
+      brew install --cask docker
+      brew install docker-compose dive
+      ;;
+    linux-*)
+      brew install docker docker-compose dive
+      sudo usermod -a -G docker $USER # logout required, and docker should appear in `groups` output
+      ;;
+  esac
+}
+
+# update() {}
+
+# link() {}
+
+# clean() {}
+
+init "$@"

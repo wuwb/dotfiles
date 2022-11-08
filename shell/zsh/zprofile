@@ -1,0 +1,1 @@
+# .zprofile是给ksh用户的一个.zlogin的替代品,所以我们如果使用了.zlogin就不必再关心此文件

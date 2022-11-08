@@ -1,0 +1,4 @@
+- link:
+    ~/.gitconfig: tools/vcs/git/gitconfig
+    ~/.gitattributes: tools/vcs/git/gitattributes
+    ~/.gitignore_global: tools/vcs/git/gitignore_global

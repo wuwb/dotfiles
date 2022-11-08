@@ -1,0 +1,4 @@
+- link:
+    ~/.ideavimrc:
+      if: "[ `uname` = Darwin ]"
+      path: idea/.ideavimrc

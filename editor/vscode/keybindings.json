@@ -1,0 +1,42 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+k u",
+    "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "ctrl+k l",
+    "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "ctrl+alt+/",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+c",
+    "command": "editor.action.insertSnippet",
+    "args": { "name": "console-log" }
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "editor.action.insertSnippet",
+    "args": { "name": "anonymous-function" }
+  },
+  {
+    "key": "shift+alt+s",
+    "command": "terminalCommandKeys.run",
+    "args": {
+      "cmd": "npm run start",
+      "newTerminal": true
+    }
+  },
+  {
+    "key": "shift+alt+l",
+    "command": "terminalCommandKeys.run",
+    "args": {
+      "cmd": "npm run lint",
+      "newTerminal": true
+    }
+  }
+]

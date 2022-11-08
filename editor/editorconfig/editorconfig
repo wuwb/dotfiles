@@ -1,0 +1,42 @@
+# http://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cc,h,hpp,cpp,cxx}]
+indent_size = 2
+
+[{Vagrant,Cap,Rake,Gem}file]
+indent_size = 2
+
+[*.{el,rb,cr,lua,y{a,}ml,json,toml,coffee}]
+indent_size = 2
+
+[*.{ts{,x},js{,x},css,s{a,c}ss,styl,slim,jade,pug,html}]
+indent_size = 2
+
+[*.{{,ba,fi,z}sh}]
+indent_size = 2
+
+[*.go]
+indent_style = tab
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+
+[*.yaml,*.yml]
+indent_style = space
+indent_size = 4
+
+
+
+[{Makefile,gitconfig}]
+indent_style = tab

@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install aspell
+}
+
+# update() {}
+
+link() {
+  mklink $DOTTY_CONFIG_HOME/shell/aspell/aspell.en.prepl ~/.aspell.en.prepl
+  mklink $DOTTY_CONFIG_HOME/shell/aspell/aspell.en.pws ~/.aspell.en.pws
+}
+
+clean() {
+  rm -f ~/.aspell.en.prepl ~/.aspell.en.pws
+}
+
+init "$@"

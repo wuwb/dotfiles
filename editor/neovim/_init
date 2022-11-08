@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install neovim
+
+  # Remove old files and symlinks
+  rm -rf ~/.vimrc ~/.config/nvim ~/.space-vim ~/.spacevim ~/.SpaceVim ~/.SpaceVim.d
+
+  # Disable Space-Vim
+  # curl -sLf https://spacevim.org/install.sh | bash
+}
+
+update() {
+  # call :SPUpdate
+  # git -C ~/.SpaceVim pull
+}
+
+link() {
+  # rm -rf ~/.SpaceVim.d
+  # mklink SpaceVim.d ~/.SpaceVim.d
+
+  mklink $DOTTY_CONFIG_HOME/editor/neovim/config/* $XDG_CONFIG_HOME/
+
+  rm -f ~/.ideavimrc
+  mklink $DOTTY_CONFIG_HOME/editor/neovim/.ideavimrc ~/.ideavimrc
+}
+
+clean() {
+  rm -rf ~/.vimrc ~/.ideavimrc $XDG_CONFIG_HOME/nvim
+  # rm -rf ~/.SpaceVim.d ~/.SpaceVim
+}
+
+init "$@"

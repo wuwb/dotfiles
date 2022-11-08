@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+local default_browser=""
+case $(_os) in
+  macos)
+    default_browser=$(plutil -p ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist | grep 'https' -b3 | awk 'NR==3 {split($4, arr, "\""); print arr[2]}')
+    ;;
+  linux-*)
+    default_browser=$(xdg-settings get default-web-browser)
+    ;;
+esac
+
+echo $default_browser

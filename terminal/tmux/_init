@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install tmux
+  case $(_os) in
+    macos)
+      brew install reattach-to-user-namespace
+      ;;
+    linux-*)
+      brew install xclip
+      ;;
+  esac
+
+  _ensure_repo tmux-plugins/tpm $TMUX_PLUGIN_MANAGER_PATH/tpm
+
+  sudo rm -f /bin/tmux
+  # kill tmux to avoid protocol version mismatch (client 8, server 7) error
+  pkill tmux || true
+
+  # tmux.conf is needed for install plugins
+  mklink $DOTTY_CONFIG_HOME/shell/tmux/tmux.conf $TMUX_HOME/
+  local tpm=$TMUX_PLUGIN_MANAGER_PATH/tpm
+  if [[ -d $tpm ]]; then
+    $tpm/bin/install_plugins all
+  fi
+}
+
+update() {
+  local tpm=$TMUX_PLUGIN_MANAGER_PATH/tpm
+  if [[ -d $tpm ]]; then
+    $tpm/bin/update_plugins all
+  fi
+}
+
+link() {
+  mklink $DOTTY_CONFIG_HOME/shell/tmux/tmux.conf $TMUX_HOME/
+}
+
+clean() {
+  rm -rf $TMUX_HOME $TMUX_PLUGIN_MANAGER_PATH
+}
+
+init "$@"

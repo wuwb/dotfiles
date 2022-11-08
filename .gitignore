@@ -1,0 +1,12 @@
+xprofile_local
+*.zwc
+assets
+
+Brewfile.*.lock.json
+secrets.*
+credentials.*
+.pkrvars.hcl
+*.pkrvars.hcl
+.nvimlog
+.DS_Store
+__pycache__

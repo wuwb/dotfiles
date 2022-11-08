@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install rustup rust-analyzer
+  rustup-init -y --no-modify-path
+}
+
+update() {
+  rustup update
+}
+
+link() {}
+
+clean() {
+  brew uninstall rustup
+  rm -rf $CARGO_HOME $RUSTUP_HOME
+}
+
+init "$@"

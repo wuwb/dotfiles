@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+# menu (dmenu, rofi, fzf, etc.)
+# For dmenu: dmenu -i -p Bookmark
+menu_cmd="fzf"
+menu_cmd_options="--ansi --multi"
+
+# browser
+browser_cmd='launch-browser'
+browser=$1
+
+if [[ -z "$2" ]]; then
+  user=Default
+else
+  user="Profile $2"
+fi
+local cols sep history_path open
+cols=$((COLUMNS / 3))
+sep='{::}'
+
+if [ "$(uname)" = "Darwin" ]; then
+  if [[ $browser == "chrome" ]]; then
+    history_path="${HOME}/Library/Application Support/Google/Chrome/${user}/History"
+  else
+    history_path="${HOME}/Library/Application Support/Microsoft Edge/${user}/History"
+  fi
+else
+  if [[ $browser == "chrome" ]]; then
+    history_path="${HOME}/.config/google-chrome/${user}/History"
+  else
+    history_path="${HOME}/.config/microsoft-edge/${user}/History"
+  fi
+fi
+rm -f /tmp/chrome-history
+cp -f "$history_path" /tmp/chrome-history
+sqlite3 -separator $sep /tmp/chrome-history \
+  "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b%s\x1b\n", $2, $3}'  |
+  $menu_cmd $menu_cmd_option | sed 's#.*\(https*://\)#\1#' | xargs $browser_cmd

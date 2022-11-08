@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+source ${0:A:h}/../../deploy
+
+install() {
+  brew install --cask iterm2
+}
+
+update() {
+  brew upgrade --cask iterm2
+}
+
+link() {
+  mklink $DOTTY_CONFIG_HOME/shell/iterm/com.googlecode.iterm2.plist $HOME/Library/Preferences/
+}
+
+clean() {
+  rm -rf $HOME/Library/Preferences/com.googlecode.iterm2.plist
+  brew uninstall --cask iterm2
+}
+
+init "$@"

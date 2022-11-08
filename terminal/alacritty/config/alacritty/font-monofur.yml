@@ -1,0 +1,14 @@
+font:
+  normal:
+    family: Monofur Nerd Font Mono
+    style: Book
+  bold:
+    family: Monofurbold Nerd Font Mono
+    style: Bold
+  italic:
+    family: Monofuritalic Nerd Font Mono
+    style: Italic
+  size: 16
+  offset:
+    x: 0
+    y: 0

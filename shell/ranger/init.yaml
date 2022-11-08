@@ -1,0 +1,7 @@
+- brew
+  - ranger
+  - atool
+
+- link:
+    - ~/.config/ranger:
+      path: shell/ranger

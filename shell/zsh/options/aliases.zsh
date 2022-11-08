@@ -1,0 +1,195 @@
+# https://sw.kovidgoyal.net/kitty/faq.html#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
+
+# global
+alias -g '..'='cd ..'
+alias -g '...'='cd ../..'
+alias -g '....'='cd ../../..'
+alias -g '.....'='cd ../../../..'
+alias -- -='cd -'
+
+alias -g '_'='sudo'
+alias -g BG='& exit'
+alias -g C='| wc -l'
+alias -g V=' --verbose'
+alias -g tojson='| python -m json.tool'
+
+alias ~='cd $HOME'
+alias /='cd /'
+
+# in zsh common-aliases plugin
+# alias -g G='|grep'
+# alias -g H='|head'
+# alias -g NUL="> /dev/null 2>&1"
+alias -g L="| less"
+alias -g N="| /dev/null"
+alias -g S='| sort'
+
+# Unix
+alias ll="ls -al"
+alias ll2="ls -lgh"
+alias la='ls -laFh'
+alias ls="/bin/ls -hlap --file-type --time-style='+%y-%m-%d %H%M%S' --color=auto --group-directories-first"
+alias ln="ln -v"
+
+alias cp="cp -iv"
+alias rm='rm -vi'
+alias mv='mv -vi'
+alias mkdir="mkdir -pv"
+alias wget='wget -c' # Resume dl if possible
+alias path='echo -e ${PATH//:/\\n}' # Print each PATH entry on a separate line
+alias path2='echo $PATH | tr -s ":" "\n"'
+alias ports='netstat -tulanp'
+alias gurl='curl --compressed'
+
+alias df="df -h"
+alias free="free -m"
+alias ag="ag -i"
+alias dud="du -d 1"
+
+alias sorry='sudo $(history -p !-1)'
+alias kc='kubectl'
+alias cssh='$EDITOR $HOME/.ssh/config'
+alias xmap="xargs -n1"
+alias get_window_class="xprop | grep WM_CLASS"
+alias pstop='watch "ps aux | sort -nrk 3,3 | head -n 5"'
+alias shutdown='sudo shutdown'
+alias reboot='sudo reboot'
+
+alias rcpd='rcp --delete --delete-after'
+alias rcpu='rcp --chmod=go='
+alias rcpdu='rcpd --chmod=go='
+
+alias sc=systemctl
+alias ssc='sudo systemctl'
+
+
+# unpack
+alias -s zip='unzip'
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s bz2='tar -xjvf'
+alias -s xz='tar -Jxf'
+alias -s untar='tar -xvf'
+
+# Always enable colored `grep` output
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# git
+alias gst="git status"
+alias glg="git log --graph --decorate --pretty=oneline --abbrev-commit"
+alias gci='git commit -m'
+alias gcl1="git clone --depth=1"
+
+# git log
+alias glog_branches="git log --color=always --oneline --decorate --graph --branches"
+alias glog_branches_intag="echo You can append a tag name; LANG=C sleep 0.5; git log --color=always --oneline --decorate --graph --branches"
+alias glog_simplify_decfull="git log --color=always --decorate=full --simplify-by-decoration"
+alias glog_simplify="git log --color=always --simplify-by-decoration --decorate"
+# ​git config --global url."https://gitclone.com/".insteadOf https://
+# https://stackoverflow.com/a/15503178/1820217
+alias gitlog="git ls-files -z | xargs -0n1 git blame -w --show-email | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -n"
+
+# tmux
+alias tl=tmux list-sessions
+alias tkss=tmux kill-session -t
+alias ta=tmux attach -t
+alias ts=tmux new-session -s
+alias tmux="TERM=screen-256color tmux -2"
+alias mux="TERM=screen-256color tmuxinator"
+
+# nvm
+alias mci="mvn -e -U clean install"
+alias mcp="mvn -U clean package"
+alias mvn-purge="mvn dependency:purge-local-repository"
+
+# xxxxx
+alias ip="ifconfig eth0 | grep inet | awk '{ print $2 }'"
+alias ipv6="curl https://v6.ident.me/"
+alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+alias localip="ipconfig getifaddr en0"
+alias rmds="find . -name '*.DS_Store' -type f -delete && echo 'ALL .DS_STORE FILES RECURSIVELY REMOVED'"
+alias rme="trash-put"
+alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+alias server="python -m http.server 8000"
+alias chrome="open -a 'Google Chrome' --args --disable-web-security --user-data-dir"
+alias xz="cd ~/Downloads && aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c"
+alias signode="codesign--sign - --force --deep - /usr/local/bin/node"
+alias sudoinstall="sudo spctl --master-disable" # xattr -cr app
+alias mntfs="mount_ntfs -o rw,nobrowse"
+alias tq="curl wttr.in/Hangzhou"
+alias up="softwareupdate -i -a"
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias gpm='git push --set-upstream origin master'
+alias a1='mosh --ssh="ssh -p 8022" A1'
+# defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+# Show/hide hidden files in Finder
+alias showhiddenfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidehiddenfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias showdesktopicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesktopicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Disable / enable Spotlight
+alias disablespotlight="sudo mdutil -a -i off"
+alias enablespotlight="sudo mdutil -a -i on"
+
+
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# docker
+alias docker-cli='eval "$(docker-machine env default)"'
+alias dc="docker-compose"
+alias dcrun="docker-compose run --rm"
+
+# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; gem update --system; gem update; gem cleanup'
+
+# ios
+alias respring="killall SpringBoard"
+alias respring2="killall -9 backboardd"
+
+# Programs
+if _is_callable bat; then
+  alias bat="bat --theme OneHalfLight"
+  alias cat=bat
+fi
+_is_callable exa alias ls="exa --color=auto --group-directories-first"
+_is_callable neofetch && alias nf="neofetch"
+_is_callable cmatrix && alias cm="cmatrix -C red"
+_is_callable tensorboard && alias tb="tensorboard"
+_is_callable bandwhich && alias bandwhich="sudo $(which bandwhich)"
+
+if (( $+commands[exa] )); then
+  alias exa="exa --group-directories-first --git";
+  alias l="exa -blF";
+  alias ll="exa -abghilmu";
+  alias llm='ll --sort=modified'
+  alias la="LC_COLLATE=C exa -ablF";
+  alias tree='exa --tree'
+fi
+
+if (( $+commands[fasd] )); then
+  # fuzzy completion with 'z' when called without args
+  unalias z 2>/dev/null
+  function z {
+    [ $# -gt 0 ] && _z "$*" && return
+    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+  }
+fi
+
