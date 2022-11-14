@@ -1,0 +1,5 @@
+- brew:
+    - tmuxinator
+
+- link:
+    ~/.config/tmuxinator: terminal/tmuxinator

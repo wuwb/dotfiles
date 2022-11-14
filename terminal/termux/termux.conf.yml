@@ -1,0 +1,27 @@
+- shell:
+    - description: backup .termux
+      command: |
+        mv "$HOME/.termux" "$HOME/.termux.bak.$(date +%Y.%m.%d-%H:%M:%S)"
+    - description: install tools
+      command: |
+        pkg install -y termux-tools libcurl wget curl openssh vim git zsh unrar unzip less tree htop tsu neofetch fzf ncurses-utils
+
+- create:
+    - ~/.termux
+- link:
+    ~/.termux/colors.properties:
+      path: terminal/termux/colors.properties
+    ~/.termux/font.ttf:
+      path: terminal/termux/font.ttf
+    ~/.termux/termux.properties:
+      path: terminal/termux/termux.properties
+- shell:
+    - description: Clone zinit
+      quiet: true
+      command: |
+        if cd ~/.zinit/bin;
+        then git pull;
+        else git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin; fi
+    - chsh -s zsh
+    - termux-reload-settings
+    - echo "Done!"

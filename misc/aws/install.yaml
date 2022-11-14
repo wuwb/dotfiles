@@ -1,0 +1,4 @@
+- brew:
+    - awscli
+    - git-remote-codecommit
+    - peak/tap/s5cmd

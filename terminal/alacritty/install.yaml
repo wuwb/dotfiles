@@ -1,7 +1,9 @@
-
 - brew:
-  - yq 
-  - neofetch 
-  - vivid
-- cask: 
-  - alacritty
+    - yq
+    - neofetch
+    - vivid
+- cask:
+    - alacritty
+
+- link:
+  $HOME/.config/alacritty/alacritty.yml: terminal/alacritty/alacritty.yml

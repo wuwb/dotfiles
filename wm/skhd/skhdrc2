@@ -1,13 +1,3 @@
-# opens iTerm2
-alt - return : "${HOME}"/.config/chunkwm/scripts/open_iterm2.sh
-
-# Show system statistics
-fn + lalt - 1 : "${HOME}"/.config/chunkwm/scripts/show_cpu.sh
-fn + lalt - 2 : "${HOME}"/.config/chunkwm/scripts/show_mem.sh
-fn + lalt - 3 : "${HOME}"/.config/chunkwm/scripts/show_bat.sh
-fn + lalt - 4 : "${HOME}"/.config/chunkwm/scripts/show_disk.sh
-fn + lalt - 5 : "${HOME}"/.config/chunkwm/scripts/show_song.sh
-
 # Navigation
 alt - h : chunkc tiling::window --focus west
 alt - j : chunkc tiling::window --focus south

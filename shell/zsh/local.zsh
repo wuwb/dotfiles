@@ -40,31 +40,8 @@ backup_dfh() {
   xargs -I{} mv {} ~/dotfiles_backup/{}
 }
 
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-###############################################################################
-# Functions
-# (f)ind by (n)ame
-# usage: fn foo 
-# to find all files containing 'foo' in the name
-_fn() { 
-  ls **/*$1* 
-}
-_has() {
-  return $( whence $1 &>/dev/null )
-}
-_try() {
-  return $( eval $* &>/dev/null )
-}
-_versionof() {
-  if _has "$1"; then
-    echo "$1 $($1 --version)"
-  else
-    echo "$1 n/a"
-  fi
-}
 
 ###############################################################################
 
@@ -181,8 +158,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # ansible
 export ANSIBLE_HOST_KEY_CHECKING=False
 
-
-
 # Created by mirror-config-china
 export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
 export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
@@ -196,7 +171,3 @@ export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 
 # RANCHER DESKTOP
 # export PATH="/Users/eqielb/.rd/bin:$PATH"
-
-
-##############################
-# custom alias 

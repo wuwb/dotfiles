@@ -1,0 +1,6 @@
+
+- cask: 
+    - docker
+- brew: 
+    - docker-compose 
+    - dive

@@ -1,6 +1,22 @@
 - brew:
-  - tmux
-  - reattach-to-user-namespace
+    - tmux
+    - reattach-to-user-namespace
 
-- links:
-  - $DOTTY_CONFIG_HOME/shell/tmux/tmux.conf $TMUX_HOME/
+# Setup tpm : tmux plugin manager
+- create:
+    - ~/.tmux/plugins
+
+- link:
+    ~/.tmux.conf:
+      path: terminal/tmux/.tmux.conf
+    ~/.tmux.conf.local:
+      path: terminal/tmux/.tmux.conf.local
+
+- shell:
+    - description: Clone tpm
+      quiet: true
+      command: |
+        if cd ~/.tmux/plugins/tpm;
+        then git pull;
+        else git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm;
+        fi

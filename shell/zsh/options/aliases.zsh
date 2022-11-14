@@ -238,3 +238,9 @@ if (( $+commands[fasd] )); then
     cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
   }
 fi
+
+alias rv='reveal-md --highlight-theme github --theme white --watch'
+alias rvs='reveal-md --highlight-theme github --theme white --static revealjs_output'
+alias yd='yt-dlp --write-auto-sub --ignore-errors'
+alias yd2mp4='yt-dlp --write-auto-sub --ignore-errors --recode-video mp4'
+alias yda='yt-dlp -i -o "%(title)s.%(ext)s" --embed-thumbnail --extract-audio --audio-format mp3 --audio-quality 0'

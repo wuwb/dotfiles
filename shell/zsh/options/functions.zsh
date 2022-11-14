@@ -244,3 +244,24 @@ function update_git_repo() {
 function find-app-id() {
   /usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' /Applications/"$1".app/Contents/Info.plist
 }
+
+# Functions
+# (f)ind by (n)ame
+# usage: fn foo 
+# to find all files containing 'foo' in the name
+_fn() { 
+  ls **/*$1* 
+}
+_has() {
+  return $( whence $1 &>/dev/null )
+}
+_try() {
+  return $( eval $* &>/dev/null )
+}
+_versionof() {
+  if _has "$1"; then
+    echo "$1 $($1 --version)"
+  else
+    echo "$1 n/a"
+  fi
+}
