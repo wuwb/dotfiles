@@ -1,6 +1,4 @@
-
-
-
-- links:
-  - $DOTTY_CONFIG_HOME/shell/git/config/git $XDG_CONFIG_HOME/
-  - $DOTTY_CONFIG_HOME/shell/git/.ignore ~/
+- link:
+    ~/.gitconfig: tools/vcs/git/gitconfig
+    ~/.gitattributes: tools/vcs/git/gitattributes
+    ~/.gitignore_global: tools/vcs/git/gitignore_global

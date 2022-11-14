@@ -46,7 +46,6 @@
 set -e
 
 META_DIR="meta"
-CONFIG_DIR="configs"
 PROFILES_DIR="profiles"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
