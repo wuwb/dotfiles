@@ -1,0 +1,4 @@
+- brew:
+    - go
+- shell:
+    - ./install.sh

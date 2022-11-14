@@ -72,9 +72,6 @@ bindkey '^R' history-incremental-search-backward
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
-# give us access to ^Q
-stty -ixon
-
 # vi mode
 bindkey -v
 bindkey "^F" vi-cmd-mode

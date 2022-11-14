@@ -39,3 +39,8 @@ clean() {
   rm -rf $XDG_DATA_HOME/assets/fonts/
 }
 
+
+  yay --needed --noconfirm -S \
+        telegram-desktop \
+        dropbox webtorrent-desktop
+    

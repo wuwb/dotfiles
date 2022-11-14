@@ -12,14 +12,198 @@
 # - brewfile:
 #     - shell/brew/Brewfile
 
-# - tap:
-#     - caskroom/fonts
+- tap:
+    - caskroom/fonts
+    - buo/cask-upgrade # Upgrade with `brew cu`
+    - scullionw/tap
 
 - brew:
-    - git
-    # - git-lfs
+    # java 开发
+    # - jdtls
+    # - gradle
+    # - maven
+    # - jenv
+    # - openjdk
+
+    # editor
+    - neovim
     # - emacs --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --HEAD --use-git-head
-    # - mas
+    - visual-studio-code
+    # shell
+    - zsh
+    - zsh-completions
+    - zsh-autosuggestions
+    - zsh-syntax-highlighting
+    - tmux
+
+    # dev
+    - go
+    - node
+    - cmake
+    - rbenv
+    - ruby
+    - ruby-build
+    - pyright
+    - black
+    - poetry
+    - pylint
+    - python@3.9
+    - miniconda
+
+    # cvs
+    - git
+    - mercurial
+    - hub
+    - gh
+    # - git-lfs
+    - git-secrets
+    - git-delta
+    - git-extras
+    - pre-commit
+
+    # web
+    - wget
+    - rsync
+    - youtube-dl
+
+    # database
+    - sqlite
+    - postgresql
+    - mariadb # mysql
+
+    # Better console tools
+    - exa
+    - fd
+    - bat
+    - hyperfine
+    - procs
+    - sd
+    - duf
+
+    # ssh
+    - mosh
+    - ssh-copy-id # 自带
+    - openssl
+    - libressl
+    - openssl
+
+    # net
+    - wget
+    - curl
+    - neofetch
+    - rsync
+    - httpie
+    - net-tools
+    - bandwhich # network monitor
+    - neofetch
+
+    # shell
+    - zsh
+    - screen
+    - bash # Install Bash 4
+    - bash-completion2
+
+    # lang
+    - ruby
+    - node
+    - go
+    - python
+    - python3
+    - lua
+    - R
+    - llvm
+    - gcc
+    - gdb
+    - cmake
+    - android-platform-tools
+
+    # lint
+    - pre-commit
+    - prettier
+    - cppcheck
+    - cpplint
+    - editorconfig
+
+    # new unix tools
+    - coreutils # https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
+    - btop # better top, 代替 htop，代替 top
+    - htop
+    - axel
+    - gnu-sed
+    - fzf # https://github.com/junegunn/fzf
+    - the_silver_searcher # https://github.com/ggreer/the_silver_searcher
+    - tree
+    - ffmpeg
+    - imagemagick
+    - mas
+    - nmap
+    - p7zip
+    - dos2unix
+    - proxychains-ng
+    - readline
+    - xz
+    - zlib
+    - heroku
+    - wrk
+    - jq
+    - tldr
+    - universal-ctags/universal-ctags/universal-ctags
+    - aspell
+    - unison
+    - fzf
+    - shfmt
+    - shellcheck
+    - tree
+    - p7zip
+    - jq
+    - direnv
+    - trash-cli
+    - trash
+    - ninja
+    - pandoc
+    - ffmpeg
+    - iptraf
+    - collectl
+    - dstat
+    - iostat
+    - iotop
+    - sar
+    - saidar
+    - vmstat
+    - duti
+    - gmp
+    - coreutils # Install GNU core utilities (those that come with OS X are outdated)
+    - moreutils # Install some other useful utilities like `sponge`.
+    - findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+    - gnupg # Install GnuPG to enable PGP-signing commits.
+    - gnupg2
+    - eva # alternative bc, calculator
+    - grep
+    - ripgrep # 快速版 grep
+    - awscli
+    - ctags
+    - rga
+    - poppler
+    - tesseract
+    - imagemagick
+    - graphicsmagick
+    - yt-dlp
+    - dirstat-rs # 查看硬盘使用情况，类似 windirstat，速度更快
+    # 不用
+    # - mackup # osx 配置管理器，换 dotbot
+    # - antigen # zsh 包管理器，换 zinit
+    # - mysql # 换 mariadb
+    # - autojump # 换 z
+    # - zgenom # 用 zinit 代替
+    # - mackup # 用 dotbot 代替
+    # - n # 换 pnpm
+    # - yarn # 换 pnpm
+
+    # - gnu-sed --with-default-names
+    # - vim --with-override-system-vi
+    # - php56, args: ['with-debug', 'without-apache'] # 换新版
+    # - php70, args: ['with-debug', 'without-apache']
+
 - cask:
     # 预览，mac quicklook https://github.com/sindresorhus/quick-look-plugins
     - qlcolorcode
@@ -31,8 +215,10 @@
     - webpquicklook
     - qlimagesize
     - qlvideo
+    # - suspicious-package
+    # - quicklookase
 
-    # 已经安装
+    # 已装
     # - syncthing
     # - iterm2
     # - iina
@@ -43,6 +229,16 @@
     # - sogouinput
     # - bigwig-club/brew/upic
     # - intellij-idea-ce
+    # - appcleaner
+    # - clashx
+    # - wpsoffice-cn
+    # - obsidian
+
+    # 可装
+    - neteasemusic
+    - bartender # 付费
+    - keycastr
+    - charles
 
     # 待定
     # - colorpicker
@@ -60,16 +256,51 @@
     # - monitorcontrol
     # - ticktick
     # - keepingyouawake
+    - squirrel
+    - zoomus
+    - balenaEtcher
+    - cyberduck
+    - dozer
+    - day-o
+    - eudic
+    - font-fira-code
+    - font-source-code-pro
+    - hammerspoon
+    - java
+    - jd-gui
+    - licecap
+    - mos
+    - nitroshare
+    - postman
+    - qmk-toolbox
+    - upic
+    - via
+    - musicbrainz-picard
+    - plex
+    - plexamp
+    - inkscape
+    - kap
+    - rectangle
 
     # 不用
+
+    # - obs # 在 windows 上直播
+    # - webtorrent
     # - xquartz # Enable ssh X11 forwarding. Disabled now due to the pool usability
     # - istat-menus
     # - aerial # https://github.com/JohnCoates/Aerial Apple TV Aerial Views Screen Saver
     # - transmit # 付费
-    # - textual # IRC
+
+    ## 社交
+    # - whatsapp
+    # - slack
+    # - zoom
     # - goofy # Your (unofficial) Facebook Messenger client for OS X
+    # - discord
+    # - textual # IRC
 
     # 不再使用
+    # - typora # 换 vscode
     # - qqmusic # 换网易云音乐
     # - tower # 换 sourcetree
     # - microsoft-edge # 换 chrome
@@ -78,3 +309,37 @@
     # - sequel-pro # 换 DBeaver
     # - vlc # 换 iina
     # - dash # 换 Devdocs
+    # - google-drive # 换 qnap
+    # - mpv # 换 iina
+    # - nextcloud # 换 qnap
+    # - calibre # 换 qnap
+
+# 安装 cask
+
+# install brew cask
+- tap:
+    - caskroom/cask
+    - caskroom/versions
+    - homebrew/bundle
+    - homebrew/dupes
+    - homebrew/php
+- brew:
+    - brew-cask
+
+# 微软 git 认证
+- tap:
+    - microsoft/git
+- cask:
+    - git-credential-manager-core
+
+# 安装字体
+- tap:
+    - bramstein/webfonttools
+    - homebrew/cask-fonts
+- brew:
+    # - sfnt2woff
+    # - sfnt2woff-zopfli
+    # - woff2
+- cask:
+    # - font-ubuntu-mono-nerd-font
+    # - font-fira-code-nerd-font

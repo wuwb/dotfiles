@@ -1,0 +1,3 @@
+- links:
+    - $DOTTY_CONFIG_HOME/wm/bspwn/config/* $XDG_CONFIG_HOME/
+    - $DOTTY_CONFIG_HOME/wm/general/config/* $XDG_CONFIG_HOME/

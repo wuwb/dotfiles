@@ -1,0 +1,6 @@
+
+- brew:
+  - phpenv 
+  - php-build 
+  - libmcrypt
+

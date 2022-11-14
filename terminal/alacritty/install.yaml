@@ -1,0 +1,7 @@
+
+- brew:
+  - yq 
+  - neofetch 
+  - vivid
+- cask: 
+  - alacritty

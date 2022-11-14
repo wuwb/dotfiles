@@ -208,7 +208,7 @@
     editor = vim
 	autocrlf = false
 	saftcrlf = true
-	quotepath = false
+	quotepath = false # status 引用路径不再是八进制，允许使用中文。
 	pager = less -FRSX
   	editor = code --wait
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
@@ -316,7 +316,12 @@
   enabled = true
 [include]
   path = .gitconfig.user
-
+[gui]
+	encoding = utf-8 # 代码库统一使用 utf-8 编码
+[i18n]
+	commitencoding = utf-8 # log 编码
+[svn]
+	pathnameencoding = utf-8 # 支持中文路径
 [http]
 	postBuffer = 524288000
 	sslverify = false

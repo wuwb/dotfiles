@@ -37,7 +37,7 @@ alias mv='mv -vi'
 alias mkdir="mkdir -pv"
 alias wget='wget -c' # Resume dl if possible
 alias path='echo -e ${PATH//:/\\n}' # Print each PATH entry on a separate line
-alias path2='echo $PATH | tr -s ":" "\n"'
+# alias path='echo $PATH | tr -s ":" "\n"' # 需要多依赖一个 tr 命令
 alias ports='netstat -tulanp'
 alias gurl='curl --compressed'
 
@@ -48,12 +48,9 @@ alias dud="du -d 1"
 
 alias sorry='sudo $(history -p !-1)'
 alias kc='kubectl'
-alias cssh='$EDITOR $HOME/.ssh/config'
 alias xmap="xargs -n1"
 alias get_window_class="xprop | grep WM_CLASS"
 alias pstop='watch "ps aux | sort -nrk 3,3 | head -n 5"'
-alias shutdown='sudo shutdown'
-alias reboot='sudo reboot'
 
 alias rcpd='rcp --delete --delete-after'
 alias rcpu='rcp --chmod=go='
@@ -121,6 +118,7 @@ alias sudoinstall="sudo spctl --master-disable" # xattr -cr app
 alias mntfs="mount_ntfs -o rw,nobrowse"
 alias tq="curl wttr.in/Hangzhou"
 alias up="softwareupdate -i -a"
+# Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias gpm='git push --set-upstream origin master'
 alias a1='mosh --ssh="ssh -p 8022" A1'
@@ -161,8 +159,56 @@ alias dcrun="docker-compose run --rm"
 alias update='softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; gem update --system; gem update; gem cleanup'
 
 # ios
-alias respring="killall SpringBoard"
-alias respring2="killall -9 backboardd"
+# alias respring="killall SpringBoard"
+# alias respring2="killall -9 backboardd"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+
+# Canonical hex dump; some systems have this symlinked
+command -v hd > /dev/null || alias hd="hexdump -C"
+
+# macOS has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Merge PDF files, preserving hyperlinks
+# Usage: `mergepdf input{1,2,3}.pdf`
+alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
+
+# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
+alias plistbuddy="/usr/libexec/PlistBuddy"
+
+# Airport CLI alias
+alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume output volume 100'"
+
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
 
 # Programs
 if _is_callable bat; then
@@ -192,4 +238,3 @@ if (( $+commands[fasd] )); then
     cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
   }
 fi
-

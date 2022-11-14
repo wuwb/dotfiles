@@ -1,0 +1,6 @@
+- links:
+    - $DOTTY_CONFIG_HOME/wm/yabai/config/* $XDG_CONFIG_HOME/
+    - $DOTTY_CONFIG_HOME/wm/yabai/skhdrc ~/.skhdrc
+
+- shell:
+    - brew services start yabai

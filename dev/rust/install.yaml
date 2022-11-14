@@ -1,0 +1,6 @@
+
+- brew: 
+  - rustup 
+  - rust-analyzer
+- shell:
+  - rustup-init -y --no-modify-path

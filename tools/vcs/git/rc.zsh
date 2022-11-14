@@ -37,5 +37,4 @@ function git-reset-submodules () {
   git submodule deinit -f .
   git clean -fdx -f
   git submodule update --init --recursive -j 8
-
 }

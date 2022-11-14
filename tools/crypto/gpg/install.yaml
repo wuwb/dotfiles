@@ -1,0 +1,4 @@
+
+- brew:
+  - gnupg
+  - gpg-suite

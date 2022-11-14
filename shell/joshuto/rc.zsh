@@ -1,3 +1,5 @@
+# ranger-like terminal file manager written in Rust
+
 function joshuto-cd() {
   # TODO: remove this once nixos joshuto version updated
   if [[ $(_os) == 'linux-nixos' ]]; then

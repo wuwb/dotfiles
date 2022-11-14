@@ -7,3 +7,4 @@
 #
 
 cd ~/Desktop && yt-dlp -S "ext" "$1"
+# cd ~/Videos && youtube-dl "$1"

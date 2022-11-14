@@ -1,19 +1,8 @@
 #!/usr/bin/env zsh
 
-source $DOTTY_CONFIG_HOME/env
-
 #
 # Essentials
 #
-# Nixos start these apps automatically
-if [[ $(_os) != linux-nixos ]]; then
-  _call $DOTTY_CONFIG_HOME/bin/ding startup
-  _run sxhkd & # keyboard daemon
-  # perdy effects + transparency
-  if _is_callable picom; then _run picom & else _run compton &  fi
-  # dunst need to use zsh to run, otherwise click function fails
-  zsh -c "dunst-start &" # notifyciation daemon.
-fi
 
 {
   sleep 1

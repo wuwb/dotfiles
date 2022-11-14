@@ -38,7 +38,6 @@
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)%an <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 [init]
 	defaultBranch = main
-	templateDir = ~/.config/dotty/config/shell/git/template
 [core]
 	editor = nvim
 	ignorecase = false
@@ -61,8 +60,6 @@
 	prune = true
 [push]
 	default = simple
-[safe]
-	directory = ~/.config/dotty-nix
 [url "https://github.com/"]
     insteadOf = gh:
 [url "git@github.com:"]

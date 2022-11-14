@@ -29,16 +29,6 @@ ex() {
 # -------------------------------------------------------------------
 # display a neatly formatted path
 # -------------------------------------------------------------------
-path() {
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
-           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
-           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
-           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
-           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
-           print }"
-}
-
 _msg() { printf "\r\033[2K\033[0;32m[ .. ] %s\033[0m\n" "$*"; }
 
 _is_callable() {
@@ -70,15 +60,6 @@ sk9() {
     sudo pkill -9 -f $@
   fi
 }
-prg() {
-  ps aux | rg -i $@
-}
-grep_search() { 
-  echo $2 | grep -qiP $1; 
-}
-rg_search() { 
-  echo $2 | rg -qS $1; 
-}
 vread() {
   (
     $@ > /tmp/dummy_vread_file
@@ -86,9 +67,6 @@ vread() {
     rm -f /tmp/dummy_vread_file
   )
 }
-
-take() { mkdir "$1" && cd "$1"; }
-hex() { echo -n $@ | xxd -psdu; }
 
 function format-all-dos2unix() {
   if [[ -z $1 ]]; then
@@ -183,11 +161,6 @@ center_text() {
 }
 
 function update_topics {
-  declare -a topics
-  topics=( "$DOTTY_DATA_HOME"/*.topic(N) )
-  for topic in ${${${topics[@]#$DOTTY_DATA_HOME/}%.topic}/.//}; do
-    ${DOTTY_HOME}/deploy -l ${topic}
-  done
 }
 
 function sshf() {
@@ -265,68 +238,6 @@ function fman() {
 }
 
 function update_git_repo() {
-  local ERROR_SUMMARY_FILE=/tmp/update_dotty_error_summary
-  dir=$1
-  diff_str=$(
-    cd $dir
-    git diff
-  )
-  if [[ -d ${dir} && -z ${diff_str} ]]; then
-    for repo in $@; do
-      (cd ${repo} && git pull)
-    done
-  else
-    echo "${dir} repo is dirty..." >>${ERROR_SUMMARY_FILE}
-  fi
-}
-
-function update_dotty() {
-  local ERROR_SUMMARY_FILE=/tmp/update_dotty_error_summary
-  rm -f ${ERROR_SUMMARY_FILE} && touch ${ERROR_SUMMARY_FILE}
-
-  echo-info "update $DOTTY_HOME"
-  update_git_repo $DOTTY_HOME
-  (
-    cd $DOTTY_HOME
-    git submodule update --remote --merge config
-    echo-info "update ${DOTTY_ASSETS_HOME}"
-    [[ -d ${DOTTY_ASSETS_HOME} ]] && cd ${DOTTY_ASSETS_HOME} && git pull
-    update_topics &>/dev/null
-  )
-
-
-  if [[ -d ${XDG_CONFIG_HOME}/doom ]]; then
-    local last_doom_rev=$(git -C ${XDG_CONFIG_HOME}/doom rev-parse HEAD)
-    update_git_repo ${XDG_CONFIG_HOME}/doom &
-    PID1=$!
-    wait ${PID1}
-
-    local cur_doom_rev=$(git -C ${XDG_CONFIG_HOME}/doom rev-parse HEAD)
-    if [[ $cur_doom_rev != $last_doom_rev ]]; then
-      echo-ok "Doom Sync Summary"
-      doom sync
-    fi
-  fi
-
-  echo-info "Update TPM packages"
-  local tpm=$TMUX_PLUGIN_MANAGER_PATH/tpm
-  if [[ -d $tpm ]]; then
-    $tpm/bin/update_plugins all &
-    PID2=$!
-    wait ${PID2}
-  fi
-
-  _cache_clear
-  envrehash
-
-  echo-info "Error Summary"
-  cat ${ERROR_SUMMARY_FILE}
-  rm -f ${ERROR_SUMMARY_FILE}
-
-  zinit delete --clean -y
-
-  # Sync uninstalled some software if we deleted on one machine
-  $DOTTY_HOME/legacy_sync_script.zsh
 }
 
 # used for mas

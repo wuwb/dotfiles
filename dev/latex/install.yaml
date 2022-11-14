@@ -1,0 +1,7 @@
+
+- cask:
+    - basictex
+- shell:
+    - sudo tlmgr update --self
+    - sudo tlmgr install latexmk multirow
+     

@@ -1,0 +1,6 @@
+- brew:
+  - tmux
+  - reattach-to-user-namespace
+
+- links:
+  - $DOTTY_CONFIG_HOME/shell/tmux/tmux.conf $TMUX_HOME/

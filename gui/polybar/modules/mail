@@ -65,10 +65,6 @@ def unread_count(address, password):
 def notify(title, message):
     Popen(["notify-send", "-u", "critical", title, message])
 
-
-def ding():
-    Popen(["{}/bin/ding".format(os.getenv("DOTTY_CONFIG_HOME", os.path.expanduser("~/.config/dotty/config")))])
-
 #
 def main():
     try:

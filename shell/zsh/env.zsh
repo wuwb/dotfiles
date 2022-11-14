@@ -1,12 +1,3 @@
-#!/usr/bin/env zsh
-# env -- envvars & standard library for dotty; don't symlink me!
-# Can be sourced by zsh/bash scripts
-
-export XDG_CACHE_HOME=~/.cache
-export XDG_CONFIG_HOME=~/.config
-export XDG_DATA_HOME=~/.local/share
-export XDG_BIN_HOME=~/.local/bin
-
 alias APT_INSTALL="sudo apt-get install -y --no-install-recommends --fix-missing"
 alias PIP3_INSTALL="pip3 install --user --upgrade"
 
@@ -20,9 +11,6 @@ function echo-ok     { printf "\r\033[2K\033[0;32m[ OK ]\033[0m %s\n" "$*"; }
 function echo-ok-b   { echo ${fg[white]}${bg[green]}"[INFO] $*"${reset_color} }
 function echo-fail   { printf "\r\033[2K\033[0;31m[FAIL]\033[0m %s\n" "$*"; }
 function echo-fail-b { echo ${fg[white]}${bg[red]}"[INFO] $*"${reset_color} }
-
-function dotty(){
-}
 
 local SEP='.'
 function topic-enabled-p { [[ -L "$(topic-path $1)" ]] }

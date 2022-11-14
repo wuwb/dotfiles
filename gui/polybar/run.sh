@@ -1,17 +1,5 @@
 #!/usr/bin/env zsh
-# Prerequsites:
-#   1. Asset wallpapers: my wallpapers are located at $DOTTY_HOME/asssets/wallpapers. Wallpapers need to be named
-#   after ${color}-#.${ext}, e.g. light-blue-1.jpg.
-#   2. Polybar.
-#   3. Feh and bspc is not required, but it will tune the theme for these apps.
-# Usage:
-#   The script takes one parameter, which is the CYCLE_TIME. By default, it's 3600s.
-#   It will randomly select color and powerline separator. Based on the selected color, it will set the background
-#     wallpaper.
 
-source $DOTTY_CONFIG_HOME/env
-
-WALLPAPERS_DIR=$DOTTY_ASSETS_HOME/wallpapers
 CYCLE_TIME=${1:-3600}
 CUR_DIR=${0:A:h}
 
@@ -61,17 +49,6 @@ while true; do
   # Set wallpaper based on selected_color
   declare -a color_wallpapers
   local selected_wallpaper
-
-  color_wallpapers=("${(@f)$(ls ${WALLPAPERS_DIR} | grep -i ${selected_color} | grep -v "\-${selected_color}")}")
-  if [ -z "${color_wallpapers}" ]; then
-    # Fallback to the first wallpaper available if no wallpapers with matched color found.
-    local wallpapers=("${(@f)$(ls ${WALLPAPERS_DIR})}")
-    selected_wallpaper=${wallpapers[0]}
-  else
-    selected_wallpaper=${color_wallpapers[$(($RANDOM % ${#color_wallpapers[@]} + 1))]}
-  fi
-
-  _call feh --bg-fill --no-fehbg --image-bg black ${WALLPAPERS_DIR}/${selected_wallpaper} &
 
   # Set bspwm color
   _call bspc config focused_border_color ${shade3}
