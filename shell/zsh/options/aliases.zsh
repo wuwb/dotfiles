@@ -1,7 +1,6 @@
 # https://sw.kovidgoyal.net/kitty/faq.html#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
 
 # global
-alias -g '..'='cd ..'
 alias -g '...'='cd ../..'
 alias -g '....'='cd ../../..'
 alias -g '.....'='cd ../../../..'
@@ -28,7 +27,6 @@ alias -g S='| sort'
 alias ll="ls -al"
 alias ll2="ls -lgh"
 alias la='ls -laFh'
-alias ls="/bin/ls -hlap --file-type --time-style='+%y-%m-%d %H%M%S' --color=auto --group-directories-first"
 alias ln="ln -v"
 
 alias cp="cp -iv"

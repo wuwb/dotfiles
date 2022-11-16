@@ -4,6 +4,8 @@
 # https://docs.brew.sh/Analytics
 export HOMEBREW_NO_ANALYTICS=1
 
+HOMEBREW_NO_INSTALL_CLEANUP=false
+
 # ===== Common
 export ZSH_COMPDUMP="${HOME}/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 

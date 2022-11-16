@@ -23,10 +23,7 @@ source ~/.config/tabtab/zsh/__tabtab.zsh
 # brew install jq exa svn rg fd vim fzf asdf
 # brew install ripgrep bat z.lua
 
-# 参考
-# ogham/exa @sharkdp/fd @sharkdp/hyperfine ClementTsang/bottom cheat/cheat dandavison/delta 
-# muesli/duf bootandy/dust orf/gping dalance/procs
-# junegunn/fzf Aloxaf/fzf-tab fzf-git
+
 
 # bare rope 管理 dotfiles
 # CONFIG_PATH=$HOME/.dfh
@@ -122,10 +119,12 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 # export GOPROXY=https://goproxy.io
 
 # php
-export COMPOSER_HOME="/usr/local/lib/composer"
-export PATH=$COMPOSER_HOME/vendor/bin:$PATH
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
-export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+# export COMPOSER_HOME="/usr/local/lib/composer"
+# export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
+export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
 
 # flutter
 # export PUB_HOSTED_URL=https://pub.flutter-io.cn

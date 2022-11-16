@@ -31,66 +31,66 @@ zinit light romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
 
 # add oh my zsh，加载 OMZ 框架及部分插件
-zsh-defer zinit snippet OMZL::completion.zsh # 补全
-zsh-defer zinit snippet OMZL::history.zsh # 历史
-zsh-defer zinit snippet OMZL::key-bindings.zsh # 键位绑定
-zsh-defer zinit snippet OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
-zsh-defer zinit snippet OMZL::correction.zsh
-zsh-defer zinit snippet OMZL::directories.zsh
+zinit snippet OMZL::completion.zsh # 补全
+zinit snippet OMZL::history.zsh # 历史
+zinit snippet OMZL::key-bindings.zsh # 键位绑定
+zinit snippet OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
+zinit snippet OMZL::correction.zsh
+zinit snippet OMZL::directories.zsh
 
 # 其他 library
-zsh-defer zinit snippet OMZL::git.zsh
-zsh-defer zinit snippet OMZL::clipboard.zsh # 剪切板 failed，Snippet not loaded
-zsh-defer zinit snippet OMZL::functions.zsh # failed
-zsh-defer zinit snippet OMZL::grep.zsh
-zsh-defer zinit snippet OMZL::misc.zsh # failed
-zsh-defer zinit snippet OMZL::spectrum.zsh
-# zsh-defer zinit snippet OMZL::prompt_info_functions.zsh # ruby_prompt_info 方法
-# zsh-defer zinit snippet OMZL::termsupport.zsh # Set terminal window and tab/icon title
-# zsh-defer zinit snippet OMZL::diagnostics.zsh # 分析 zsh
+zinit snippet OMZL::git.zsh
+zinit snippet OMZL::clipboard.zsh # 剪切板 failed，Snippet not loaded
+zinit snippet OMZL::functions.zsh # failed
+zinit snippet OMZL::grep.zsh
+zinit snippet OMZL::misc.zsh # failed
+zinit snippet OMZL::spectrum.zsh
+# zinit snippet OMZL::prompt_info_functions.zsh # ruby_prompt_info 方法
+# zinit snippet OMZL::termsupport.zsh # Set terminal window and tab/icon title
+# zinit snippet OMZL::diagnostics.zsh # 分析 zsh
 
 
 ###############################################################################
 # 效率
-zsh-defer zinit snippet OMZP::common-aliases
-zsh-defer zinit snippet OMZP::colorize
-zsh-defer zinit snippet OMZP::command-not-found # failed
-zsh-defer zinit snippet OMZP::compleat # 生成补全
-zsh-defer zinit snippet OMZP::copyfile
-zsh-defer zinit snippet OMZP::copypath
-zsh-defer zinit snippet OMZP::colored-man-pages # 彩色 man 页面，不常用，需要的时候手动开启
-zsh-defer zinit snippet OMZP::cp
-zsh-defer zinit snippet OMZP::extract # 解压任意压缩文件
-zsh-defer zinit snippet OMZP::encode64
-zsh-defer zinit snippet OMZP::urltools
-zsh-defer zinit snippet OMZP::genpass
-zsh-defer zinit snippet OMZP::gpg-agent 
-zsh-defer zinit snippet OMZP::history
-zsh-defer zinit snippet OMZP::history-substring-search # 查找匹配前缀的历史输入
-zsh-defer zinit snippet OMZP::mosh # mosh 的 ssh 补全
-zsh-defer zinit snippet OMZP::rsync
-zsh-defer zinit snippet OMZP::screen
-zsh-defer zinit snippet OMZP::web-search
-zsh-defer zinit snippet OMZP::nmap
-zsh-defer zinit snippet OMZP::timer
-# zsh-defer zinit snippet OMZP::tmuxinator
-# zsh-defer zinit snippet OMZP::vi-mode
-# zsh-defer zinit snippet OMZP::vundle
-# zsh-defer zinit snippet OMZP::alias-finder
-# zsh-defer zinit snippet OMZP::dircycle # 文件夹跳转
-# zsh-defer zinit snippet OMZP::last-working-dir # 和 dirpersist 一样，iterm2 自带？
-# zsh-defer zinit snippet OMZL::ag # ag alias
+zinit snippet OMZP::common-aliases
+zinit snippet OMZP::colorize
+zinit snippet OMZP::command-not-found # failed
+zinit snippet OMZP::compleat # 生成补全
+zinit snippet OMZP::copyfile
+zinit snippet OMZP::copypath
+zinit snippet OMZP::colored-man-pages # 彩色 man 页面，不常用，需要的时候手动开启
+zinit snippet OMZP::cp
+zinit snippet OMZP::extract # 解压任意压缩文件
+zinit snippet OMZP::encode64
+zinit snippet OMZP::urltools
+zinit snippet OMZP::genpass
+zinit snippet OMZP::gpg-agent 
+zinit snippet OMZP::history
+zinit snippet OMZP::history-substring-search # 查找匹配前缀的历史输入
+zinit snippet OMZP::mosh # mosh 的 ssh 补全
+zinit snippet OMZP::rsync
+zinit snippet OMZP::screen
+zinit snippet OMZP::web-search
+zinit snippet OMZP::nmap
+zinit snippet OMZP::timer
+# zinit snippet OMZP::tmuxinator
+# zinit snippet OMZP::vi-mode
+# zinit snippet OMZP::vundle
+# zinit snippet OMZP::alias-finder
+# zinit snippet OMZP::dircycle # 文件夹跳转
+# zinit snippet OMZP::last-working-dir # 和 dirpersist 一样，iterm2 自带？
+# zinit snippet OMZL::ag # ag alias
 
 # 程序
-zsh-defer zinit snippet OMZP::z
-# zsh-defer zinit snippet OMZP::iterm2 # 没用，设置颜色
-# zsh-defer zinit snippet OMZP::vscode # vscode alias，没用
-# zsh-defer zinit snippet OMZP::rbw # 暂时没用
+zinit snippet OMZP::z
+# zinit snippet OMZP::iterm2 # 没用，设置颜色
+# zinit snippet OMZP::vscode # vscode alias，没用
+# zinit snippet OMZP::rbw # 暂时没用
 
 ## 基础
-zsh-defer zinit snippet OMZP::safe-paste
-zsh-defer zinit snippet OMZP::ansible # failed
-zsh-defer zinit snippet OMZP::git # failed
+zinit snippet OMZP::safe-paste
+zinit snippet OMZP::ansible # failed
+zinit snippet OMZP::git # failed
 
 # docker
 # zsh-defer  zinit snippet OMZP::docker
@@ -102,69 +102,69 @@ zsh-defer zinit snippet OMZP::git # failed
 # zsh-defer  zinit snippet OMZP::helm
 
 # nodejs
-zsh-defer zinit snippet OMZP::npm # failed
-zsh-defer zinit snippet OMZP::yarn
+zinit snippet OMZP::npm # failed
+zinit snippet OMZP::yarn
 zstyle ':omz:plugins:yarn' global-path false
-# zsh-defer zinit snippet OMZP::deno
-# zsh-defer zinit snippet OMZP::flutter
-# zsh-defer zinit snippet OMZP::pm2
-# zsh-defer zinit snippet OMZP::node # 增加 node-docs 命令，没用
+# zinit snippet OMZP::deno
+# zinit snippet OMZP::flutter
+# zinit snippet OMZP::pm2
+# zinit snippet OMZP::node # 增加 node-docs 命令，没用
 
 # python
-# zsh-defer zinit snippet OMZP::pip
-# zsh-defer zinit snippet OMZP::python
-# zsh-defer zinit snippet OMZP::lando
-# zsh-defer zinit snippet OMZP::pipenv
-# zsh-defer zinit snippet OMZP::poetry
+# zinit snippet OMZP::pip
+# zinit snippet OMZP::python
+# zinit snippet OMZP::lando
+# zinit snippet OMZP::pipenv
+# zinit snippet OMZP::poetry
 
 # 其他语言
-# zsh-defer zinit snippet OMZP::gradle
-# zsh-defer zinit snippet OMZP::adb
-# zsh-defer zinit snippet OMZP::spring
-# zsh-defer zinit snippet OMZP::golang
-# zsh-defer zinit snippet OMZP::gem
-# zsh-defer zinit snippet OMZP::pod
-# zsh-defer zinit snippet OMZP::composer
-# zsh-defer zinit snippet OMZP::wp-cli
+# zinit snippet OMZP::gradle
+# zinit snippet OMZP::adb
+# zinit snippet OMZP::spring
+# zinit snippet OMZP::golang
+# zinit snippet OMZP::gem
+# zinit snippet OMZP::pod
+# zinit snippet OMZP::composer
+# zinit snippet OMZP::wp-cli
 
 # 数据库
-# zsh-defer zinit snippet OMZP::redis-cli
-# zsh-defer zinit snippet OMZP::postgres
+# zinit snippet OMZP::redis-cli
+# zinit snippet OMZP::postgres
 
 # git
-# zsh-defer zinit snippet OMZP::gitignore
-# zsh-defer zinit snippet OMZP::git-lfs # alias，没用
-# zsh-defer zinit snippet OMZP::branch
-# zsh-defer zinit snippet OMZP::repo
-# zsh-defer zinit snippet OMZP::git-extras # 不支持 brew 安装的 git
-# zsh-defer zinit snippet OMZP::github
-# zsh-defer zinit snippet OMZP::git-flow
+# zinit snippet OMZP::gitignore
+# zinit snippet OMZP::git-lfs # alias，没用
+# zinit snippet OMZP::branch
+# zinit snippet OMZP::repo
+# zinit snippet OMZP::git-extras # 不支持 brew 安装的 git
+# zinit snippet OMZP::github
+# zinit snippet OMZP::git-flow
 
 # 其他
-# zsh-defer zinit snippet OMZP::copybuffer # 拷贝当前执行的命令
-# zsh-defer zinit snippet OMZP::jump # mark and jump to a path
-# zsh-defer zinit snippet OMZP::lol # 搞笑
-# zsh-defer zinit snippet OMZP::themes # 命令行更换主题
-# zsh-defer zinit snippet OMZP::zsh-interactive-cd # 和fzf-tab 一样的选择器
-# zsh-defer zinit snippet OMZP::dotenv
-# zsh-defer zinit snippet OMZP::fancy-ctrl-z
-# zsh-defer zinit snippet OMZP::frontend-search
-# zsh-defer zinit snippet OMZP::man # 前面插入 man，没用
-# zsh-defer zinit snippet OMZP::sudo # 双击 esc 添加 sudo，没用
-# zsh-defer zinit snippet OMZP::fd
-# zsh-defer zinit snippet OMZP::autoenv 
-# zsh-defer zinit snippet OMZP::brew # 没什么用，一堆 alias
+# zinit snippet OMZP::copybuffer # 拷贝当前执行的命令
+# zinit snippet OMZP::jump # mark and jump to a path
+# zinit snippet OMZP::lol # 搞笑
+# zinit snippet OMZP::themes # 命令行更换主题
+# zinit snippet OMZP::zsh-interactive-cd # 和fzf-tab 一样的选择器
+# zinit snippet OMZP::dotenv
+# zinit snippet OMZP::fancy-ctrl-z
+# zinit snippet OMZP::frontend-search
+# zinit snippet OMZP::man # 前面插入 man，没用
+# zinit snippet OMZP::sudo # 双击 esc 添加 sudo，没用
+# zinit snippet OMZP::fd
+# zinit snippet OMZP::autoenv 
+# zinit snippet OMZP::brew # 没什么用，一堆 alias
 
 #######################################
 # 需要 snv
 # 需要获取 tmux.extra.conf 配置文件
-# zsh-defer zinit snippet OMZP::tmux # failed
+# zinit snippet OMZP::tmux # failed
 # zi ice svn
-# zsh-defer zinit snippet OMZP::macos
+# zinit snippet OMZP::macos
 # zi ice svn
-# zsh-defer zinit snippet OMZP::gitfast
+# zinit snippet OMZP::gitfast
 # 需要获取 cheatsheet.py 文件
-# zsh-defer zinit snippet OMZP::aliases
+# zinit snippet OMZP::aliases
 
 ###############################################################################
 # 功能打包
@@ -181,15 +181,38 @@ zstyle ':omz:plugins:yarn' global-path false
 # +con
 # zdharma-continuum/zinit-console
 
-# zsh-users
-zsh-defer zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
+# zsh-users+common
+# https://github.com/zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-autosuggestions # 自动建议，灰色提示
+# https://github.com/zsh-users/zsh-completions
+zinit light zsh-users/zsh-completions # 补全，额外的补全
+# +base
 # zsh-users/zsh-syntax-highlighting # 高亮命令输入
 # +fast
-zsh-defer zinit light zdharma-continuum/fast-syntax-highlighting
-zsh-defer zinit light zsh-users/zsh-completions # 补全
-zsh-defer zinit light zsh-users/zsh-autosuggestions # 自动建议
-zsh-defer zinit light zdharma-continuum/history-search-multi-word
-zsh-defer zinit light hlissner/zsh-autopair 
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# 终端加载好后立即加载下面 3 个功能
+# zinit wait lucid for \
+#   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+#     zdharma-continuum/fast-syntax-highlighting \
+#   blockf \
+#     zsh-users/zsh-completions \ 
+#   atload"!_zsh_autosuggest_start" \
+#     zsh-users/zsh-autosuggestions
+
+## https://github.com/zdharma-continuum/history-search-multi-word
+zinit light zdharma-continuum/history-search-multi-word
+zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold" # Color in which to highlight matched, searched text (default bg=17 on 256-color terminals)
+zstyle ":history-search-multi-word" page-size "8"                    # Number of entries to show (default is $LINES/3)
+zstyle ":plugin:history-search-multi-word" active "bold"        # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
+zstyle ":plugin:history-search-multi-word" check-paths "yes"         # Whether to check paths for existence and mark with magenta (default true)
+zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"      # Whether pressing Ctrl-C or ESC should clear entered query
+zstyle ":plugin:history-search-multi-word" synhl "yes"               # Whether to perform syntax highlighting (default true)
+
+# 参考
+# ogham/exa @sharkdp/fd @sharkdp/hyperfine ClementTsang/bottom cheat/cheat dandavison/delta 
+# muesli/duf bootandy/dust orf/gping dalance/procs
+# junegunn/fzf Aloxaf/fzf-tab fzf-git
 
 # sharkdp
 # sharkdp/fd, sharkdp/bat, sharkdp/hexyl, sharkdp/hyperfine, sharkdp/vivid
@@ -199,23 +222,23 @@ zsh-defer zinit light hlissner/zsh-autopair
 # Fakerr/git-recall, paulirish/git-open, paulirish/git-recent, davidosomething/git-my, arzzen/git-quick-stats, iwata/git-now, tj/git-extras, wfxr/forgit
 
 # others
-zsh-defer zinit light zsh-users/zsh-history-substring-search # 可以通过 brew 安装
-zsh-defer zinit light MichaelAquilina/zsh-you-should-use # alias 提示
-zsh-defer zinit light akoenig/npm-run.plugin.zsh # npm 自动补全
+zinit light zsh-users/zsh-history-substring-search # 历史命令搜索，可以通过 brew 安装
+zinit light MichaelAquilina/zsh-you-should-use # alias 提示
+zinit light akoenig/npm-run.plugin.zsh # npm 自动补全
 
-# zsh-defer zinit light djui/alias-tips # 提示 alias 存在
-# zsh-defer zinit light ptavares/zsh-direnv # 自动加载环境变量
-# zsh-defer zinit light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
-# zsh-defer zinit light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
+# zinit light ptavares/zsh-direnv # 自动加载环境变量
+# zinit light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
+# zinit light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
+# zinit light djui/alias-tips # 提示 alias 存在，功能同MichaelAquilina/zsh-you-should-use
 
 ###############################################################################
 
 # cheat
-zsh-defer zinit ice mv=":cht.sh -> cht.sh" atclone="chmod +x cht.sh" as="program"
-zsh-defer zinit snippet https://cht.sh/:cht.sh
+zinit ice mv=":cht.sh -> cht.sh" atclone="chmod +x cht.sh" as="program"
+zinit snippet https://cht.sh/:cht.sh
 
-zsh-defer zinit ice mv=":zsh -> _cht" as="completion"
-zsh-defer zinit snippet https://cheat.sh/:zsh
+zinit ice mv=":zsh -> _cht" as="completion"
+zinit snippet https://cheat.sh/:zsh
 
 ###############################################################################
 # 修复 bug
@@ -230,9 +253,12 @@ pastefinish() {
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-zstyle :bracketed-paste-magic active-widgets '.self-*'
+# zstyle :bracketed-paste-magic active-widgets '.self-*' # 有问题的修复方法
 
 ###############################################################################
+
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 
 source ~/.local/share/dotfiles/shell/zsh/local.zsh
 

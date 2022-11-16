@@ -9,7 +9,6 @@
 	user = WuWenbin
 [alias]
 	# Show verbose output about tags, branches or remotes
-	tags = tag -l
 	branches = branch -a
 	  #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
     recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
@@ -18,7 +17,6 @@
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     snapshots = !git stash list --grep snapshot
 
-
 	remotes = remote -v
 
 	# List aliases
@@ -26,20 +24,23 @@
 
 	# Show the user email for the current repository.
 	whoami = config user.email
+
+	# add
     a = add                           # add
 	aa = add --all
-    ap = add --patch
+    ap = add --patch				# stage commits chunk by chunk
 
 	# commit
 	c = commit -m                     # commit with message
 	ca = commit -am                   # commit all with message
 	ci = commit -v
-	
 	amend = commit --amend            # ammend your last commit
-	ammend = commit --amend           # ammend your last commit
+	amend = commit --amend --reuse-message=HEAD # Amend the currently staged files to the latest commit.
 
+	# checkout
+	co = checkout                     # checkout
+	nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
 
-	co = checkout
 	st = status -sb
 	br = branch
 	fo = fetch origin
@@ -57,45 +58,37 @@
 	# Clean merged branches (adapted from https://stackoverflow.com/a/6127884/14870317)
 	sweep = !git branch --merged $(git defaultBranch) | grep -E -v " $(git defaultBranch)$" | xargs -r git branch -d && git remote prune origin
 
-	# http://www.jukie.net/bart/blog/pimping-out-git-log
-	lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
-
 	# Serve local repo. http://coderwall.com/p/eybtga
 	# Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 
-	# Checkout to defaultBranch
-	m = !git checkout $(git defaultBranch)
+	
+	m = !git checkout $(git defaultBranch) # Checkout to defaultBranch
+	unstage = reset HEAD -- # Removes a file from the index
+	cp = cherry-pick -x               # cherry-pick grab a change from a branch
 
-	# Removes a file from the index
-	unstage = reset HEAD --
-	# add
-	a = add                           # add
-	chunkyadd = add --patch           # stage commits chunk by chunk
-	# Shows list of contributors of a repository.
-	contributors = shortlog --summary --numbered --email
-
-	# checkout
-	co = checkout                     # checkout
-	nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
-
-	# cherry-pick
-	cp = cherry-pick -x               # grab a change from a branch
-
-	# diff
+	## diff
 	d = diff                          # diff unstaged changes
 	dc = diff --cached                # diff staged changes
 	last = diff HEAD^                 # diff last committed change
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat" 	# Show the diff between the latest commit and the current state.
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state.
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
 	# log
 	l = log --graph --date=short
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit # View abbreviated SHA, description, and history graph of the latest 20 commits.
 	changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
 	short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
 	simple = log --pretty=format:\" * %s\"
 	shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+	contributors = shortlog --summary --numbered --email # Shows list of contributors of a repository.
+	lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset' # http://www.jukie.net/bart/blog/pimping-out-git-log
 
-	# pull
+	## pull
 	pl = pull                         # pull
+	# Pull in remote changes for the current repository and all its submodules.
+	p = pull --recurse-submodules
 
 	# push
 	ps = push                         # push
@@ -120,32 +113,20 @@
 	sd = stash drop                   # drop stashes (destory changes)
 
 	# status
-	s = status                        # status
+	s = status -s # View the current working tree status using the short format.
 	st = status                       # status
 	stat = status                     # status
 
-	# tag
+	## tag
 	t = tag -n                        # show tags with <n> lines of each tag message
+	tags = tag -l
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
 	# svn helpers
 	svnr = svn rebase
 	svnd = svn dcommit
 	svnl = svn log --oneline --show-commit
-
-	# View abbreviated SHA, description, and history graph of the latest 20 commits.
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
-	# View the current working tree status using the short format.
-	s = status -s
-
-	# Show the diff between the latest commit and the current state.
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state.
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-	# Pull in remote changes for the current repository and all its submodules.
-	p = pull --recurse-submodules
 
 	# Clone a repository including all submodules.
 	c = clone --recursive
@@ -164,29 +145,17 @@
 	# List aliases.
 	aliases = config --get-regexp alias
 
-	# Amend the currently staged files to the latest commit.
-	amend = commit --amend --reuse-message=HEAD
-
 	# Credit an author on the latest commit.
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
 	# Interactive rebase with the given number of latest commits.
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
-
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
-
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	# find
+	fb = "!f() { git branch -a --contains $1; }; f" # Find branches containing commit
+	ft = "!f() { git describe --always --contains $1; }; f" # Find tags containing commit
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f" # Find commits by source code
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f" # Find commits by commit message
 
 	# Remove branches that have already been merged with main.
 	# a.k.a. ‘delete merged’
@@ -198,6 +167,7 @@
 	# Show the user email for the current repository.
 	whoami = config user.email
 	unadd = reset HEAD
+
 	# data analysis
 	ranked-authors = !git authors | sort | uniq -c | sort -n
 	emails = !git log --format="%aE" | sort -u
@@ -227,7 +197,6 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
-
 [color]
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
@@ -248,7 +217,6 @@
 [init]
 	defaultBranch = master
 	templatedir = ~/.local/share/dotfiles/shell/git/git_template
-
 [fetch]
   prune = true
 [pull]
