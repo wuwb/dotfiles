@@ -1,36 +1,24 @@
-# ===== brew
-# To opt in to Homebrew analytics, `unset` this in ~/.zshrc.local .
-# Learn more about what you are opting in to at
-# https://docs.brew.sh/Analytics
-export HOMEBREW_NO_ANALYTICS=1
+# makes color constants available
+autoload -U colors
+colors
 
-HOMEBREW_NO_INSTALL_CLEANUP=false
+# enable colored output from ls, etc. on FreeBSD-based systems
+export CLICOLOR=1
 
-# ===== Common
-export ZSH_COMPDUMP="${HOME}/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+# ===== others
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8 UTF-8
+export LANGUAGE=en_US.UTF-8
 
-export ENABLE_CORRECTION="true"
-export ZSH_DISABLE_COMPFIX="true" # 禁用安全功能加快启动速度 0.06s
-export HIST_STAMPS="yyyy-mm-dd"
-export CASE_SENSITIVE="false"
-export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-export HISTCONTROL='ignoreboth';
-# Hide the “default interactive shell is now zsh” warning on macOS.
-export BASH_SILENCE_DEPRECATION_WARNING=1;
-# Don't offer history completion; we have fzf, C-r, and
-# zsh-history-substring-search for that.
-export ZSH_AUTOSUGGEST_STRATEGY=(completion)
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
-export ERL_AFLAGS="-kernel shell_history enabled"
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+export MANPATH="/usr/local/man:$MANPATH"
 
-# ===== History
-# export HISTFILE="${HOME}/.cache/.zsh_history"
-export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
+# envvars
+export PAGER=less
+export LESS='-g -i -M -R -S -w -z-4'
 
-export HISTSIZE=100000
-export SAVEHIST=100000
-export HISTFILESIZE=100000
-
+# ===== common
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt APPEND_HISTORY # If this is set, zsh sessions will append their history list to the history file, rather than overwrite it

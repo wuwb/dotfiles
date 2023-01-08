@@ -1,3 +1,4 @@
-
 - brew:
     - asciinema
+- shell:
+    # - asciinema rec

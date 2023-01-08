@@ -1,4 +1,11 @@
+- shell:
+    - rm -rf ~/.gitconfig
+    - rm -rf ~/.gitattributes
+    - rm -rf ~/.gitignore
+    - rm -rf ~/.gitignore_global
+
 - link:
     ~/.gitconfig: tools/vcs/git/gitconfig
     ~/.gitattributes: tools/vcs/git/gitattributes
-    ~/.gitignore_global: tools/vcs/git/gitignore_global
+    ~/.gitignore: tools/vcs/git/gitignore
+    ~/.gitignore_global: tools/vcs/git/gitignore

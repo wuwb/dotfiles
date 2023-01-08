@@ -76,6 +76,13 @@ alias gst="git status"
 alias glg="git log --graph --decorate --pretty=oneline --abbrev-commit"
 alias gci='git commit -m'
 alias gcl1="git clone --depth=1"
+alias gdiff='git diff --name-only --diff-filter=U'
+alias gdrop='git branch | grep -v "master" | xargs git branch -D '
+
+# git rebase 
+alias rebasep='git pull --rebase upstream main'
+alias rebasec='git rebase --continue'
+alias rebase='RUN() { git rebase -i HEAD~$1; }; RUN'
 
 # git log
 alias glog_branches="git log --color=always --oneline --decorate --graph --branches"
@@ -209,10 +216,9 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 
 # Programs
-if _is_callable bat; then
-  alias bat="bat --theme OneHalfLight"
-  alias cat=bat
-fi
+alias bat="bat --theme OneHalfLight"
+alias cat=bat
+
 _is_callable exa alias ls="exa --color=auto --group-directories-first"
 _is_callable neofetch && alias nf="neofetch"
 _is_callable cmatrix && alias cm="cmatrix -C red"

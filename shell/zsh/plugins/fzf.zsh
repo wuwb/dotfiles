@@ -66,17 +66,6 @@ fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
 
-# fkill - kill process
-fkill() {
-  local pid
-  pid=$(ps -ef |grep -v ^root | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
-
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.

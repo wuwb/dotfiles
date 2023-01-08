@@ -27,6 +27,7 @@
 
     # editor
     - neovim
+    - vim
     # - emacs --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --HEAD --use-git-head
     - visual-studio-code
     # shell
@@ -34,21 +35,6 @@
     - zsh-completions
     - zsh-autosuggestions
     - zsh-syntax-highlighting
-    - tmux
-
-    # dev
-    - go
-    - node
-    - cmake
-    - rbenv
-    - ruby
-    - ruby-build
-    - pyright
-    - black
-    - poetry
-    - pylint
-    - python@3.9
-    - miniconda
 
     # cvs
     - git
@@ -72,6 +58,8 @@
     - mariadb # mysql
 
     # Better console tools
+    # Modern Unix commands
+    # See https://github.com/ibraheemdev/modern-unix
     - exa
     - fd
     - bat
@@ -79,6 +67,76 @@
     - procs
     - sd
     - duf
+    - tmux
+    - jq
+    - svn
+    - rg
+    - fzf # https://github.com/junegunn/fzf
+    - asdf
+    - grep
+    - ripgrep # 快速版 grep
+    - z.lua
+
+    # new unix tools
+    - coreutils # https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
+    - btop # better top, 代替 htop，代替 top
+    - htop
+    - axel
+    - gnu-sed
+    - the_silver_searcher # https://github.com/ggreer/the_silver_searcher
+    - tree
+    - ffmpeg
+    - imagemagick
+    - mas
+    - nmap
+    - p7zip
+    - dos2unix
+    - proxychains-ng
+    - readline
+    - xz
+    - zlib
+    - heroku
+    - wrk
+    - tldr
+    - universal-ctags/universal-ctags/universal-ctags
+    # - aspell # 检测英语等语言的拼写错误
+    - unison
+    - shfmt
+    - shellcheck
+    - tree
+    - p7zip
+    - jq
+    - direnv
+    - trash-cli
+    - trash
+    - ninja
+    - pandoc
+    - ffmpeg
+    - iptraf
+    - collectl
+    - dstat
+    - iostat
+    - iotop
+    - sar
+    - saidar
+    - vmstat
+    - duti
+    - gmp
+    - coreutils # Install GNU core utilities (those that come with OS X are outdated)
+    - moreutils # Install some other useful utilities like `sponge`.
+    - findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+    - gnupg # Install GnuPG to enable PGP-signing commits.
+    - gnupg2
+    - eva # alternative bc, calculator
+    - awscli
+    - ctags
+    - rga
+    - poppler
+    - tesseract
+    - imagemagick
+    - graphicsmagick
+    - yt-dlp
+    - dirstat-rs # 查看硬盘使用情况，类似 windirstat，速度更快
 
     # ssh
     - mosh
@@ -108,7 +166,6 @@
     - node
     - go
     - python
-    - python3
     - lua
     - R
     - llvm
@@ -116,6 +173,13 @@
     - gdb
     - cmake
     - android-platform-tools
+    - rbenv
+    - ruby-build
+    - pyright
+    - black
+    - poetry
+    - pylint
+    - miniconda
 
     # lint
     - pre-commit
@@ -124,71 +188,9 @@
     - cpplint
     - editorconfig
 
-    # new unix tools
-    - coreutils # https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
-    - btop # better top, 代替 htop，代替 top
-    - htop
-    - axel
-    - gnu-sed
-    - fzf # https://github.com/junegunn/fzf
-    - the_silver_searcher # https://github.com/ggreer/the_silver_searcher
-    - tree
-    - ffmpeg
-    - imagemagick
-    - mas
-    - nmap
-    - p7zip
-    - dos2unix
-    - proxychains-ng
-    - readline
-    - xz
-    - zlib
-    - heroku
-    - wrk
-    - jq
-    - tldr
-    - universal-ctags/universal-ctags/universal-ctags
-    - aspell
-    - unison
-    - fzf
-    - shfmt
-    - shellcheck
-    - tree
-    - p7zip
-    - jq
-    - direnv
-    - trash-cli
-    - trash
-    - ninja
-    - pandoc
-    - ffmpeg
-    - iptraf
-    - collectl
-    - dstat
-    - iostat
-    - iotop
-    - sar
-    - saidar
-    - vmstat
-    - duti
-    - gmp
-    - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-    - moreutils # Install some other useful utilities like `sponge`.
-    - findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-    - gnupg # Install GnuPG to enable PGP-signing commits.
-    - gnupg2
-    - eva # alternative bc, calculator
-    - grep
-    - ripgrep # 快速版 grep
-    - awscli
-    - ctags
-    - rga
-    - poppler
-    - tesseract
-    - imagemagick
-    - graphicsmagick
-    - yt-dlp
-    - dirstat-rs # 查看硬盘使用情况，类似 windirstat，速度更快
+    # 云管理平台
+    - pulumi/tap/pulumi
+
     # 不用
     # - mackup # osx 配置管理器，换 dotbot
     # - antigen # zsh 包管理器，换 zinit
@@ -200,7 +202,6 @@
     # - yarn # 换 pnpm
 
     # - gnu-sed --with-default-names
-    # - vim --with-override-system-vi
     # - php56, args: ['with-debug', 'without-apache'] # 换新版
     # - php70, args: ['with-debug', 'without-apache']
 
@@ -281,6 +282,7 @@
     - inkscape
     - kap
     - rectangle
+    - 1password
 
     # 不用
 
@@ -343,3 +345,4 @@
 - cask:
     # - font-ubuntu-mono-nerd-font
     # - font-fira-code-nerd-font
+    - font-hack-nerd-font

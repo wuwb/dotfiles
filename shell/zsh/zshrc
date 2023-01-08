@@ -1,3 +1,6 @@
+# module_path+=( "/Users/eqielb/.local/share/zinit/module/Src" )
+# zmodload zdharma_continuum/zinit
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,16 +8,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/.local/share/dotfiles/shell/zsh/plugins/p10k.zsh;
+
+# 统一 macOS Windows Linux XDG 路径
+# windows 默认 ~/AppData/Local/
+# macOS 默认 ~/Library/
+# brew 默认 /usr/local/lib/
+# Linux 默认 ~/.local/share/
+# 统一成 Linux 规范，~/.local/share/
+# export XDG_DATA_HOME=~/.local/share
+export XDG_CACHE_HOME=~/.cache
+export XDG_CONFIG_HOME=~/.config
+# export XDG_BIN_HOME=~/.local/bin
+
 ###############################################################################
 # 安装
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$(dirname $ZINIT_HOME)"
-    command git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
+# if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
+#     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+#     command mkdir -p "$(dirname $ZINIT_HOME)"
+#     command git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" && \
+#         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+#         print -P "%F{160}▓▒░ The clone has failed.%f%b"
+# fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 autoload -Uz _zinit
@@ -23,148 +39,162 @@ autoload -Uz _zinit
 # time zsh -i -c exit # 测试加载时间
 ###############################################################################
 # 主题
-zinit ice depth"1" # git clone depth
-zinit light romkatv/powerlevel10k
+zi ice depth"1" # git clone depth
+zi light romkatv/powerlevel10k
 ###############################################################################
 
 # 加载 romkatv/zsh-defer 插件
-zinit light romkatv/zsh-defer
+zi light romkatv/zsh-defer
 
 # add oh my zsh，加载 OMZ 框架及部分插件
-zinit snippet OMZL::completion.zsh # 补全
-zinit snippet OMZL::history.zsh # 历史
-zinit snippet OMZL::key-bindings.zsh # 键位绑定
-zinit snippet OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
-zinit snippet OMZL::correction.zsh
-zinit snippet OMZL::directories.zsh
+zi wait lucid for is-snippet \
+  OMZL::correction.zsh \
+  OMZL::directories.zsh \
+  OMZL::history.zsh \
+  OMZL::key-bindings.zsh \
+  OMZL::completion.zsh \
+  OMZL::compfix.zsh # \
+  # OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
 
 # 其他 library
-zinit snippet OMZL::git.zsh
-zinit snippet OMZL::clipboard.zsh # 剪切板 failed，Snippet not loaded
-zinit snippet OMZL::functions.zsh # failed
-zinit snippet OMZL::grep.zsh
-zinit snippet OMZL::misc.zsh # failed
-zinit snippet OMZL::spectrum.zsh
-# zinit snippet OMZL::prompt_info_functions.zsh # ruby_prompt_info 方法
-# zinit snippet OMZL::termsupport.zsh # Set terminal window and tab/icon title
-# zinit snippet OMZL::diagnostics.zsh # 分析 zsh
-
+zi wait lucid for is-snippet \
+  OMZL::git.zsh \
+  OMZL::clipboard.zsh \
+  OMZL::functions.zsh \
+  OMZL::grep.zsh \
+  OMZL::misc.zsh # \
+  # OMZL::spectrum.zsh
+  # OMZL::prompt_info_functions.zsh # ruby_prompt_info 方法
+  # OMZL::termsupport.zsh # Set terminal window and tab/icon title
+  # OMZL::diagnostics.zsh # 分析 zsh
 
 ###############################################################################
-# 效率
-zinit snippet OMZP::common-aliases
-zinit snippet OMZP::colorize
-zinit snippet OMZP::command-not-found # failed
-zinit snippet OMZP::compleat # 生成补全
-zinit snippet OMZP::copyfile
-zinit snippet OMZP::copypath
-zinit snippet OMZP::colored-man-pages # 彩色 man 页面，不常用，需要的时候手动开启
-zinit snippet OMZP::cp
-zinit snippet OMZP::extract # 解压任意压缩文件
-zinit snippet OMZP::encode64
-zinit snippet OMZP::urltools
-zinit snippet OMZP::genpass
-zinit snippet OMZP::gpg-agent 
-zinit snippet OMZP::history
-zinit snippet OMZP::history-substring-search # 查找匹配前缀的历史输入
-zinit snippet OMZP::mosh # mosh 的 ssh 补全
-zinit snippet OMZP::rsync
-zinit snippet OMZP::screen
-zinit snippet OMZP::web-search
-zinit snippet OMZP::nmap
-zinit snippet OMZP::timer
-# zinit snippet OMZP::tmuxinator
-# zinit snippet OMZP::vi-mode
-# zinit snippet OMZP::vundle
-# zinit snippet OMZP::alias-finder
-# zinit snippet OMZP::dircycle # 文件夹跳转
-# zinit snippet OMZP::last-working-dir # 和 dirpersist 一样，iterm2 自带？
-# zinit snippet OMZL::ag # ag alias
+zi ice wait lucid
+zi snippet OMZP::common-aliases
+zi ice wait lucid
+zi snippet OMZP::colored-man-pages # 彩色 man 页面，不常用，需要的时候手动开启
+zi ice wait lucid
+zi snippet OMZP::extract # 解压任意压缩文件
+zi ice wait lucid
+zi snippet OMZP::encode64
+zi ice wait lucid
+zi snippet OMZP::urltools
+zi ice wait lucid
+zi snippet OMZP::history
+zi ice wait lucid
+zi snippet OMZP::z
+# zi snippet OMZP::colorize # 语法高亮
+# zi snippet OMZP::command-not-found # 没用
+# zi snippet OMZP::compleat # 生成补全
+# zi snippet OMZP::genpass
+# zi snippet OMZP::gpg-agent
+# zi snippet OMZP::timer # 计算时间
+# zi snippet OMZP::rbw # 暂时没用
+# zi snippet OMZP::safe-paste
+# zi snippet OMZP::ansible # 一堆 alias
+# zi snippet OMZP::copybuffer # 拷贝当前执行的命令
+# zi snippet OMZP::themes # 命令行更换主题
+# zi snippet OMZP::sudo # 双击 esc 添加 sudo，没用
+# zi snippet OMZP::dotenv
+# zi snippet OMZP::fancy-ctrl-z
+# zi snippet OMZP::man # 前面插入 man，没用
+# zi snippet OMZP::lol # 搞笑
+# zi snippet OMZP::history-substring-search # 查找匹配前缀的历史输入
 
 # 程序
-zinit snippet OMZP::z
-# zinit snippet OMZP::iterm2 # 没用，设置颜色
-# zinit snippet OMZP::vscode # vscode alias，没用
-# zinit snippet OMZP::rbw # 暂时没用
+# zi snippet OMZP::brew # 没什么用，一堆 alias
+# zi snippet OMZP::tmuxinator
+# zi snippet OMZP::vi-mode
+# zi snippet OMZP::vundle
+# zi snippet OMZP::iterm2 # 没用，设置颜色
+# zi snippet OMZP::vscode # vscode alias，没用
 
-## 基础
-zinit snippet OMZP::safe-paste
-zinit snippet OMZP::ansible # failed
-zinit snippet OMZP::git # failed
+# 文件
+# zi snippet OMZP::copyfile # 简单脚本
+# zi snippet OMZP::copypath # 简单脚本
+zi ice wait lucid
+zi snippet OMZP::cp # 用 rsync 拷贝
+# zi snippet OMZP::fd
+# zi snippet OMZP::autoenv
+# zi snippet OMZP::jump # mark and jump to a path
+# zi snippet OMZP::zsh-interactive-cd # 和fzf-tab 一样的选择器
+# zi snippet OMZP::dircycle # 文件夹跳转
+# zi snippet OMZP::last-working-dir # 和 dirpersist 一样，iterm2 自带？
+# zi snippet OMZL::ag # ag alias
+# zi snippet OMZP::alias-finder
+
+# 网络
+
+zi ice wait lucid
+zi snippet OMZP::rsync
+zi ice wait lucid
+zi snippet OMZP::screen
+zi ice wait lucid
+zi snippet OMZP::web-search
+# zi snippet OMZP::mosh # mosh 的 ssh 补全
+# zi snippet OMZP::nmap # 一堆 alias
+# zi snippet OMZP::frontend-search
 
 # docker
-# zsh-defer  zinit snippet OMZP::docker
-# zsh-defer  zinit snippet OMZP::docker-compose # failed
-# zsh-defer  zinit snippet OMZP::docker-machine
-# zsh-defer  zinit snippet OMZP::kubectx
-# zsh-defer  zinit snippet OMZP::multipass
-# zsh-defer  zinit snippet OMZP::kubectl
-# zsh-defer  zinit snippet OMZP::helm
+# zsh-defer  zi snippet OMZP::docker
+# zsh-defer  zi snippet OMZP::docker-compose # failed
+# zsh-defer  zi snippet OMZP::docker-machine
+# zsh-defer  zi snippet OMZP::kubectx
+# zsh-defer  zi snippet OMZP::multipass
+# zsh-defer  zi snippet OMZP::kubectl
+# zsh-defer  zi snippet OMZP::helm
 
 # nodejs
-zinit snippet OMZP::npm # failed
-zinit snippet OMZP::yarn
-zstyle ':omz:plugins:yarn' global-path false
-# zinit snippet OMZP::deno
-# zinit snippet OMZP::flutter
-# zinit snippet OMZP::pm2
-# zinit snippet OMZP::node # 增加 node-docs 命令，没用
+# zi snippet OMZP::npm # 一堆没用的 alias
+# zi snippet OMZP::yarn # 一堆没用的 alias
+# zstyle ':omz:plugins:yarn' global-path false
+# zi snippet OMZP::deno
+# zi snippet OMZP::flutter
+# zi snippet OMZP::pm2
+# zi snippet OMZP::node # 增加 node-docs 命令，没用
 
 # python
-# zinit snippet OMZP::pip
-# zinit snippet OMZP::python
-# zinit snippet OMZP::lando
-# zinit snippet OMZP::pipenv
-# zinit snippet OMZP::poetry
+# zi snippet OMZP::pip
+# zi snippet OMZP::python
+# zi snippet OMZP::lando
+# zi snippet OMZP::pipenv
+# zi snippet OMZP::poetry
 
 # 其他语言
-# zinit snippet OMZP::gradle
-# zinit snippet OMZP::adb
-# zinit snippet OMZP::spring
-# zinit snippet OMZP::golang
-# zinit snippet OMZP::gem
-# zinit snippet OMZP::pod
-# zinit snippet OMZP::composer
-# zinit snippet OMZP::wp-cli
+# zi snippet OMZP::gradle
+# zi snippet OMZP::adb
+# zi snippet OMZP::spring
+# zi snippet OMZP::golang
+# zi snippet OMZP::gem
+# zi snippet OMZP::pod
+# zi snippet OMZP::composer
+# zi snippet OMZP::wp-cli
 
 # 数据库
-# zinit snippet OMZP::redis-cli
-# zinit snippet OMZP::postgres
+# zi snippet OMZP::redis-cli
+# zi snippet OMZP::postgres
 
 # git
-# zinit snippet OMZP::gitignore
-# zinit snippet OMZP::git-lfs # alias，没用
-# zinit snippet OMZP::branch
-# zinit snippet OMZP::repo
-# zinit snippet OMZP::git-extras # 不支持 brew 安装的 git
-# zinit snippet OMZP::github
-# zinit snippet OMZP::git-flow
-
-# 其他
-# zinit snippet OMZP::copybuffer # 拷贝当前执行的命令
-# zinit snippet OMZP::jump # mark and jump to a path
-# zinit snippet OMZP::lol # 搞笑
-# zinit snippet OMZP::themes # 命令行更换主题
-# zinit snippet OMZP::zsh-interactive-cd # 和fzf-tab 一样的选择器
-# zinit snippet OMZP::dotenv
-# zinit snippet OMZP::fancy-ctrl-z
-# zinit snippet OMZP::frontend-search
-# zinit snippet OMZP::man # 前面插入 man，没用
-# zinit snippet OMZP::sudo # 双击 esc 添加 sudo，没用
-# zinit snippet OMZP::fd
-# zinit snippet OMZP::autoenv 
-# zinit snippet OMZP::brew # 没什么用，一堆 alias
+zi ice lucid wait='1'
+zi snippet OMZP::git # failed
+# zi snippet OMZP::gitignore
+# zi snippet OMZP::git-lfs # alias，没用
+# zi snippet OMZP::branch
+# zi snippet OMZP::repo
+# zi snippet OMZP::git-extras # 不支持 brew 安装的 git
+# zi snippet OMZP::github
+# zi snippet OMZP::git-flow
 
 #######################################
 # 需要 snv
 # 需要获取 tmux.extra.conf 配置文件
-# zinit snippet OMZP::tmux # failed
+# zi snippet OMZP::tmux # failed
 # zi ice svn
-# zinit snippet OMZP::macos
+# zi snippet OMZP::macos
 # zi ice svn
-# zinit snippet OMZP::gitfast
+# zi snippet OMZP::gitfast
 # 需要获取 cheatsheet.py 文件
-# zinit snippet OMZP::aliases
+# zi snippet OMZP::aliases
 
 ###############################################################################
 # 功能打包
@@ -183,88 +213,216 @@ zstyle ':omz:plugins:yarn' global-path false
 
 # zsh-users+common
 # https://github.com/zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-autosuggestions # 自动建议，灰色提示
+# zi ice wait lucid atload'_zsh_autosuggest_start'
+# zi light zsh-users/zsh-autosuggestions # 自动建议，灰色提示
 # https://github.com/zsh-users/zsh-completions
-zinit light zsh-users/zsh-completions # 补全，额外的补全
+# zi ice wait lucid
+# zi light zsh-users/zsh-completions # 补全，额外的补全
 # +base
 # zsh-users/zsh-syntax-highlighting # 高亮命令输入
 # +fast
-zinit light zdharma-continuum/fast-syntax-highlighting
+# zi ice wait lucid atinit='zpcompinit'
+# zi light zdharma-continuum/fast-syntax-highlighting
 
 # 终端加载好后立即加载下面 3 个功能
-# zinit wait lucid for \
-#   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-#     zdharma-continuum/fast-syntax-highlighting \
-#   blockf \
-#     zsh-users/zsh-completions \ 
-#   atload"!_zsh_autosuggest_start" \
-#     zsh-users/zsh-autosuggestions
+zi wait lucid for \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+  blockf \
+    zsh-users/zsh-completions \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 ## https://github.com/zdharma-continuum/history-search-multi-word
-zinit light zdharma-continuum/history-search-multi-word
-zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold" # Color in which to highlight matched, searched text (default bg=17 on 256-color terminals)
-zstyle ":history-search-multi-word" page-size "8"                    # Number of entries to show (default is $LINES/3)
-zstyle ":plugin:history-search-multi-word" active "bold"        # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
-zstyle ":plugin:history-search-multi-word" check-paths "yes"         # Whether to check paths for existence and mark with magenta (default true)
-zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"      # Whether pressing Ctrl-C or ESC should clear entered query
-zstyle ":plugin:history-search-multi-word" synhl "yes"               # Whether to perform syntax highlighting (default true)
+# zinit ice lucid wait='1'
+# zinit light zdharma-continuum/history-search-multi-word
+# zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold" # Color in which to highlight matched, searched text (default bg=17 on 256-color terminals)
+# zstyle ":history-search-multi-word" page-size "8"                    # Number of entries to show (default is $LINES/3)
+# zstyle ":plugin:history-search-multi-word" active "bold"        # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
+# zstyle ":plugin:history-search-multi-word" check-paths "yes"         # Whether to check paths for existence and mark with magenta (default true)
+# zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"      # Whether pressing Ctrl-C or ESC should clear entered query
+# zstyle ":plugin:history-search-multi-word" synhl "yes"               # Whether to perform syntax highlighting (default true)
 
 # 参考
-# ogham/exa @sharkdp/fd @sharkdp/hyperfine ClementTsang/bottom cheat/cheat dandavison/delta 
+# ogham/exa @sharkdp/fd @sharkdp/hyperfine ClementTsang/bottom cheat/cheat dandavison/delta
 # muesli/duf bootandy/dust orf/gping dalance/procs
 # junegunn/fzf Aloxaf/fzf-tab fzf-git
 
 # sharkdp
 # sharkdp/fd, sharkdp/bat, sharkdp/hexyl, sharkdp/hyperfine, sharkdp/vivid
-# fuzzy 
+# fuzzy
 # fzf (package), fzy (package), lotabout/skim, peco/peco
 # ext-git
 # Fakerr/git-recall, paulirish/git-open, paulirish/git-recent, davidosomething/git-my, arzzen/git-quick-stats, iwata/git-now, tj/git-extras, wfxr/forgit
 
-# others
-zinit light zsh-users/zsh-history-substring-search # 历史命令搜索，可以通过 brew 安装
-zinit light MichaelAquilina/zsh-you-should-use # alias 提示
-zinit light akoenig/npm-run.plugin.zsh # npm 自动补全
+zi ice wait lucid
+zi light paulirish/git-open
 
-# zinit light ptavares/zsh-direnv # 自动加载环境变量
-# zinit light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
-# zinit light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
-# zinit light djui/alias-tips # 提示 alias 存在，功能同MichaelAquilina/zsh-you-should-use
+zi ice wait lucid as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zi light sharkdp/bat
+
+zinit ice as"program" from"gh-r" mv"exa* -> exa"
+zinit light ogham/exa
+
+zinit ice as"program" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit light sharkdp/fd
+
+# 使用微软的预编译版本
+# zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+# zinit light BurntSushi/ripgrep
+
+zinit ice from"gh-r" as"program" bpick"*apple-darwin*" pick"rg"
+zinit light microsoft/ripgrep-prebuilt
+
+# others
+zi ice wait lucid
+zi light zsh-users/zsh-history-substring-search # 历史命令搜索，可以通过 brew 安装
+zi ice wait lucid
+zi light MichaelAquilina/zsh-you-should-use # alias 提示
+# zi light akoenig/npm-run.plugin.zsh # npm 自动补全
+# zi light marlonrichert/zsh-autocomplete
+# zi light ptavares/zsh-direnv # 自动加载环境变量
+# zi light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
+# zi light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
+# zi light djui/alias-tips # 提示 alias 存在，功能同MichaelAquilina/zsh-you-should-use
 
 ###############################################################################
 
 # cheat
-zinit ice mv=":cht.sh -> cht.sh" atclone="chmod +x cht.sh" as="program"
-zinit snippet https://cht.sh/:cht.sh
+# zi ice mv=":cht.sh -> cht.sh" atclone="chmod +x cht.sh" as="program"
+# zi snippet https://cht.sh/:cht.sh
 
-zinit ice mv=":zsh -> _cht" as="completion"
-zinit snippet https://cheat.sh/:zsh
+# zi ice mv=":zsh -> _cht" as="completion"
+# zi snippet https://cheat.sh/:zsh
 
 ###############################################################################
 # 修复 bug
 # fix autosuggest paste slow problem, This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
+# pasteinit() {
+#   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+#   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+# }
+# pastefinish() {
+#   zle -N self-insert $OLD_SELF_INSERT
+# }
+# zstyle :bracketed-paste-magic paste-init pasteinit
+# zstyle :bracketed-paste-magic paste-finish pastefinish
 # zstyle :bracketed-paste-magic active-widgets '.self-*' # 有问题的修复方法
 
 ###############################################################################
 
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
 
-source ~/.local/share/dotfiles/shell/zsh/local.zsh
+
+ZSH_CONFIG_PATH=~/.local/share/dotfiles/shell/zsh
+# source $ZSH_CONFIG_PATH/options/functions.zsh;
+# source $ZSH_CONFIG_PATH/options/options.zsh;
+# source $ZSH_CONFIG_PATH/options/keybindings.zsh;
+# source $ZSH_CONFIG_PATH/options/completion.zsh;
+# source $ZSH_CONFIG_PATH/options/aliases.zsh;
+# source $ZSH_CONFIG_PATH/options/proxy.zsh;
+
+source ~/.iterm2_shell_integration.zsh;
+# source $ZSH_CONFIG_PATH/plugins/jetbrains.vmoptions.zsh
 
 ###############################################################################
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+
+# Make vim the default editor.
+# export BUNDLER_EDITOR='code'
+# export EDITOR='vim';
+
+# brew
+export PATH="/usr/local/sbin:$PATH"
+export HOMEBREW_GITHUB_API_TOKEN=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
+export HOMEBREW_HOME=/usr/local/bin
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_NO_ANALYTICS=1 # 不发送分析报告，https://docs.brew.sh/Analytics
+export HOMEBREW_NO_INSTALL_CLEANUP=false # 安装后执行 cleanup
+export HOMEBREW_NO_ENV_HINTS=true # 不用提示
+export HOMEBREW_NO_GITHUB_API=1 # No github credentials
+
+# zsh
+# export ZSH_CONFIG_HOME="$XDG_CONFIG_HOME/zsh"
+export ZSH_COMPDUMP="~/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+export ZSH_CACHE="~/.cache/zsh"
+# export ZSH_DISABLE_COMPFIX=true # 禁用安全功能加快启动速度 0.06s
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+export ZSH_AUTOSUGGEST_STRATEGY=(completion) # Don't offer history completion; we have fzf, C-r, and zsh-history-substring-search for that.
+# export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+# export UPDATE_ZSH_DAYS=30
+
+# export ENABLE_CORRECTION=true
+# export CASE_SENSITIVE=false
+# export BASH_SILENCE_DEPRECATION_WARNING=1; # Hide the “default interactive shell is now zsh” warning on macOS.
+
+# History
+export HISTFILE="~/.cache/zsh/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILESIZE=10000
+# export HIST_STAMPS="yyyy-mm-dd"
+# export HISTCONTROL='ignoreboth'
+
+# vim
+# export MRU_File="$XDg_CACHE_HOME/.vim_mru_files"
+
+# openssl
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/openssl/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+# export PYCURL_SSL_LIBRARY=openssl
+
+# wget
+# export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+# ripgep
+# export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgreprc"
+
+# readline
+# export LDFLAGS="-L/usr/local/opt/readline/lib"
+# export CPPFLAGS="-I/usr/local/opt/readline/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
+# node
+export NODE_PATH=/usr/local/lib/node_modules
+export NODE_REPL_HISTORY=~/.cache/.node_history; # Enable persistent REPL history for `node`.
+export N_PRESERVE_NPM=1 # 当切换 Node.js 版本时保留 npm
+# export NODE_REPL_HISTORY_SIZE='32768'; # Allow 32³ entries; the default is 1000.
+# export NODE_REPL_MODE='sloppy'; # Use sloppy mode by default, matching web browsers.
+# export NODE_TLS_REJECT_UNAUTHORIZED=1
+
+# bun
+[ -s "/Users/eqielb/.local/share/bun/_bun" ] && source "/Users/eqielb/.local/share/bun/_bun"
+export BUN_INSTALL="/Users/eqielb/.local/share/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm，npm 安装自动添加，不设置的话，无法使用 node 环境切换功能
+export PNPM_HOME="/Users/eqielb/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# electron
+# export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+
+# java
+# export JAVA_HOME="$(/usr/libexec/java_home)"
+# export PATH="$PATH:$JAVA_HOME/bin"
+
+# jdk
+# export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+# python3
+# export PYTHON_HOME="/usr/local/miniconda3/bin"
+# export PATH="$PYTHON_HOME:$PATH"
+# export PYTHONIOENCODING="UTF-8" # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+# export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+
+# python2
+# export PYENV_ROOR="$HOME/.pyenv"
+# export PATH="$(pyenv root)/shims:${PATH}"
+
+# conda
 __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -276,4 +434,74 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
+
+# ruby
+# export RUBY_HOME="$(brew --prefix ruby)"
+# export PATH="$RUBY_HOME/bin:$PATH"
+# export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+# export LDFLAGS="-L$RUBY_HOME/lib"
+# export CPPFLAGS="-I$RUBY_HOME/include"
+# export PKG_CONFIG_PATH="$RUBY/lib/pkgconfig"
+
+# go
+export GOPATH="/usr/local/lib/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+#test -d "$GOPATH" || mkdir "$GOPATH"
+#test -d "$GOPATH/src/github.com" || mkdir -p "$GOPATH/src/github.com"
+#go env -w GO111MODULE=on
+#go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
+# export GOPROXY=https://goproxy.io
+
+# elixir-lang
+# export ERL_AFLAGS="-kernel shell_history enabled"
+
+# php
+# export COMPOSER_HOME="/usr/local/lib/composer"
+# export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+
+# android
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
+
+# gradle
+# export GRADLE_USER_HOME="$XDG_CONFIG_HOME/gradle"
+
+# flutter
+# export PUB_HOSTED_URL=https://pub.flutter-io.cn
+# export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+# mysql
+# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# docker
+export DOCKER_HOST=tcp://192.168.68.2:2376
+export DOCKER_TLS_VERIFY=1
+
+# k8s
+export PATH="$HOME/.krew/bin:$PATH"
+alias kube='kubectl --insecure-skip-tls-verify'
+
+# rancher desktop
+# export PATH="/Users/eqielb/.rd/bin:$PATH"
+
+# ansible
+# export ANSIBLE_HOST_KEY_CHECKING=False
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# depot_tools
+# export DEPOT_TOOL_DIR=/usr/local/Custom/depot_tools
+# export PATH=$DEPOT_TOOL_DIR:$PATH
+
+# qt
+# export PATH="/usr/local/opt/qt/bin:$PATH"
+
+# texinfo
+# export PATH="/usr/local/opt/texinfo/bin:$PATH"
+
+# gnupg
+
+###############################################################################
+#alias wakeonlan -i 192.168.68.24 9e:2a:71:df:e8:6f

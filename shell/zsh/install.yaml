@@ -1,3 +1,5 @@
+- shell:
+    - rm -rf ~/.iterm2_shell_integration.zsh
 - link:
     ~/.zshrc:
       path: shell/zsh/zshrc
@@ -10,5 +12,11 @@
       glob: false
     ~/.zprofile:
       path: shell/zsh/zprofile
+    ~/.iterm2_shell_integration.zsh:
+      path: shell/zsh/plugins/iterm2_shell_integration.zsh
+- create:
+    - ~/.local/share/zinit/
 - shell:
-    # - [chsh -s $(which zsh) $(whoami), Making zsh the default shell]
+    - echo done.
+  # - [chsh -s $(which zsh) $(whoami), Making zsh the default shell]
+  # - git clone https://github.com/zdharma-continuum/zinit.git ${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git

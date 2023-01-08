@@ -1,0 +1,9 @@
+- create:
+    - ~/.config/btop
+- shell:
+    - mv ~/.config/btop ~/.local/share/dotfiles/backup/data/
+- link:
+    ~/.config/btop/btop.conf:
+      path: shell/btop/btop.conf
+    ~/.config/btop/themes:
+      path: shell/btop/themes

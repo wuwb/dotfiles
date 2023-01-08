@@ -1,8 +1,9 @@
-# For emacs:
+# emacs
 *~
 *.*~
 \#*
 .\#*
+\#*\#
 
 # For vim:
 *.swp
@@ -19,13 +20,7 @@ tags
 !tags/
 .tags
 
-# Logs and databases #
-######################
-*.log
-*.cache
-
-# OS generated files #
-######################
+# macOS
 .DS_Store?
 .DS_Store
 .CFUserTextEncoding
@@ -38,8 +33,12 @@ Thumbs.db
 .pid
 .sock
 
-# Code stuffs #
-###############
+
+# Logs and databases 
+*.log
+*.cache
+
+# Code stuffs 
 .svn
 .git
 .swp
@@ -52,8 +51,7 @@ tmp
 .codekit-cache
 config.codekit
 
-# Compiled thangs #
-###################
+# Compiled thangs 
 *.class
 *.exe
 *.o
@@ -61,8 +59,7 @@ config.codekit
 *.dll
 *.pyc
 
-# C++ #
-#######
+# C++ 
 build
 release
 cmake-build-debug
@@ -70,8 +67,7 @@ cmake-build-debug
 compile_commands.json
 .lldb-*
 
-# Python #
-##########
+# Python 
 .mypy_cache
 __pycache__
 .ipynb_checkpoints
@@ -79,20 +75,16 @@ __pycache__
 .python-version
 pyproject.toml~1
 
-# Java #
-########
+# Java 
 .settings
 .project
 .classpath
 *.iml
 
-# Go #
-######
+# Go 
 __debug_bin
 
-# Custom #
-##########
-.idea
+# Custom 
 .env
 .envrc
 .dir-locals.el
@@ -101,8 +93,7 @@ __debug_bin
 .osync_workdir
 *.parquet
 
-# Amazon #
-##########
+# Amazon 
 annotation-generated-src
 annotation-generated-tst
 .factorypath

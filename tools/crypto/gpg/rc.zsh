@@ -1,3 +1,6 @@
+export GNUPGHOME="$HOME/.gnupg"
+
+
 alias gpg-restart="gpgconf --kill gpg-agent"
 
 function test-ssh-connection() {

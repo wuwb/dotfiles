@@ -1,0 +1,5 @@
+- shell:
+    - rm -rf ~/.cargo/.package-cache # 删除源缓存
+    - rm -rf ~/.cargo/config # 删除源配置文件
+- link:
+    ~/.cargo/config: devp/cargo/config

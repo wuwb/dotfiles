@@ -1,48 +1,86 @@
 # -------------------------------------------------------------------
-# compressed file expander
-# (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
-# -------------------------------------------------------------------
-ex() {
-    if [[ -f $1 ]]; then
-        case $1 in
-          *.tar.bz2) tar xvjf $1;;
-          *.tar.gz) tar xvzf $1;;
-          *.tar.xz) tar xvJf $1;;
-          *.tar.lzma) tar --lzma xvf $1;;
-          *.bz2) bunzip $1;;
-          *.rar) unrar $1;;
-          *.gz) gunzip $1;;
-          *.tar) tar xvf $1;;
-          *.tbz2) tar xvjf $1;;
-          *.tgz) tar xvzf $1;;
-          *.zip) unzip $1;;
-          *.Z) uncompress $1;;
-          *.7z) 7z x $1;;
-          *.dmg) hdiutul mount $1;; # mount OS X disk images
-          *) echo "'$1' cannot be extracted via >ex<";;
-    esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-# -------------------------------------------------------------------
 # display a neatly formatted path
 # -------------------------------------------------------------------
-_msg() { printf "\r\033[2K\033[0;32m[ .. ] %s\033[0m\n" "$*"; }
+# Functions
+# (f)ind by (n)ame
+# usage: fn foo 
+# to find all files containing 'foo' in the name
+_has() {
+  return $( whence $1 &>/dev/null )
+}
+_try() {
+  return $( eval $* &>/dev/null )
+}
+_versionof() {
+  if _has "$1"; then
+    echo "$1 $($1 --version)"
+  else
+    echo "$1 n/a"
+  fi
+}
+_is_callable() {
+  for cmd in "$@"; do
+    command -v "$cmd" >/dev/null || return 1
+  done
+}
+_is_interactive() { [[ $- == *i* || -n $EMACS ]]; }
+
+_is_running() {
+  for prc in "$@"; do
+    pgrep -x "$prc" >/dev/null || return 1
+  done
+}
 
 _is_callable() {
   for cmd in "$@"; do
     command -v "$cmd" >/dev/null || return 1
   done
 }
-_uncallable() { 
-  ! command -v "$1" >/dev/null; 
+
+_run() {
+  if _is_callable "$1" && ! _is_running "$1"; then
+    "$@"
+  fi
 }
-zman() { 
+
+_call() {
+  if _is_callable "$1"; then
+    "$@"
+  fi
+}
+
+_source() {
+  [[ -f $1 ]] && source "$1"
+}
+
+_load() {
+}
+
+_load_repo() {
+  _ensure_repo "$1" "$2" && source "$2/$3" || echo >&2 "Failed to load $1"
+}
+
+_ensure_repo() {
+  local target=$1
+  local dest=$2
+  if [[ ! -d $dest ]]; then
+    if [[ $target =~ "^[^/]+/[^/]+$" ]]; then
+      url=https://github.com/$target
+    elif [[ $target =~ "^[^/]+$" ]]; then
+      url=git@github.com:$USER/$target.git
+    fi
+    [[ -n ${dest%/*} ]] && mkdir -p ${dest%/*}
+    git clone --recursive --depth 1 "$url" "$dest" || return 1
+  else
+    git -C $dest pull
+  fi
+}
+
+function zman() { 
   PAGER="less -g -I -s '+/^       "$1"'" man zshall; 
 }
-k9() {
+
+function k9() {
   # Usage: k9 22234 1213 or k9 chrome
   if echo $@ | rg -q "[\d\s\t]+"; then
     process_ids=("${(@f)}$@")
@@ -51,7 +89,7 @@ k9() {
     pkill -9 -f $@
   fi
 }
-sk9() {
+function sk9() {
   # Usage: k9 22234 1213 or k9 chrome
   if echo $@ | rg -q "[\d\s\t]+"; then
     process_ids=("${(@f)}$@")
@@ -59,13 +97,6 @@ sk9() {
   else
     sudo pkill -9 -f $@
   fi
-}
-vread() {
-  (
-    $@ > /tmp/dummy_vread_file
-    nvim +Man! /tmp/dummy_vread_file
-    rm -f /tmp/dummy_vread_file
-  )
 }
 
 function format-all-dos2unix() {
@@ -97,24 +128,13 @@ function color-palette() {
   done
 }
 
-function b64() {
-  image=$(openssl base64 -in $1 | tr -d "\n")
-  echo "![img](data:image/png;base64,$image)" | pbcopy
-}
-
 function unixtime-convert {
   # Usage: unixtime-convert 1638858888.708148250 UTC
   local TimeZone=${2:-"America/Los_Angeles"}
   TZ=$TimeZone date -d @"$1" +'%Y-%m-%d %H:%M:%S %Nns'
 }
 
-function envrehash() {
-  for cmd in ${env_rehash_cmds[@]}; do
-    eval "$cmd"
-  done
-}
-
-center_text() {
+function center_text() {
   # Function "center_text": center the text with a surrounding border
 
   # first argument: text to center
@@ -160,21 +180,6 @@ center_text() {
   printf "${left_border}${spacing}${text}${spacing}${right_border}\n"
 }
 
-function update_topics {
-}
-
-function sshf() {
-  # Forward ssh port
-  if [ "$#" -ne 2 ]; then
-    echo "usage: sshf 10.0.0.1 6006"
-    return 1
-  fi
-  local host="${1}"
-  local port="${2}"
-  kill -9 $(sudo lsof -ti:${port})
-  ssh -NfL ${port}:localhost:${port} ${host}
-}
-
 # fuzzy find projects
 function ff_projects() {
   # Each root is consist of PATH:scan_depth
@@ -214,7 +219,7 @@ function ff_projects() {
 alias pp=ff_projects
 
 # fkill - fuzzy find kill processes
-fkill() {
+function fkill() {
   if _is_callable sk; then ff_cmd="sk"
   elif _is_callable fzf; then ff_cmd="fzf"
   else
@@ -237,31 +242,30 @@ function fman() {
   man -k . | $ff_cmd -q "$1" --prompt='man> ' | awk -F'\(' '{print $1}' | xargs -r man
 }
 
-function update_git_repo() {
-}
-
-# used for mas
-function find-app-id() {
-  /usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' /Applications/"$1".app/Contents/Info.plist
-}
-
-# Functions
-# (f)ind by (n)ame
-# usage: fn foo 
-# to find all files containing 'foo' in the name
-_fn() { 
-  ls **/*$1* 
-}
-_has() {
-  return $( whence $1 &>/dev/null )
-}
-_try() {
-  return $( eval $* &>/dev/null )
-}
-_versionof() {
-  if _has "$1"; then
-    echo "$1 $($1 --version)"
-  else
-    echo "$1 n/a"
-  fi
+# -------------------------------------------------------------------
+# compressed file expander
+# (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
+# -------------------------------------------------------------------
+function ex() {
+    if [[ -f $1 ]]; then
+        case $1 in
+          *.tar.bz2) tar xvjf $1;;
+          *.tar.gz) tar xvzf $1;;
+          *.tar.xz) tar xvJf $1;;
+          *.tar.lzma) tar --lzma xvf $1;;
+          *.bz2) bunzip $1;;
+          *.rar) unrar $1;;
+          *.gz) gunzip $1;;
+          *.tar) tar xvf $1;;
+          *.tbz2) tar xvjf $1;;
+          *.tgz) tar xvzf $1;;
+          *.zip) unzip $1;;
+          *.Z) uncompress $1;;
+          *.7z) 7z x $1;;
+          *.dmg) hdiutul mount $1;; # mount OS X disk images
+          *) echo "'$1' cannot be extracted via >ex<";;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }

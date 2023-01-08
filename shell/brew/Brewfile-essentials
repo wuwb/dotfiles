@@ -35,9 +35,13 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 brew "yqrashawn/goku/goku"
 
-cask "1password"
-cask "alfred"
-# cask "arq" # Wait for v5 compatability
+## cask
+
+
+# cask "alfred" # 需付费
+
+
+
 cask "beardedspice"
 cask "bitbar"
 cask "dash"

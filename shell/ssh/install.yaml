@@ -1,3 +1,6 @@
+- create:
+    ~/.ssh:
+      mode: 0700
 - link:
     ~/.ssh/config:
       path: shell/ssh/config
@@ -5,6 +8,3 @@
       path: shell/ssh/home.config
     ~/.ssh/cloud.config:
       path: shell/ssh/cloud.config
-- create:
-    ~/.ssh:
-      mode: 0700

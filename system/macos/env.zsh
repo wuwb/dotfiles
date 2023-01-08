@@ -1,5 +1,3 @@
-export GNUPGHOME="$HOME/.gnupg"
-
 # export CC=/usr/bin/clang
 # export CXX=/usr/bin/clang++
 # export CXXFLAGS="-I/usr/local/include"

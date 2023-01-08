@@ -17,3 +17,10 @@ brew "romkatv/powerlevel10k/powerlevel10k"
 # brew "hexyl"
 # brew "xsv"
 # brew "hledger"
+
+mas "WeChat", id: 836500024
+# mas "Unsplash Wallpapers", id: 1284863847
+# mas "Microsoft OneNote", id: 784801555
+# mas "Pages", id: 409201541
+# mas "Numbers", id: 409203825
+# mas "Keynote", id: 409183694

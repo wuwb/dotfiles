@@ -4,7 +4,7 @@
 	url = https://github.com/anishathalye/dotbot
 	branch = master
 	ignore = dirty
-# 插件
+# 插件 debian
 [submodule "meta/dotbot-apt"]
 	path = meta/dotbot-apt
 	url = https://github.com/bryant1410/dotbot-apt.git
@@ -12,9 +12,10 @@
 [submodule "meta/dotbot-snap"]
 	path = meta/dotbot-snap
 	url = https://github.com/DrDynamic/dotbot-snap.git
-[submodule "terminal/colors/base16-shell"]
-	path = terminal/colors/base16-shell
-	url = https://github.com/chriskempson/base16-shell.git
+# 插件 window
 [submodule "meta/dotbot-scoop"]
 	path = meta/dotbot-scoop
 	url = https://github.com/JamJar00/dotbot-scoop.git
+[submodule "terminal/colors/base16-shell"]
+	path = terminal/colors/base16-shell
+	url = https://github.com/chriskempson/base16-shell.git

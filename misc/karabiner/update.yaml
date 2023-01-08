@@ -1,0 +1,13 @@
+- shell:
+    - mv ~/.local/share/dotfiles/misc/karabiner/karabiner.json ~/.local/share/dotfiles/misc/karabiner/backups/karabiner.json
+    - cp ~/.config/karabiner/karabiner.json ~/.local/share/dotfiles/misc/karabiner/karabiner.json
+    - rm -rf ~/.config/karabiner/karabiner.json
+- link:
+    ~/.config/karabiner/karabiner.json:
+      path: misc/karabiner/karabiner.json
+- create:
+    - ~/.config/karabiner/
+- shell:
+    - echo done.
+  # - [chsh -s $(which zsh) $(whoami), Making zsh the default shell]
+  # - git clone https://github.com/zdharma-continuum/zinit.git ${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git

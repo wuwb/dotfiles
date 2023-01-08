@@ -1,0 +1,4 @@
+- shell:
+    - rm -rf ~/.npmrc
+- link:
+    ~/.npmrc: devp/npm/npmrc

@@ -1,0 +1,3 @@
+- link:
+    ~/.config/wgetrc:
+      path: shell/wget/wgetrc

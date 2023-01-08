@@ -18,3 +18,11 @@ if command -v pre-commit > /dev/null; then
 else
     echo '`pre-commit` not found. Skipping pre-commit.' 1>&2
 fi
+
+######################
+
+local_hook="$HOME"/.git_template.local/hooks/pre-commit
+
+if [ -f "$local_hook" ]; then
+  . "$local_hook"
+fi

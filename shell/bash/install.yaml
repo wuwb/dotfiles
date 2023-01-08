@@ -1,0 +1,8 @@
+- brew:
+    - bash
+- links:
+    ~/.bash_aliases: shells/bash/bash_aliases
+    ~/.bash_logout: shells/bash/bash_logout
+    ~/.bash_profile: shells/bash/bash_profile
+    ~/.bashrc: shells/bash/bashrc
+    ~/.profile: shells/profile

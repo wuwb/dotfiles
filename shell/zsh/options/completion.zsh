@@ -1,15 +1,8 @@
-
-# Don't offer history completion; we have fzf, C-r, and
-# zsh-history-substring-search for that.
-
 # Expand partial paths, e.g. cd f/b/z == cd foo/bar/baz (assuming no ambiguity)
 zstyle ':completion:*:paths' path-completion yes
-
 # Fix slow one-by-one character pasting when bracketed-paste-magic is on. See
 # zsh-users/zsh-syntax-highlighting#295
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-
 # Fuzzy match mistyped completions.
 zstyle ':completion:*' completer _complete _list _match _approximate
 zstyle ':completion:*:match:*' original only
@@ -44,17 +37,6 @@ zstyle -e ':completion:*:hosts' hosts 'reply=(
   ${=${=${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) 2>/dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
   ${=${${${${(@M)${(f)"$(cat ~/.ssh/config 2>/dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
 )'
-# Don't complete uninteresting users
-zstyle ':completion:*:users' ignored-patterns \
-  adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
-  dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
-  hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
-  mailman mailnull mldonkey mysql nagios \
-  named netdump news nfsnobody nobody 'nixbld*' nscd ntp nut nx openvpn \
-  operator pcap postfix postgres privoxy pulse pvm quagga radvd \
-  rpc rpcuser rpm shutdown squid sshd sync 'systemd-*' uucp vcsa xfs '_*'
-# ... unless we really want to.
-zstyle '*' single-ignored show
 # Ignore multiple entries.
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
 zstyle ':completion:*:rm:*' file-patterns '*:all-files'

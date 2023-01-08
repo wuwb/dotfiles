@@ -1,17 +1,5 @@
-# 設定後才能用上下鍵來使用 zsh-history-substring-search
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
-
 # 补全快捷键重设
 bindkey ',' autosuggest-accept
-
-# The surround module wasn't working if KEYTIMEOUT was <= 10. Specifically,
-# (delete|change)-surround immediately abort into insert mode if KEYTIMEOUT <=
-# 8. If <= 10, then add-surround does the same. At 11, all these issues vanish.
-# Very strange!
-export KEYTIMEOUT=15
-
-autoload -U is-at-least
 
 # Copied from https://github.com/jeffreytse/zsh-vi-mode/blob/master/zsh-vi-mode.zsh
 # Edit command line in EDITOR
@@ -54,8 +42,7 @@ bindkey -M viins '^E' end-of-line
 # Shift + Tab
 bindkey -M viins '^[[Z' reverse-menu-complete
 
-
-bindkey -e   # Default to standard vi bindings, regardless of editor string
+bindkey -e   # Default to standard vi bindings, regardless of editor string # bindkey -v
 bindkey "^F" vi-cmd-mode
 
 bindkey "^[[2~" overwrite-mode
@@ -69,12 +56,13 @@ bindkey "^[[8~" end-of-line
 bindkey "^?" backward-delete-char
 bindkey '^R' history-incremental-search-backward
 
+# 設定後才能用上下鍵來使用 zsh-history-substring-search
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
-
-# vi mode
-bindkey -v
-bindkey "^F" vi-cmd-mode
+# bindkey '^P' history-substring-search-up
+# bindkey '^N' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # handy keybindings
 bindkey "^A" beginning-of-line
@@ -85,4 +73,3 @@ bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
 bindkey "^Q" push-line-or-edit
-bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"

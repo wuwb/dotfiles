@@ -1,4 +1,3 @@
-export GNUPGHOME="$HOME/.gnupg"
 export TERMINFO="$XDG_CONFIG_HOME/terminfo"
 
 if [ -d /home/linuxbrew/.linuxbrew/ ]; then
