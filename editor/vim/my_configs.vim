@@ -1,5 +1,7 @@
 " base
 set nu
+" 修复输入法切换问题
+" set iminsert=2
 
 map <leader>ct :cd ~/Sites<cr>
 
@@ -81,7 +83,7 @@ endif
 " behave mswin
 
 " 高亮整行 只在普通模式下开启
-set cursorline 
+set cursorline
 
 " always show current position
 set ruler
@@ -97,7 +99,7 @@ endif
 " Ignore case when searching 忽略大小写
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -238,7 +240,7 @@ hi User3 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
 set laststatus=2
 set statusline=
 " full filename	modified flag	read only flag 	help file flag	Preview
-set statusline=%1*%F%m%r%h%w\ 
+set statusline=%1*%F%m%r%h%w\
 set statusline+=%2*[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%y		"file type
@@ -252,14 +254,14 @@ set statusline+=\ %P
 " if has("autocmd")
 "   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
 "   au InsertEnter,InsertChange *
-"     \ if v:insertmode == 'i' | 
+"     \ if v:insertmode == 'i' |
 "     \   silent execute '!echo -ne "\e[6 q"' | redraw! |
 "     \ elseif v:insertmode == 'r' |
 "     \   silent execute '!echo -ne "\e[4 q"' | redraw! |
 "     \ endif
 "   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 " endif
-" 
+"
 " if &term =~ "xterm\\|rxvt"
 "   " use an orange cursor in insert mode
 "   let &t_SI = "\<Esc>]12;orange\x7"
@@ -270,7 +272,7 @@ set statusline+=\ %P
 "   autocmd VimLeave * silent !echo -ne "\033]112\007"
 "   " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
 " endif
-" 
+"
 " autocmd InsertLeave,WinEnter * set cursorline
 " autocmd InsertEnter,WinLeave * set nocursorline
 

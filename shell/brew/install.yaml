@@ -156,16 +156,11 @@
     - neofetch
 
     # shell
-    - zsh
     - screen
     - bash # Install Bash 4
     - bash-completion2
 
     # lang
-    - ruby
-    - node
-    - go
-    - python
     - lua
     - R
     - llvm
@@ -174,12 +169,10 @@
     - cmake
     - android-platform-tools
     - rbenv
-    - ruby-build
     - pyright
     - black
     - poetry
     - pylint
-    - miniconda
 
     # lint
     - pre-commit
@@ -188,7 +181,7 @@
     - cpplint
     - editorconfig
 
-    # 云管理平台
+    # 云管理平台，用代码管理部署逻辑，可以部署到 k8s
     - pulumi/tap/pulumi
 
     # 不用

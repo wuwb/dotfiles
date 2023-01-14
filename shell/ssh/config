@@ -16,5 +16,5 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa
 
 Host B1
-     HostName 192.168.68.14
-     Port 8022
+  HostName 192.168.68.14
+  Port 8022

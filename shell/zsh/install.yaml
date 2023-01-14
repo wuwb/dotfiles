@@ -1,3 +1,6 @@
+# darwin 苹果系统下默认不需要安装，系统自带
+#- brew:
+#    - zsh
 - shell:
     - rm -rf ~/.iterm2_shell_integration.zsh
 - link:
@@ -14,6 +17,7 @@
       path: shell/zsh/zprofile
     ~/.iterm2_shell_integration.zsh:
       path: shell/zsh/plugins/iterm2_shell_integration.zsh
+    ~/.zshenv: shell/zsh/zshenv
 - create:
     - ~/.local/share/zinit/
 - shell:

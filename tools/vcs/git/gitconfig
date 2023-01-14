@@ -11,7 +11,7 @@
 	defaultBranch = main
 	templatedir = ~/.local/share/dotfiles/tools/vsc/git/template
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/eqielb/.gitignore
 	attributesfile = ~/.gitattributes
     editor = vim
 	ignorecase = false
@@ -272,7 +272,7 @@
 	xfuncname = "^(\\*+ +.*)$"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 ###############################################################################
 # merge
 [merge]

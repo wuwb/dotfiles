@@ -22,7 +22,7 @@
 
 set -e
 
-BASE_CONFIG="base"
+BASE_CONFIG="base.yaml"
 CONFIG_SUFFIX="" # 默认值是 ".yaml"，这里改成空，可以使用 shell 自动补全生成 
 
 META_DIR="meta"
