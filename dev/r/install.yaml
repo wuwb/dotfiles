@@ -1,0 +1,4 @@
+- brew:
+    # - R
+ - gfortran # R语言等编译需要
+    # - RStudio # R 语言开发编辑器

@@ -1,4 +1,5 @@
 - apt:
+    - man-db
     - git
     - curl
     - wget

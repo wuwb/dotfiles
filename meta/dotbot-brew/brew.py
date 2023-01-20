@@ -50,7 +50,7 @@ class Brew(dotbot.Plugin):
         return directive in list(self._directives.keys())
 
     def handle(self, directive: str, data: Iterable) -> bool:
-        user_defaults = self._context.defaults()[0].get(directive, {})
+        user_defaults = self._context.defaults().get(directive, {})
         local_defaults = self._defaults.get(directive, {})
         defaults = {**local_defaults, **user_defaults}
         return self._directives[directive](data, defaults)

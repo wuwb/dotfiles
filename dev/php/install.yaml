@@ -1,6 +1,6 @@
-
 - brew:
   - phpenv 
   - php-build 
   - libmcrypt
+  - wp-cli
 

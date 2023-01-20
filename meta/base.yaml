@@ -1,14 +1,21 @@
 - defaults:
     link:
-      create: true
-      relink: true
-      force: true
+        create: true
+        relink: true
+        force: true
     shell:
-      stdout: true
-      stderr: true
+        stdout: true
+        stderr: true
+    brew:
+        stderr: true
+        stdout: true
 
-- clean: ["~", "~/.config"]
-
+- clean: 
+    - "~"
+    - "~/.config"
+    - /Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS.simruntime
+    - /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS.simruntime
+    
 - create:
     - ~/.config
     - ~/.local/share/zinit

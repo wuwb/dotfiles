@@ -79,11 +79,6 @@ alias gcl1="git clone --depth=1"
 alias gdiff='git diff --name-only --diff-filter=U'
 alias gdrop='git branch | grep -v "master" | xargs git branch -D '
 
-# git rebase 
-alias rebasep='git pull --rebase upstream main'
-alias rebasec='git rebase --continue'
-alias rebase='RUN() { git rebase -i HEAD~$1; }; RUN'
-
 # git log
 alias glog_branches="git log --color=always --oneline --decorate --graph --branches"
 alias glog_branches_intag="echo You can append a tag name; LANG=C sleep 0.5; git log --color=always --oneline --decorate --graph --branches"
@@ -92,6 +87,11 @@ alias glog_simplify="git log --color=always --simplify-by-decoration --decorate"
 # ​git config --global url."https://gitclone.com/".insteadOf https://
 # https://stackoverflow.com/a/15503178/1820217
 alias gitlog="git ls-files -z | xargs -0n1 git blame -w --show-email | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -n"
+
+# neovim
+alias nvim=lvim
+alias vim=lvim
+alias vi=lvim
 
 # tmux
 alias tl=tmux list-sessions
@@ -145,8 +145,6 @@ alias hidedesktopicons="defaults write com.apple.finder CreateDesktop -bool fals
 # Disable / enable Spotlight
 alias disablespotlight="sudo mdutil -a -i off"
 alias enablespotlight="sudo mdutil -a -i on"
-
-
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description

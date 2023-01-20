@@ -8,9 +8,9 @@
 
 - link:
     ~/.tmux.conf:
-      path: terminal/tmux/.tmux.conf
+      path: terminal/tmux/tmux.conf
     ~/.tmux.conf.local:
-      path: terminal/tmux/.tmux.conf.local
+      path: terminal/tmux/tmux.conf.local
 
 - shell:
     - description: Clone tpm

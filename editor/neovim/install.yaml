@@ -1,2 +1,5 @@
+- brew:
+    - neovim
+
 - link:
     ~/.config/lvim/config.lua: editor/neovim/config.lua

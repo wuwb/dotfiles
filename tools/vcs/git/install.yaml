@@ -9,3 +9,6 @@
     ~/.gitattributes: tools/vcs/git/gitattributes
     ~/.gitignore: tools/vcs/git/gitignore
     ~/.gitignore_global: tools/vcs/git/gitignore
+
+- brew:
+    - git

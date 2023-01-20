@@ -1,10 +1,14 @@
+### @version 2019-05-17
+### @version 2014-05-09
+### @version 2023-01-14
+
 # Sets default config for certain directives
 - defaults:
-    - brewfile:
-        - stdout: true
-    - brew:
-        - stderr: true
-        - stdout: true
+    brewfile:
+        stdout: true
+    brew:
+        stderr: true
+        stdout: true
 
 # Installs brew if missing
 - install-brew: true
@@ -13,34 +17,35 @@
 #     - shell/brew/Brewfile
 
 - tap:
+    - caskroom/cask
+    - caskroom/versions
+    - homebrew/bundle
+    - homebrew/dupes
+    - homebrew/php
     - caskroom/fonts
     - buo/cask-upgrade # Upgrade with `brew cu`
     - scullionw/tap
 
 - brew:
-    # java 开发
     # - jdtls
     # - gradle
     # - maven
     # - jenv
     # - openjdk
 
-    # editor
-    - neovim
-    - vim
     # - emacs --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --HEAD --use-git-head
-    - visual-studio-code
     # shell
-    - zsh
+    # - zsh # 系统自带不用安装
     - zsh-completions
     - zsh-autosuggestions
     - zsh-syntax-highlighting
 
     # cvs
     - git
-    - mercurial
+    - mercurial 
     - hub
     - gh
+    - gitbucket
     # - git-lfs
     - git-secrets
     - git-delta
@@ -48,14 +53,13 @@
     - pre-commit
 
     # web
-    - wget
     - rsync
     - youtube-dl
 
     # database
     - sqlite
     - postgresql
-    - mariadb # mysql
+    - mariadb # 取代 mysql
 
     # Better console tools
     # Modern Unix commands
@@ -74,10 +78,12 @@
     - fzf # https://github.com/junegunn/fzf
     - asdf
     - grep
+    - homebrew/dupes/grep # Install more recent versions of some OS X tools
     - ripgrep # 快速版 grep
     - z.lua
 
     # new unix tools
+    # Install GNU core utilities (those that come with OS X are outdated)
     - coreutils # https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands
     - btop # better top, 代替 htop，代替 top
     - htop
@@ -124,6 +130,7 @@
     - gmp
     - coreutils # Install GNU core utilities (those that come with OS X are outdated)
     - moreutils # Install some other useful utilities like `sponge`.
+    # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
     - findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
     - gnupg # Install GnuPG to enable PGP-signing commits.
     - gnupg2
@@ -143,7 +150,6 @@
     - ssh-copy-id # 自带
     - openssl
     - libressl
-    - openssl
 
     # net
     - wget
@@ -166,7 +172,6 @@
     - llvm
     - gcc
     - gdb
-    - cmake
     - android-platform-tools
     - rbenv
     - pyright
@@ -184,10 +189,11 @@
     # 云管理平台，用代码管理部署逻辑，可以部署到 k8s
     - pulumi/tap/pulumi
 
+    - ilmbase # exr 图片处理
+
     # 不用
     # - mackup # osx 配置管理器，换 dotbot
     # - antigen # zsh 包管理器，换 zinit
-    # - mysql # 换 mariadb
     # - autojump # 换 z
     # - zgenom # 用 zinit 代替
     # - mackup # 用 dotbot 代替
@@ -199,6 +205,7 @@
     # - php70, args: ['with-debug', 'without-apache']
 
 - cask:
+    # @version 2014-05-09
     # 预览，mac quicklook https://github.com/sindresorhus/quick-look-plugins
     - qlcolorcode
     - qlstephen
@@ -209,6 +216,7 @@
     - webpquicklook
     - qlimagesize
     - qlvideo
+    - betterzipql
     # - suspicious-package
     # - quicklookase
 
@@ -233,12 +241,13 @@
     - bartender # 付费
     - keycastr
     - charles
+    - you-get # 视频下载
 
     # 待定
     # - colorpicker
     # - cheatsheet
-    # - android-studio
-    # - pycharm-ce
+    # - android-studio # android 开发编辑器
+    # - pycharm-ce # python 开发编辑器
     # - java
     # - qqmacmgr
     # - youdao
@@ -260,7 +269,6 @@
     - font-fira-code
     - font-source-code-pro
     - hammerspoon
-    - java
     - jd-gui
     - licecap
     - mos
@@ -276,7 +284,7 @@
     - kap
     - rectangle
     - 1password
-
+    - ansible
     # 不用
 
     # - obs # 在 windows 上直播
@@ -293,8 +301,11 @@
     # - goofy # Your (unofficial) Facebook Messenger client for OS X
     # - discord
     # - textual # IRC
+    # - zotero # 科研资料管理
 
     # 不再使用
+    # - skype # 换 whatsapp
+    # - mou # markdown 编辑器，换 vscode
     # - typora # 换 vscode
     # - qqmusic # 换网易云音乐
     # - tower # 换 sourcetree
@@ -308,6 +319,8 @@
     # - mpv # 换 iina
     # - nextcloud # 换 qnap
     # - calibre # 换 qnap
+    # - hugo # 静态网站用，my-advanced-docs
+    # - sublime-text # 换 vscode，需翻墙
 
 # 安装 cask
 

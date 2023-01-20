@@ -1,3 +1,5 @@
+require("nvim-treesitter.install").prefer_git = true
+
 if vim.g.vscode then
     -- VSCode extension
     -- 取消按键粘滞

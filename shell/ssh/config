@@ -8,6 +8,7 @@ Host *
   TCPKeepAlive yes
   AddKeysToAgent yes
   UseKeychain yes
+  StrictHostKeyChecking no
 
 Host github.com
   HostName ssh.github.com

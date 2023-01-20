@@ -1,2 +1,6 @@
+- brew:
+    # Install more recent versions of some macOS tools.
+    # - vim --with-override-system-vi
+    # - vim # mac 系统自带，可以不用安装 brew 版本
 - link:
     ~/.vimrc: editor/vim/vimrc

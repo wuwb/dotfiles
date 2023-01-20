@@ -9,7 +9,7 @@
 	user = Wu Wenbin
 [init]
 	defaultBranch = main
-	templatedir = ~/.local/share/dotfiles/tools/vsc/git/template
+	templatedir = ~/.local/share/dotfiles/tools/vcs/git/template
 [core]
 	excludesfile = /Users/eqielb/.gitignore
 	attributesfile = ~/.gitattributes
@@ -95,10 +95,8 @@
 
 	# status
 	s = status -s # View the current working tree status using the short format.
-	st = status                     
 
 	# diff
-	d = diff                          # diff unstaged changes
 	dc = diff --cached                # diff staged changes
 	last = diff HEAD^                 # diff last committed change
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat" 	# Show the diff between the latest commit and the current state.
@@ -138,9 +136,10 @@
     pf = push --force-with-lease
 
 	# rebase
+	rp = pull --rebase upstream main
 	rc = rebase --continue            # continue rebase
 	rs = rebase --skip                # skip rebase
-	reb = "!r() { git rebase -i HEAD~$1; }; r" # Interactive rebase with the given number of latest commits.
+	re = "!r() { git rebase -i HEAD~$1; }; r" # Interactive rebase with the given number of latest commits.
 
 	# reset
 	unstage = reset HEAD              # remove files from index (tracking)
