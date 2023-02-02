@@ -9,9 +9,6 @@ if test ! $(which brew); then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-echo "Setup hostname"
-sudo scutil --set HostName mac
-
 echo "Install with Brew Bundle"
 set +e
 brew cleanup

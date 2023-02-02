@@ -92,7 +92,7 @@
     - the_silver_searcher # https://github.com/ggreer/the_silver_searcher
     - tree
     - ffmpeg
-    - imagemagick
+    - imagemagick # 未来Rails图片处理需要
     - mas
     - nmap
     - p7zip

@@ -1,6 +1,6 @@
 - brew:
     - tmux
-    - reattach-to-user-namespace
+    - reattach-to-user-namespace # 链接 mac 系统的剪切板
 
 # Setup tpm : tmux plugin manager
 - create:
@@ -12,11 +12,12 @@
     ~/.tmux.conf.local:
       path: terminal/tmux/tmux.conf.local
 
+# Setup tmux plugin manager
 - shell:
-    - description: Clone tpm
+    - description: Clone TPM
       quiet: true
       command: |
         if cd ~/.tmux/plugins/tpm;
         then git pull;
-        else git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm;
+        else git clone https://github.com/tmux-plugins/tpm.git ~/.local/share/tmux/plugins/tpm;
         fi

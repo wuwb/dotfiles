@@ -1,9 +1,4 @@
 #!/bin/bash
-#############################################################
-# Install macOS via brew cask
-# Author: Vincent Zhang <seagle0128@gmail.com>
-# URL: https://github.com/seagle0128/dotfiles
-#############################################################
 
 # Cask applications
 apps=(
@@ -66,27 +61,6 @@ apps=(
     zy-player
 )
 
-# Use colors, but only if connected to a terminal, and that terminal
-# supports them.
-if command -v tput >/dev/null 2>&1; then
-    ncolors=$(tput colors)
-fi
-if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-    RED="$(tput setaf 1)"
-    GREEN="$(tput setaf 2)"
-    YELLOW="$(tput setaf 3)"
-    BLUE="$(tput setaf 4)"
-    BOLD="$(tput bold)"
-    NORMAL="$(tput sgr0)"
-else
-    RED=""
-    GREEN=""
-    YELLOW=""
-    BLUE=""
-    BOLD=""
-    NORMAL=""
-fi
-
 function check {
     # Check OS
     if [[ $OSTYPE != darwin* ]]; then
@@ -107,22 +81,3 @@ function check {
         brew tap buo/cask-upgrade
     fi
 }
-
-function install () {
-    for app in ${apps[@]}; do
-        printf "${BLUE} ➜  Installing ${app}...${NORMAL}\n"
-        brew install --cask ${app}
-    done
-}
-
-function cleanup {
-    brew cleanup
-}
-
-function main {
-    check
-    install
-    cleanup
-}
-
-main

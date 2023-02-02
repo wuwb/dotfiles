@@ -21,6 +21,32 @@
 - create:
     - ~/.local/share/zinit/
 - shell:
+    - description: Clone zinit
+      quiet: true
+      command: |
+        if cd ~/.local/share/zinit/zinit.git;
+        then git pull;
+        else git clone https://github.com/zdharma-continuum/zinit.git ~/.local/share/zinit/zinit.git; fi
+
+# Change default shell to zsh
+- shell:
+    - description: Change default shell to zsh
+      quiet: true
+      command: |
+        update_shell() {
+          local shell_path;
+          shell_path="$(command -v zsh)"
+
+          fancy_echo "Changing your shell to zsh ..."
+          if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+            fancy_echo "Adding '$shell_path' to /etc/shells"
+            sudo sh -c "echo $shell_path >> /etc/shells"
+          fi
+          sudo chsh -s "$shell_path" "$USER"
+        }
+        update_shell
+        
+- shell:
     - echo done.
   # - [chsh -s $(which zsh) $(whoami), Making zsh the default shell]
   # - git clone https://github.com/zdharma-continuum/zinit.git ${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git

@@ -1,0 +1,31 @@
+{
+  "name": "npm-init",
+  "version": "0.0.1",
+  "description": "init common global packages",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lanxi:/Dumpling"
+  },
+  "keywords": [
+    "nodejs",
+    "npm"
+  ],
+  "author": "lanxi",
+  "license": {
+    "type": "MIT",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "cake-dog": "~0.3.0",
+    "jamjs": "~0.2.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-uglify": "~0.2.7"
+  }
+}

@@ -1,3 +1,6 @@
 - shell:
-# 然后，假设我们要开发项目，创建一个该项目专用开发环境，假设命名为：myproject
-    - 
+    # 然后，假设我们要开发项目，创建一个该项目专用开发环境，假设命名为：myproject
+    - pip install virtualenv
+    - virtualenv myproject
+    # - ln -s 
+    # source ~/.virtualenvs/myproject/bin/activate
