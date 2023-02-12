@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-git secrets --commit_msg_hook -- "$@"
+# git secrets --commit_msg_hook -- "$@"
 
 ######################
 
-local_hook="$HOME"/.git_template.local/hooks/commit-msg
+# local_hook="$HOME"/.git_template.local/hooks/commit-msg
 
-if [ -f "$local_hook" ]; then
-  . "$local_hook"
-fi
+# if [ -f "$local_hook" ]; then
+#   . "$local_hook"
+# fi

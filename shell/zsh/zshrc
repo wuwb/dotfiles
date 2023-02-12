@@ -355,6 +355,10 @@ export ZSH_AUTOSUGGEST_STRATEGY=(completion) # Don't offer history completion; w
 # export CASE_SENSITIVE=false
 # export BASH_SILENCE_DEPRECATION_WARNING=1; # Hide the “default interactive shell is now zsh” warning on macOS.
 
+# zsh-completions 会生成 ~/.zcompdump 补全缓存文件，可以删除，用 compinit 命令重新生成
+# 修改 zsh-completions 补全缓存路径
+export ZDOTDIR="~/.cache/zsh/.zcompdump"
+
 # History
 export HISTFILE="~/.cache/zsh/.zsh_history"
 export HISTSIZE=10000

@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 # ========================= GIT-SECRETS ========================
 # git secrets --install ~/.templates/git-secrets
-git secrets --pre_commit_hook -- "$@" || exit 1
+# git secrets --pre_commit_hook -- "$@" || exit 1
 
 # ========================= PRE-COMMIT ========================
 # pre-commit init-templatedir ~/.templates/pre-commit
 # start templated
-ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit --skip-on-missing-config)
-# end templated
+# ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit --skip-on-missing-config)
+# # end templated
 
-HERE="$(cd "$(dirname "$0")" && pwd)"
-ARGS+=(--hook-dir "$HERE" -- "$@")
+# HERE="$(cd "$(dirname "$0")" && pwd)"
+# ARGS+=(--hook-dir "$HERE" -- "$@")
 
-if command -v pre-commit > /dev/null; then
-    echo "${ARGS[@]}"
-    exec pre-commit "${ARGS[@]}"
-else
-    echo '`pre-commit` not found. Skipping pre-commit.' 1>&2
-fi
+# if command -v pre-commit > /dev/null; then
+#     echo "${ARGS[@]}"
+#     exec pre-commit "${ARGS[@]}"
+# else
+#     echo '`pre-commit` not found. Skipping pre-commit.' 1>&2
+# fi
 
-######################
+# ######################
 
-local_hook="$HOME"/.git_template.local/hooks/pre-commit
+# local_hook="$HOME"/.git_template.local/hooks/pre-commit
 
-if [ -f "$local_hook" ]; then
-  . "$local_hook"
-fi
+# if [ -f "$local_hook" ]; then
+#   . "$local_hook"
+# fi

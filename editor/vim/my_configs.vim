@@ -1,5 +1,5 @@
 " base
-set nu
+"
 " 修复输入法切换问题
 " set iminsert=2
 

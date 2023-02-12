@@ -11,7 +11,7 @@
         stdout: true
 
 # Installs brew if missing
-- install-brew: true
+- install-brew: false
 
 # - brewfile:
 #     - shell/brew/Brewfile
@@ -36,9 +36,9 @@
     # - emacs --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --HEAD --use-git-head
     # shell
     # - zsh # 系统自带不用安装
-    - zsh-completions
-    - zsh-autosuggestions
-    - zsh-syntax-highlighting
+    # - zsh-completions # 通过 zinit 安装，brew 里不需要安装
+    # - zsh-autosuggestions # 通过 zinit 安装，brew 里不需要安装
+    # - zsh-syntax-highlighting # 通过 zinit 安装，brew 里不需要安装
 
     # cvs
     - git

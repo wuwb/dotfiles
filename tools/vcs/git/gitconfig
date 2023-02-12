@@ -62,13 +62,13 @@
 	branches = branch --all
 
 	# clone 
-	cl	= clone --recurse-submodules -j8
+	# -j The number of submodules fetched at the same time
+	cl	= clone --recurse-submodules -j8 # Clone a repository including all submodules.
     cl1 = clone --recurse-submodules -j8 --depth 1
-	c = clone --recursive # Clone a repository including all submodules.
 
 	# checkout
 	co = checkout                     # checkout
-	nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
+	cb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
 	# Switch to a branch, creating it if necessary.
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
@@ -78,12 +78,12 @@
     ap = add --patch				# stage commits chunk by chunk
 
 	# commit
-	c = commit -m                     # commit with message
-	ca = commit -am                   # commit all with message
+	c  = commit
+	cm = commit -m                    # commit with message
+	cam = commit -am                   # commit all with message
 	ci = commit -v
 	amend = commit --amend            # ammend your last commit
 	amend = commit --amend --reuse-message=HEAD # Amend the currently staged files to the latest commit.
-	cm	= commit
 	ca = !git add -A && git commit -av # Commit all changes.
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f" # Credit an author on the latest commit.
 
