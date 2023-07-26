@@ -8,10 +8,12 @@
 [submodule "meta/dotbot-apt"]
 	path = meta/dotbot-apt
 	url = https://github.com/bryant1410/dotbot-apt.git
+
 # snap 在 Ubuntu18.04 以后自带的一个包管理器
-[submodule "meta/dotbot-snap"]
-	path = meta/dotbot-snap
-	url = https://github.com/DrDynamic/dotbot-snap.git
+# [submodule "meta/dotbot-snap"]
+# 	path = meta/dotbot-snap
+# 	url = https://github.com/DrDynamic/dotbot-snap.git
+
 # 插件 window
 [submodule "meta/dotbot-scoop"]
 	path = meta/dotbot-scoop
@@ -19,3 +21,6 @@
 [submodule "terminal/colors/base16-shell"]
 	path = terminal/colors/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
+[submodule "meta/dotbot-yum"]
+	path = meta/dotbot-yum
+	url = https://gitlab.com/flyingchipmunk/dotbot-yum.git

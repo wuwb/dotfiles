@@ -1,3 +1,4 @@
+# 废弃，转使用 neovim
 - brew:
     # Install more recent versions of some macOS tools.
     # - vim --with-override-system-vi

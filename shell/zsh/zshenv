@@ -1,3 +1,18 @@
-#
-. "$HOME/.cargo/env" 
-export PATH=/Users/eqielb/.local/bin:$PATH
+echo "init zshenv, zsh version: $ZSH_VERSION"
+
+# 统一 macOS Windows Linux XDG 路径
+# windows 默认 ~/AppData/Local/
+# macOS 默认 ~/Library/
+# brew 默认 /usr/local/
+# Linux 默认 ~/.local/
+export XDG_BIN_HOME="$HOME/.local/bin"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# local path
+export PATH="$XDG_BIN_HOME:$PATH"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+

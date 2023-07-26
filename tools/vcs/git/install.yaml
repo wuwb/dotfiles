@@ -3,12 +3,16 @@
     - rm -rf ~/.gitattributes
     - rm -rf ~/.gitignore
     - rm -rf ~/.gitignore_global
+    - rm -rf ~/.hgignore_global
+    - rm -rf ~/.gitflow_export
 
 - link:
     ~/.gitconfig: tools/vcs/git/gitconfig
     ~/.gitattributes: tools/vcs/git/gitattributes
     ~/.gitignore: tools/vcs/git/gitignore
     ~/.gitignore_global: tools/vcs/git/gitignore
+    ~/.hgignore_global: tools/vcs/git/hgignore_global
+    ~/.gitflow_export: tools/vcs/git/gitflow_export
 
 - brew:
     - git

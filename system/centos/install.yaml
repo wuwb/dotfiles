@@ -1,0 +1,32 @@
+- script:
+  - yum install git -y
+  - yum install nmap telnet screen gcc gcc-c++ 
+  - yum install mysql-server -y
+  - yum install python-devel -y
+  - yum install python-imaging -y
+  # 
+  - pip install Pillow
+  - pip install mysql-python
+
+  # install nginx 
+  - sudo rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+  - sudo yum install nginx
+  - sudo systemctl start nginx.service
+  - sudo systemctl enable nginx.service
+
+  # install apache
+  - yum install httpd
+  - service httpd start
+
+  # install mysql 
+  - yum install mysql mysql-server
+  - service mysqld start
+
+  # install php
+  - yum install php
+  - service httpd restart
+  # 访问网站地址查看是否成功
+
+  # install php plugins
+  - yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mcrypt php-mbstring php-bcmath php-mhash libmcrypt libmcrypt-devel
+  - service httpd restart

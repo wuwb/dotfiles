@@ -1,0 +1,13 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "zsh": "./install-standalone shell/zsh/install.yaml",
+    "zsh:update": "./install-standalone shell/zsh/update.yaml",
+    "git": "./install-standalone tools/vcs/git/install.yaml"
+  },
+  "author": "",
+  "license": "ISC"
+}

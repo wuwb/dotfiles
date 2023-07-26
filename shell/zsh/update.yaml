@@ -1,3 +1,3 @@
 - shell:
-    - zinit shel-update
+    - zinit self-update
     - zinit update --parallel

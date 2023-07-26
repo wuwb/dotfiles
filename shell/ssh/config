@@ -1,5 +1,7 @@
-Include home.config
-Include cloud.config
+Include ~/.orbstack/ssh/config
+
+Include ./home.config
+Include ./cloud.config
 
 Host *
   Protocol 2
@@ -9,13 +11,10 @@ Host *
   AddKeysToAgent yes
   UseKeychain yes
   StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa
 
 Host github.com
   HostName ssh.github.com
   Port 443
   PreferredAuthentications publickey
   IdentityFile ~/.ssh/id_rsa
-
-Host B1
-  HostName 192.168.68.14
-  Port 8022

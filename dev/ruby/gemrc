@@ -4,5 +4,6 @@
 - http://rubygems.org
 :benchmark: false
 :backtrace: false
+:bulk_threshold: 1000
 :verbose: true
-gem: --no-document
+gem: --no-document --no-ri

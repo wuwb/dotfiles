@@ -6,6 +6,7 @@ proxy() {
   export all_proxy="socks5://127.0.0.1:7890"
   echo "HTTP Proxy on"
 }
+
 proxy-ss() {
   export http_proxy="socks5://127.0.0.1:1080"
   export https_proxy="socks5://127.0.0.1:1080"
@@ -18,5 +19,3 @@ unproxy() {
   unset all_proxy
   echo "HTTP Proxy off"
 }
-
-

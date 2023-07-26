@@ -18,14 +18,14 @@ shell:
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+# env:
 # TERM variable
 #
 # This value is used to set the `$TERM` environment variable for
 # each instance of Alacritty. If it is not present, alacritty will
 # check the local terminfo database and use `alacritty` if it is
 # available, otherwise `xterm-256color` is used.
-#TERM: alacritty
+  # TERM: alacritty
 
 window:
   # Window dimensions (changes require restart)
@@ -65,13 +65,13 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: full
 
   # Background opacity
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.95
+  opacity: 0.80
 
   # Startup Mode (changes require restart)
   #
@@ -125,23 +125,23 @@ font:
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
-  #bold: # Bold font face
+  bold: # Bold font face
   # Font family
   #
   # If the bold family is not specified, it will fall back to the
   # value specified for the normal font.
-  #family: monospace
+    family: monospace
 
   # The `style` can be specified to pick a specific face.
   #style: Bold
 
   # Italic font face
-  #italic:
+  italic:
   # Font family
   #
   # If the italic family is not specified, it will fall back to the
   # value specified for the normal font.
-  #family: monospace
+    family: monospace
 
   # The `style` can be specified to pick a specific face.
   #style: Italic
@@ -180,7 +180,7 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Nightfox Alacritty Colors
 # Style: nightfox
@@ -419,7 +419,7 @@ colors:
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
-#bell:
+bell:
 # Visual Bell Animation
 #
 # Animation effect for flashing the screen when the visual bell is rung.
@@ -435,11 +435,11 @@ colors:
 #   - EaseOutExpo
 #   - EaseOutCirc
 #   - Linear
-#animation: EaseOutExpo
+  animation: EaseOutExpo
 
 # Duration of the visual bell flash in milliseconds. A `duration` of `0` will
 # disable the visual bell animation.
-#duration: 0
+  duration: 100 # default 0
 
 # Visual bell animation color.
 #color: '#ffffff'

@@ -217,11 +217,11 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias bat="bat --theme OneHalfLight"
 alias cat=bat
 
-_is_callable exa alias ls="exa --color=auto --group-directories-first"
-_is_callable neofetch && alias nf="neofetch"
-_is_callable cmatrix && alias cm="cmatrix -C red"
-_is_callable tensorboard && alias tb="tensorboard"
-_is_callable bandwhich && alias bandwhich="sudo $(which bandwhich)"
+# _is_callable exa alias ls="exa --color=auto --group-directories-first"
+# _is_callable neofetch && alias nf="neofetch"
+# _is_callable cmatrix && alias cm="cmatrix -C red"
+# _is_callable tensorboard && alias tb="tensorboard"
+# _is_callable bandwhich && alias bandwhich="sudo $(which bandwhich)"
 
 if (( $+commands[exa] )); then
   alias exa="exa --group-directories-first --git";
@@ -246,3 +246,5 @@ alias rvs='reveal-md --highlight-theme github --theme white --static revealjs_ou
 alias yd='yt-dlp --write-auto-sub --ignore-errors'
 alias yd2mp4='yt-dlp --write-auto-sub --ignore-errors --recode-video mp4'
 alias yda='yt-dlp -i -o "%(title)s.%(ext)s" --embed-thumbnail --extract-audio --audio-format mp3 --audio-quality 0'
+
+#alias wakeonlan -i 192.168.68.24 9e:2a:71:df:e8:6f

@@ -1,3 +1,5 @@
+echo "init zshrc"
+
 # module_path+=( "/Users/eqielb/.local/share/zinit/module/Src" )
 # zmodload zdharma_continuum/zinit
 
@@ -9,17 +11,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.local/share/dotfiles/shell/zsh/plugins/p10k.zsh;
-
-# 统一 macOS Windows Linux XDG 路径
-# windows 默认 ~/AppData/Local/
-# macOS 默认 ~/Library/
-# brew 默认 /usr/local/lib/
-# Linux 默认 ~/.local/share/
-# 统一成 Linux 规范，~/.local/share/
-# export XDG_DATA_HOME=~/.local/share
-export XDG_CACHE_HOME=~/.cache
-export XDG_CONFIG_HOME=~/.config
-# export XDG_BIN_HOME=~/.local/bin
 
 ###############################################################################
 # 安装
@@ -282,7 +273,7 @@ zi light MichaelAquilina/zsh-you-should-use # alias 提示
 # zi light akoenig/npm-run.plugin.zsh # npm 自动补全
 # zi light marlonrichert/zsh-autocomplete
 # zi light ptavares/zsh-direnv # 自动加载环境变量
-# zi light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
+zi light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
 # zi light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
 # zi light djui/alias-tips # 提示 alias 存在，功能同MichaelAquilina/zsh-you-should-use
 
@@ -299,27 +290,25 @@ zi light MichaelAquilina/zsh-you-should-use # alias 提示
 # 修复 bug
 # fix autosuggest paste slow problem, This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
-# pasteinit() {
-#   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-#   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-# }
-# pastefinish() {
-#   zle -N self-insert $OLD_SELF_INSERT
-# }
-# zstyle :bracketed-paste-magic paste-init pasteinit
-# zstyle :bracketed-paste-magic paste-finish pastefinish
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
 # zstyle :bracketed-paste-magic active-widgets '.self-*' # 有问题的修复方法
 
 ###############################################################################
 
-
-
-ZSH_CONFIG_PATH=~/.local/share/dotfiles/shell/zsh
+ZSH_CONFIG_PATH="$XDG_DATA_HOME/dotfiles/shell/zsh"
 # source $ZSH_CONFIG_PATH/options/functions.zsh;
 # source $ZSH_CONFIG_PATH/options/options.zsh;
 # source $ZSH_CONFIG_PATH/options/keybindings.zsh;
 # source $ZSH_CONFIG_PATH/options/completion.zsh;
-# source $ZSH_CONFIG_PATH/options/aliases.zsh;
+source $ZSH_CONFIG_PATH/options/aliases.zsh;
 # source $ZSH_CONFIG_PATH/options/proxy.zsh;
 
 source ~/.iterm2_shell_integration.zsh;
@@ -327,48 +316,40 @@ source ~/.iterm2_shell_integration.zsh;
 
 ###############################################################################
 
-# Make vim the default editor.
-# export BUNDLER_EDITOR='code'
-# export EDITOR='vim';
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# brew
-export PATH="/usr/local/sbin:$PATH"
-export HOMEBREW_GITHUB_API_TOKEN=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
-export HOMEBREW_HOME=/usr/local/bin
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-export HOMEBREW_NO_ANALYTICS=1 # 不发送分析报告，https://docs.brew.sh/Analytics
-export HOMEBREW_NO_INSTALL_CLEANUP=false # 安装后执行 cleanup
-export HOMEBREW_NO_ENV_HINTS=true # 不用提示
-export HOMEBREW_NO_GITHUB_API=1 # No github credentials
-export HOMEBREW_NO_INSTALL_FROM_API=1
+
+
+
+###############################################################################
 
 # zsh
-# export ZSH_CONFIG_HOME="$XDG_CONFIG_HOME/zsh"
-export ZSH_COMPDUMP="~/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-export ZSH_CACHE="~/.cache/zsh"
-# export ZSH_DISABLE_COMPFIX=true # 禁用安全功能加快启动速度 0.06s
+# zsh-completions 会生成 ~/.zcompdump 补全缓存文件，可以删除，
+# 可以用 compinit 命令重新生成
+# 修改 zsh-completions 补全缓存路径
+export ZSH_COMPDUMP="$ZDOTDIR/.zcompdump"
+export ZSH_CACHE="$ZDOTDIR/.zsh/cache"
+export ZSH_DISABLE_COMPFIX=true # 默认值 false, 禁用安全功能加快启动速度 0.06s
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_STRATEGY=(completion) # Don't offer history completion; we have fzf, C-r, and zsh-history-substring-search for that.
 # export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 # export UPDATE_ZSH_DAYS=30
-
-# export ENABLE_CORRECTION=true
-# export CASE_SENSITIVE=false
+export ENABLE_CORRECTION=true
+export CASE_SENSITIVE=false
 # export BASH_SILENCE_DEPRECATION_WARNING=1; # Hide the “default interactive shell is now zsh” warning on macOS.
-
-# zsh-completions 会生成 ~/.zcompdump 补全缓存文件，可以删除，用 compinit 命令重新生成
-# 修改 zsh-completions 补全缓存路径
-export ZDOTDIR="~/.cache/zsh/.zcompdump"
-
-# History
-export HISTFILE="~/.cache/zsh/.zsh_history"
+export HISTFILE="$XDG_CACHE_HOME/zsh/.zsh_history" # History
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILESIZE=10000
-# export HIST_STAMPS="yyyy-mm-dd"
-# export HISTCONTROL='ignoreboth'
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTCONTROL="ignoreboth"
+
+###############################################################################
 
 # vim
+# Make vim the default editor.
+# export BUNDLER_EDITOR='code'
+# export EDITOR='vim';
 # export MRU_File="$XDg_CACHE_HOME/.vim_mru_files"
 
 # openssl
@@ -389,21 +370,40 @@ export HISTFILESIZE=10000
 # export CPPFLAGS="-I/usr/local/opt/readline/include"
 # export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
 
+
+# homebrew
+export HOMEBREW_HOME="/usr/local/bin"
+export PATH="$HOMEBREW_HOME:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+export HOMEBREW_NO_ANALYTICS=1 # 不发送分析报告，https://docs.brew.sh/Analytics
+export HOMEBREW_NO_INSTALL_CLEANUP=false # 安装后执行 cleanup
+export HOMEBREW_NO_ENV_HINTS=false # 不用提示
+export HOMEBREW_NO_GITHUB_API=1 # No github credentials
+export HOMEBREW_GITHUB_API_TOKEN=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
+# export HOMEBREW_NO_INSTALL_FROM_API=1
+export HOMEBREW_INSTALL_FROM_API=1
+# export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+# export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+# export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+
 # node
-export NODE_PATH=/usr/local/lib/node_modules
-export NODE_REPL_HISTORY=~/.cache/.node_history; # Enable persistent REPL history for `node`.
+export NODE_PATH="/usr/local/lib/node_modules"
+export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node/repl_history" # Enable persistent REPL history for `node`.
 export N_PRESERVE_NPM=1 # 当切换 Node.js 版本时保留 npm
 # export NODE_REPL_HISTORY_SIZE='32768'; # Allow 32³ entries; the default is 1000.
 # export NODE_REPL_MODE='sloppy'; # Use sloppy mode by default, matching web browsers.
 # export NODE_TLS_REJECT_UNAUTHORIZED=1
 
 # bun
-[ -s "/Users/eqielb/.local/share/bun/_bun" ] && source "/Users/eqielb/.local/share/bun/_bun"
-export BUN_INSTALL="/Users/eqielb/.local/share/bun"
+[ -s "$XDG_DATA_HOME/bun/_bun" ] && source "$XDG_DATA_HOME/bun/_bun"
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm，npm 安装自动添加，不设置的话，无法使用 node 环境切换功能
-export PNPM_HOME="/Users/eqielb/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # electron
@@ -417,15 +417,13 @@ export PATH="$PNPM_HOME:$PATH"
 # export PATH="/usr/local/opt/openjdk/bin:$PATH"
 # export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
-# python3
-# export PYTHON_HOME="/usr/local/miniconda3/bin"
-# export PATH="$PYTHON_HOME:$PATH"
-# export PYTHONIOENCODING="UTF-8" # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-# export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+# brew python3
+export PYTHONIOENCODING="UTF-8" # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PATH="/usr/local/opt/python@3.11/bin:$PATH"
 
-# python2
-# export PYENV_ROOR="$HOME/.pyenv"
-# export PATH="$(pyenv root)/shims:${PATH}"
+# conda python
+export PYTHON_HOME="/usr/local/Caskroom/miniconda/base/bin"
+export PATH="$PYTHON_HOME:$PATH"
 
 # conda
 __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -451,7 +449,7 @@ unset __conda_setup
 # go
 export GOPATH="/usr/local/lib/go"
 export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$PATH"
 #test -d "$GOPATH" || mkdir "$GOPATH"
 #test -d "$GOPATH/src/github.com" || mkdir -p "$GOPATH/src/github.com"
 #go env -w GO111MODULE=on
@@ -462,8 +460,13 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 # export ERL_AFLAGS="-kernel shell_history enabled"
 
 # php
-# export COMPOSER_HOME="/usr/local/lib/composer"
-# export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+export COMPOSER_HOME="/usr/local/lib/composer"
+export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+# valet-php
+# export PATH="/usr/local/opt/valet-php@7.4/bin:$PATH"
+# export PATH="/usr/local/opt/valet-php@7.4/sbin:$PATH"
 
 # android
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
@@ -477,15 +480,20 @@ export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
 # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 # mysql
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# postgresql
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+export PKG_CONFIG_PATH="/usr/local/opt/postgresql@15/lib/pkgconfig"
 
 # docker
-export DOCKER_HOST=tcp://192.168.68.2:2376
-export DOCKER_TLS_VERIFY=1
+# export DOCKER_HOST=tcp://192.168.68.2:2376
+# export DOCKER_TLS_VERIFY=1
 
 # k8s
 export PATH="$HOME/.krew/bin:$PATH"
-alias kube='kubectl --insecure-skip-tls-verify'
+alias kube="kubectl --insecure-skip-tls-verify"
 
 # rancher desktop
 # export PATH="/Users/eqielb/.rd/bin:$PATH"
@@ -507,6 +515,3 @@ alias kube='kubectl --insecure-skip-tls-verify'
 # export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
 # gnupg
-
-###############################################################################
-#alias wakeonlan -i 192.168.68.24 9e:2a:71:df:e8:6f

@@ -18,7 +18,7 @@
 	autocrlf = false # 禁止自动修改换行符
 	saftcrlf = true
 	quotepath = false # status 引用路径不再是八进制，允许使用中文。
-	pager = less -FRSX # delta
+	pager = less -FRSX # delta less -FMRiXx4
   	editor = code --wait
 	
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
@@ -126,13 +126,10 @@
 	# fetch
 	fo = fetch origin
 
-	# pull
-	pl = pull                      
 	# Pull in remote changes for the current repository and all its submodules.
 	p = pull --recurse-submodules
 	
 	# push
-	ps = push                      
     pf = push --force-with-lease
 
 	# rebase
@@ -199,7 +196,8 @@
 	accept-ours = "!f() { git checkout --ours -- \"${@:-.}\"; git add -u \"${@:-.}\"; }; f"
 	accept-theirs = "!f() { git checkout --theirs -- \"${@:-.}\"; git add -u \"${@:-.}\"; }; f"
 	tagcommit = !sh -c 'git rev-list $0 | head -n 1'
-
+[status]
+    submoduleSummary = true
 [interactive]
 	diffFilter = delta --color-only
 [gui]
@@ -229,7 +227,7 @@
 [color]
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-    ui = auto
+	ui = true
 # [color "branch"]
 # 	current = green
 # 	local = yellow
@@ -250,7 +248,7 @@
 [pull]
 	rebase = true
 [push]
-	default = simple
+	default = simple # current
 	followTags = true
 	autoSetupRemote = true
 	gpgSign = if-asked
@@ -285,6 +283,8 @@
 	verbosity = 1
 	tool = sourcetree
     conflictstyle = diff3
+[mergetool]
+    prompt = true
 [mergetool "sourcetree"]
 	cmd = /Applications/Apps/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -300,6 +300,7 @@
 	# Show most recently changed branches first.
 	sort = -committerdate
     autosetupmerge = true
+	;autosetuprebase = remote
 [branch "master"]
   	mergeoptions = --no-edit
 ###############################################################################
@@ -309,6 +310,7 @@
 	template = ~/.local/share/dotfiles/tools/vcs/git/gitmessage
 [rebase]
   	autosquash = true
+	autoStash = true
 [tag]
 	gpgSign = false
 ###############################################################################
@@ -330,9 +332,18 @@
 	insteadOf = git://
 # [gpg]
 # 	program = gpg
-
+# [gpg "ssh"]
+	# allowedSignersFile = ~/.ssh/allowedSignersFile
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[safe]
+	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask

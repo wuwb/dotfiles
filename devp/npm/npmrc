@@ -42,3 +42,4 @@ sodium-prebuilt-binary-host-mirror=https://npm.taobao.org/mirrors/sodium-prebuil
 utf-8-validate-binary-host-mirror=https://npm.taobao.org/mirrors/utf-8-validate/v{version}
 utp-native-binary-host-mirror=https://npm.taobao.org/mirrors/utp-native/v{version}
 zmq-prebuilt-binary-host-mirror=https://npm.taobao.org/mirrors/zmq-prebuilt/v{version}
+sentrycli_cdnurl=https://npm.taobao.org/mirrors/sentry-cli

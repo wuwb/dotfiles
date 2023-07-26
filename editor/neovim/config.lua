@@ -1,6 +1,7 @@
 require("nvim-treesitter.install").prefer_git = true
 
 if vim.g.vscode then
+    -- 在 vscode 中的时候触发这些配置
     -- VSCode extension
     -- 取消按键粘滞
     -- defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
@@ -29,6 +30,9 @@ lvim.format_on_save.enabled = false
 lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
+lvim.transparent_window = true
+lvim.builtin.lualine.style = "lvim" -- lvim, default, none
+lvim.lsp.automatic_servers_installation = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -178,12 +182,21 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
+lvim.plugins = {
+    {
+      'phaazon/hop.nvim',
+      branch = 'v2', -- optional but strongly recommended
+      event = "BufRead",
+      config = function()
+        -- you can configure Hop the way you like here; see :h hop-config
+        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      end,
+    },
 --     {
 --       "folke/trouble.nvim",
 --       cmd = "TroubleToggle",
 --     },
--- }
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

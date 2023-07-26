@@ -61,8 +61,8 @@ for config in ${@}; do
 
     # remove suffix '-sudo'
     # obtained from https://stackoverflow.com/a/16623897/3053548
-    config=${config%"$sudoSuffix"}
-    configFilepath="${BASE_DIR}/${config}${CONFIG_SUFFIX}"
+    config=${config%"$sudoSuffix"} # -sudo 
+    configFilepath="${BASE_DIR}/${config}${CONFIG_SUFFIX}" # /Users/eqielb/.local/share/dotfiles/
     if [[ ! -e $configFilepath ]]; then
       echo -e "Dotbot config \\033[1;31m$configFilepath \\033[0mDOESN'T exists"
 

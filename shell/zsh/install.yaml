@@ -2,10 +2,20 @@
 #- brew:
 #    - zsh
 - shell:
+    - rm -rf ~/.zshenv
+    - rm -rf ~/.zprofile
+    - rm -rf ~/.zshrc
+    - rm -rf ~/.zlogin
+    - rm -rf ~/.zlogout
+    - rm -rf ~/.config/zsh/.zshenv
+    - rm -rf ~/.config/zsh/.zprofile
+    - rm -rf ~/.config/zsh/.zshrc
+    - rm -rf ~/.config/zsh/.zlogin
+    - rm -rf ~/.config/zsh/.zlogout
     - rm -rf ~/.iterm2_shell_integration.zsh
 - link:
-    ~/.zshrc:
-      path: shell/zsh/zshrc
+    ~/.zshenv: 
+      path: shell/zsh/zshenv
       create: false
       relink: false
       force: false
@@ -13,11 +23,11 @@
       canonicalize: true
       ignore-missing: true
       glob: false
-    ~/.zprofile:
-      path: shell/zsh/zprofile
-    ~/.iterm2_shell_integration.zsh:
-      path: shell/zsh/plugins/iterm2_shell_integration.zsh
-    ~/.zshenv: shell/zsh/zshenv
+    ~/.config/zsh/.zprofile: shell/zsh/zprofile
+    ~/.config/zsh/.zshrc: shell/zsh/zshrc
+    ~/.config/zsh/.zlogin: shell/zsh/zlogin
+    ~/.config/zsh/.zlogout: shell/zsh/zlogout
+    ~/.iterm2_shell_integration.zsh: shell/zsh/plugins/iterm2_shell_integration.zsh
 - create:
     - ~/.local/share/zinit/
 - shell:
@@ -37,9 +47,9 @@
           local shell_path;
           shell_path="$(command -v zsh)"
 
-          fancy_echo "Changing your shell to zsh ..."
+          echo "Changing your shell to zsh ..."
           if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
-            fancy_echo "Adding '$shell_path' to /etc/shells"
+            echo "Adding '$shell_path' to /etc/shells"
             sudo sh -c "echo $shell_path >> /etc/shells"
           fi
           sudo chsh -s "$shell_path" "$USER"

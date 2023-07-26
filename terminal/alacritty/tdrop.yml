@@ -1,18 +1,3 @@
-window:
-  decorations: none
-  opacity: 0.8
-
-draw_bold_text_with_bright_colors: true
-
-font:
-  normal:
-    family: Monospace # should be "Menlo" or something on macOS.
-  bold:
-    family: Monospace # should be "Menlo" or something on macOS.
-  italic:
-    family: Monospace # should be "Menlo" or something on macOS.
-  size: 12.0
-
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
@@ -66,13 +51,6 @@ colors:
     magenta: "0xcc99cc"
     cyan: "0x66cccc"
     white: "0xdddddd"
-
-bell:
-  animation: EaseOutExpo
-  duration: 100
-
-mouse:
-  hide_when_typing: false
 
 key_bindings:
   - { key: C, mods: Control|Shift, action: Copy }

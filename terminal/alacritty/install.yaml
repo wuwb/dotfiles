@@ -1,7 +1,10 @@
 - brew:
     - yq
     - neofetch
-    - vivid
+    # https://github.com/sharkdp/vivid
+    # A themeable LS_COLORS generator with a rich filetype datebase
+    # 没什么用，不装
+    # - vivid 
 - cask:
     - alacritty
 
