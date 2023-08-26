@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "update": "brew update",
     "zsh": "./install-standalone shell/zsh/install.yaml",
     "zsh:update": "./install-standalone shell/zsh/update.yaml",
-    "git": "./install-standalone tools/vcs/git/install.yaml"
+    "wget": "./install-standalone shell/wget/install.yaml",
+    "ssh": "./install-standalone shell/ssh/install.yaml",
+
+    "skim": "./install-standalone shell/skim/install.yaml",
+
+    "git": "./install-standalone tools/vcs/git/install.yaml",
+    "tmux": "./install-standalone terminal/tmux/install.yaml"
   },
   "author": "",
   "license": "ISC"

@@ -2,9 +2,13 @@
     - tmux
     - reattach-to-user-namespace # 链接 mac 系统的剪切板
 
+- shell:
+    - rm -rf ~/.tmux.conf
+    - rm -rf ~/.tmux.conf.local
+
 # Setup tpm : tmux plugin manager
 - create:
-    - ~/.tmux/plugins
+    - ~/.local/share/tmux/plugins
 
 - link:
     ~/.tmux.conf:
@@ -17,7 +21,7 @@
     - description: Clone TPM
       quiet: true
       command: |
-        if cd ~/.tmux/plugins/tpm;
+        if cd ~/.local/share/tmux/plugins/tpm;
         then git pull;
         else git clone https://github.com/tmux-plugins/tpm.git ~/.local/share/tmux/plugins/tpm;
         fi

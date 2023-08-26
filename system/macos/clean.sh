@@ -23,6 +23,8 @@ rm -rf ~/.sogouinput
 rm -rf ~/.wakatime.log
 rm -rf ~/.redhat/anonymousId
 
+find . -name '.DS_Store' -type f -delete
+
 ## 应用相关
 
 # xcode

@@ -54,12 +54,15 @@
 	# branch
 	# via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
     recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	clear-branches = !git for-each-ref refs/heads/ --format='%(refname:short)' | grep -v 'master\\main' | xargs git branch -D
 	branches = branch -a
 	br = branch
+	br2 = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	bv = branch -vv
 	ba = branch -ra
 	bd = branch -d
 	branches = branch --all
+	del = branch -D
 
 	# clone 
 	# -j The number of submodules fetched at the same time
@@ -68,7 +71,7 @@
 
 	# checkout
 	co = checkout                     # checkout
-	cb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
+	cob = checkout -b                 # create and switch to a new branch (mnemonic: "git new branch branchname...")
 	# Switch to a branch, creating it if necessary.
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
@@ -117,6 +120,7 @@
 	contributors = shortlog --summary --numbered --email # Shows list of contributors of a repository.
 	lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset' # http://www.jukie.net/bart/blog/pimping-out-git-log
 	filelog = log -u                  # show changes to a file
+	lg2 = log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
 
 	# data analysis
 	ranked-authors = !git authors | sort | uniq -c | sort -n
@@ -145,6 +149,7 @@
 	unst = reset HEAD
 	throw	= reset --hard HEAD
 	throwh	= reset --hard HEAD^
+	undo = reset HEAD~1 --mixed
 
 	## tag
 	t = tag -n                        # show tags with <n> lines of each tag message

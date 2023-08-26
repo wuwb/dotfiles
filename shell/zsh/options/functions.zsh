@@ -31,12 +31,6 @@ _is_running() {
   done
 }
 
-_is_callable() {
-  for cmd in "$@"; do
-    command -v "$cmd" >/dev/null || return 1
-  done
-}
-
 _run() {
   if _is_callable "$1" && ! _is_running "$1"; then
     "$@"

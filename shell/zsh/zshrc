@@ -38,6 +38,7 @@ zi light romkatv/powerlevel10k
 zi light romkatv/zsh-defer
 
 # add oh my zsh，加载 OMZ 框架及部分插件
+## completion 提供了一些补全的基本设置。这个文件里很坑的一点是把$WORDCHAR—— Zsh 用来分词的配置——设置成了空，并且为了兼容无法改回来。如果用了它的话记得重新设置 $WORDCHAR
 zi wait lucid for is-snippet \
   OMZL::correction.zsh \
   OMZL::directories.zsh \
@@ -48,6 +49,7 @@ zi wait lucid for is-snippet \
   # OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
 
 # 其他 library
+# clipboard 提供了 clipcopy 和 clippaste 这两个很好用的函数，用来在 terminal 里复制和粘贴剪贴板，用法如 echo 123 | clipcopy 和 clippaste | xxx
 zi wait lucid for is-snippet \
   OMZL::git.zsh \
   OMZL::clipboard.zsh \
@@ -65,7 +67,7 @@ zi snippet OMZP::common-aliases
 zi ice wait lucid
 zi snippet OMZP::colored-man-pages # 彩色 man 页面，不常用，需要的时候手动开启
 zi ice wait lucid
-zi snippet OMZP::extract # 解压任意压缩文件
+zi snippet OMZP::extract # 解压任意压缩文件，提供了一个 extract 函数和 x 别名，用法如 x 123.zip
 zi ice wait lucid
 zi snippet OMZP::encode64
 zi ice wait lucid
@@ -145,13 +147,14 @@ zi snippet OMZP::web-search
 # zi snippet OMZP::node # 增加 node-docs 命令，没用
 
 # python
-# zi snippet OMZP::pip
+# zi snippet OMZP::pip # 提供了 pip 的自动补全。因为需要把 pip 包索引缓存下来，因此要加载整个插件而不能只加载补全文件
 # zi snippet OMZP::python
 # zi snippet OMZP::lando
 # zi snippet OMZP::pipenv
 # zi snippet OMZP::poetry
 
 # 其他语言
+# zi snippet OMZP::rust # 提供了 rustc、rustup、cargo 的补全。其中后两者通过在插件入口文件里调用 rustup completions zsh 来实现，也就是说 rustup 本身就附带了这些补全文件。实际上如果软件本身附带补全文件的话，系统的包管理器一般会帮你一并打包，因此我这里只加载了 rustc 的补全
 # zi snippet OMZP::gradle
 # zi snippet OMZP::adb
 # zi snippet OMZP::spring
@@ -202,6 +205,13 @@ zi snippet OMZP::git # failed
 # +con
 # zdharma-continuum/zinit-console
 
+# 必备插件
+# zsh-autocomplete
+# zdharma-continuum/fast-syntax-highlighting
+# zsh-autosuggestions
+# zsh-history-substring-search
+# zsh-edit
+
 # zsh-users+common
 # https://github.com/zsh-users/zsh-autosuggestions
 # zi ice wait lucid atload'_zsh_autosuggest_start'
@@ -249,6 +259,7 @@ zi wait lucid for \
 zi ice wait lucid
 zi light paulirish/git-open
 
+# 不好用，有行号影响复制，可以加载，不要把 cat alias 成 bat
 zi ice wait lucid as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zi light sharkdp/bat
 
@@ -271,7 +282,12 @@ zi light zsh-users/zsh-history-substring-search # 历史命令搜索，可以通
 zi ice wait lucid
 zi light MichaelAquilina/zsh-you-should-use # alias 提示
 # zi light akoenig/npm-run.plugin.zsh # npm 自动补全
-# zi light marlonrichert/zsh-autocomplete
+
+
+#---
+# https://github.com/marlonrichert/zsh-autocomplete
+# zi light marlonrichert/zsh-autocomplete # 自动显示补全信息
+
 # zi light ptavares/zsh-direnv # 自动加载环境变量
 zi light skywind3000/z.lua # 快速目录跳转，替代 autojump，可以用 brew 安装
 # zi light seletskiy/zsh-git-smart-commands # git 智能补全，没啥用
@@ -337,12 +353,7 @@ export ZSH_AUTOSUGGEST_STRATEGY=(completion) # Don't offer history completion; w
 export ENABLE_CORRECTION=true
 export CASE_SENSITIVE=false
 # export BASH_SILENCE_DEPRECATION_WARNING=1; # Hide the “default interactive shell is now zsh” warning on macOS.
-export HISTFILE="$XDG_CACHE_HOME/zsh/.zsh_history" # History
-export HISTSIZE=10000
-export SAVEHIST=10000
-export HISTFILESIZE=10000
-export HIST_STAMPS="yyyy-mm-dd"
-export HISTCONTROL="ignoreboth"
+
 
 ###############################################################################
 
@@ -375,7 +386,6 @@ export HISTCONTROL="ignoreboth"
 export HOMEBREW_HOME="/usr/local/bin"
 export PATH="$HOMEBREW_HOME:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
 export HOMEBREW_NO_ANALYTICS=1 # 不发送分析报告，https://docs.brew.sh/Analytics
 export HOMEBREW_NO_INSTALL_CLEANUP=false # 安装后执行 cleanup
 export HOMEBREW_NO_ENV_HINTS=false # 不用提示
@@ -385,6 +395,7 @@ export HOMEBREW_GITHUB_API_TOKEN=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
 export HOMEBREW_INSTALL_FROM_API=1
 # export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
 # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
 # export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 # export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 # export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
@@ -394,17 +405,17 @@ export NODE_PATH="/usr/local/lib/node_modules"
 export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node/repl_history" # Enable persistent REPL history for `node`.
 export N_PRESERVE_NPM=1 # 当切换 Node.js 版本时保留 npm
 # export NODE_REPL_HISTORY_SIZE='32768'; # Allow 32³ entries; the default is 1000.
-# export NODE_REPL_MODE='sloppy'; # Use sloppy mode by default, matching web browsers.
+export NODE_REPL_MODE="repl"; # sloppy Use sloppy mode by default, matching web browsers.
 # export NODE_TLS_REJECT_UNAUTHORIZED=1
+
+# pnpm，npm 安装自动添加，不设置的话，无法使用 node 环境切换功能
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # bun
 [ -s "$XDG_DATA_HOME/bun/_bun" ] && source "$XDG_DATA_HOME/bun/_bun"
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# pnpm，npm 安装自动添加，不设置的话，无法使用 node 环境切换功能
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 
 # electron
 # export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
@@ -515,3 +526,37 @@ alias kube="kubectl --insecure-skip-tls-verify"
 # export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
 # gnupg
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# cargo
+. "$HOME/.cargo/env"
+
+# tmux
+tmux source $HOME/.tmux.conf
+
+
+#############################
+
+hash -d config=$XDG_CONFIG_HOME
+hash -d cache=$XDG_CACHE_HOME
+hash -d data=$XDG_DATA_HOME
+hash -d zdot=$ZDOTDIR
+
+hash -d OneDrive=~/OneDrive
+hash -d Downloads=~/Downloads
+hash -d Workspace=~/Workspace
+
+# for p in ~Workspace/*; hash -d $(basename $p)=$p
+
+
+# 补全快捷键重设
+# bindkey '^@' autosuggest-accept
+
+# zle end-of-line -w
+
+# ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(
+#     autosuggest-accept
+# )

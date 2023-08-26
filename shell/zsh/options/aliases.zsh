@@ -12,6 +12,26 @@ alias -g C='| wc -l'
 alias -g V=' --verbose'
 alias -g tojson='| python -m json.tool'
 
+alias -g :n='/dev/null'
+alias -g :bg='&>/dev/null &'
+alias -g :bg!='&>/dev/null &!'  # &!: background + disown
+
+alias l='exa -lah --group-directories-first --git --time-style=long-iso'
+alias lt='l -TI .git'
+alias clc='clipcopy'
+alias clp='clippaste'
+alias clco='tee >(clipcopy)'  # clicpcopy + stdout
+alias sc='sudo systemctl'
+alias scu='systemctl --user'
+alias sudo='sudo '
+alias cgp='cgproxy '
+alias pc='proxychains -q '
+alias with-proxy=' \
+    http_proxy=$MY_PROXY \
+    HTTP_PROXY=$MY_PROXY \
+    https_proxy=$MY_PROXY \
+    HTTPS_PROXY=$MY_PROXY '
+
 alias ~='cd $HOME'
 alias /='cd /'
 
@@ -22,6 +42,14 @@ alias /='cd /'
 alias -g L="| less"
 alias -g N="| /dev/null"
 alias -g S='| sort'
+
+# unpack
+alias -s zip='unzip'
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s bz2='tar -xjvf'
+alias -s xz='tar -Jxf'
+alias -s untar='tar -xvf'
 
 # Unix
 alias ll="ls -al"
@@ -57,15 +85,6 @@ alias rcpdu='rcpd --chmod=go='
 alias sc=systemctl
 alias ssc='sudo systemctl'
 
-
-# unpack
-alias -s zip='unzip'
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s bz2='tar -xjvf'
-alias -s xz='tar -Jxf'
-alias -s untar='tar -xvf'
-
 # Always enable colored `grep` output
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -78,6 +97,7 @@ alias gci='git commit -m'
 alias gcl1="git clone --depth=1"
 alias gdiff='git diff --name-only --diff-filter=U'
 alias gdrop='git branch | grep -v "master" | xargs git branch -D '
+alias gpm='git push --set-upstream origin master'
 
 # git log
 alias glog_branches="git log --color=always --oneline --decorate --graph --branches"
@@ -106,12 +126,22 @@ alias mci="mvn -e -U clean install"
 alias mcp="mvn -U clean package"
 alias mvn-purge="mvn dependency:purge-local-repository"
 
-# xxxxx
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias ip="ifconfig eth0 | grep inet | awk '{ print $2 }'"
 alias ipv6="curl https://v6.ident.me/"
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 alias localip="ipconfig getifaddr en0"
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+
+# xxxxx
 alias rmds="find . -name '*.DS_Store' -type f -delete && echo 'ALL .DS_STORE FILES RECURSIVELY REMOVED'"
 alias rme="trash-put"
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
@@ -125,7 +155,6 @@ alias tq="curl wttr.in/Hangzhou"
 alias up="softwareupdate -i -a"
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
-alias gpm='git push --set-upstream origin master'
 alias a1='mosh --ssh="ssh -p 8022" A1'
 # defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 
@@ -165,15 +194,6 @@ alias update='softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm
 # alias respring="killall SpringBoard"
 # alias respring2="killall -9 backboardd"
 
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
-
-# Show active network interfaces
-alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
-
-
 # Canonical hex dump; some systems have this symlinked
 command -v hd > /dev/null || alias hd="hexdump -C"
 
@@ -212,10 +232,8 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-
 # Programs
 alias bat="bat --theme OneHalfLight"
-alias cat=bat
 
 # _is_callable exa alias ls="exa --color=auto --group-directories-first"
 # _is_callable neofetch && alias nf="neofetch"

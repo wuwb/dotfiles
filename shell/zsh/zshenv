@@ -12,7 +12,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # local path
-export PATH="$XDG_BIN_HOME:$PATH"
+if [ -d "$XDG_BIN_HOME" ] ; then
+    PATH="$XDG_BIN_HOME:$PATH"
+fi
 
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
-
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

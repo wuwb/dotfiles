@@ -2,8 +2,10 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore .idea -l -g ""'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude .idea ""'
-#export FZF_DEFAULT_OPTS="--reverse --inline-info"
+
+export FZF_DEFAULT_OPTS="--reverse --inline-info"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS='--ansi --height=60% --reverse --cycle --bind=tab:accept'
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
