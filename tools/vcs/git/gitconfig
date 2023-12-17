@@ -2,6 +2,7 @@
 [user]
 	name = Wu Wenbin
 	email = 541330190@qq.com
+	signingkey = 2A44306DF172793D
 	; signingkey =
 [github]
 	user = Wu Wenbin
@@ -344,11 +345,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [safe]
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
 	directory = /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+[credential "http://gitea.gitea.svc.cluster.local:61570"]
+	provider = generic

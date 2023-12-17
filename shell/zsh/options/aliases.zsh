@@ -109,10 +109,10 @@ alias glog_simplify="git log --color=always --simplify-by-decoration --decorate"
 alias gitlog="git ls-files -z | xargs -0n1 git blame -w --show-email | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -n"
 
 # neovim
-alias nvim=lvim
+# alias nvim=lvim
 alias vim=lvim
 alias vi=lvim
-
+ 
 # tmux
 alias tl=tmux list-sessions
 alias tkss=tmux kill-session -t

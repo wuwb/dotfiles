@@ -413,6 +413,7 @@ export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # bun
+# bun completions
 [ -s "$XDG_DATA_HOME/bun/_bun" ] && source "$XDG_DATA_HOME/bun/_bun"
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -449,6 +450,9 @@ else
 fi
 unset __conda_setup
 
+# qt
+# export PATH="/usr/local/opt/qt/bin:$PATH"
+
 # ruby
 # export RUBY_HOME="$(brew --prefix ruby)"
 # export PATH="$RUBY_HOME/bin:$PATH"
@@ -469,6 +473,9 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$PATH"
 
 # elixir-lang
 # export ERL_AFLAGS="-kernel shell_history enabled"
+
+# rust cargo
+. "$HOME/.cargo/env"
 
 # php
 export COMPOSER_HOME="/usr/local/lib/composer"
@@ -494,9 +501,9 @@ export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
 
 # postgresql
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
-export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
-export PKG_CONFIG_PATH="/usr/local/opt/postgresql@15/lib/pkgconfig"
+# export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+# export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/postgresql@15/lib/pkgconfig"
 
 # docker
 # export DOCKER_HOST=tcp://192.168.68.2:2376
@@ -519,9 +526,6 @@ alias kube="kubectl --insecure-skip-tls-verify"
 # export DEPOT_TOOL_DIR=/usr/local/Custom/depot_tools
 # export PATH=$DEPOT_TOOL_DIR:$PATH
 
-# qt
-# export PATH="/usr/local/opt/qt/bin:$PATH"
-
 # texinfo
 # export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
@@ -531,23 +535,25 @@ alias kube="kubectl --insecure-skip-tls-verify"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# cargo
-. "$HOME/.cargo/env"
-
 # tmux
 tmux source $HOME/.tmux.conf
 
 
+# libs
+export PATH="/opt/homebrew/opt/libarchive/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libarchive/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libarchive/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libarchive/lib/pkgconfig"
+
 #############################
 
-hash -d config=$XDG_CONFIG_HOME
-hash -d cache=$XDG_CACHE_HOME
-hash -d data=$XDG_DATA_HOME
-hash -d zdot=$ZDOTDIR
+# hash -d config=$XDG_CONFIG_HOME
+# hash -d cache=$XDG_CACHE_HOME
+# hash -d data=$XDG_DATA_HOME
+# hash -d zdot=$ZDOTDIR
 
-hash -d OneDrive=~/OneDrive
-hash -d Downloads=~/Downloads
-hash -d Workspace=~/Workspace
+# hash -d Downloads=~/Downloads
+# hash -d Workspace=~/Workspacea
 
 # for p in ~Workspace/*; hash -d $(basename $p)=$p
 
@@ -560,3 +566,4 @@ hash -d Workspace=~/Workspace
 # ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(
 #     autosuggest-accept
 # )
+

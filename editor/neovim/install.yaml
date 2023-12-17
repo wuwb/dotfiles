@@ -3,6 +3,7 @@
 
 - link:
     ~/.config/lvim/config.lua: editor/neovim/config.lua
+    ~/.config/nvim/init.lua: editor/neovim/init.lua
 
 - script:
     # 安装 lunarvim

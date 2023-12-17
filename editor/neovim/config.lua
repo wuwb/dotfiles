@@ -32,7 +32,8 @@ lvim.colorscheme = "lunar"
 -- lvim.use_icons = false
 lvim.transparent_window = true
 lvim.builtin.lualine.style = "lvim" -- lvim, default, none
-lvim.lsp.automatic_servers_installation = true
+-- lvim.lsp.automatic_servers_installation = true -- is deprecated
+lvim.lsp.installer.setup.automatic_installation = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -183,19 +184,60 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- Additional Plugins
 lvim.plugins = {
+    -- {
+    --   'phaazon/hop.nvim',
+    --   branch = 'v2', -- optional but strongly recommended
+    --   event = "BufRead",
+    --   config = function()
+    --     -- you can configure Hop the way you like here; see :h hop-config
+    --     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+
+    --     --vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true})
+    --     --vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true})
+
+    --     --local hop = require('hop')
+    --     --local directions = require('hop.hint').HintDirection
+    --     --vim.keymap.set('', 'f', function()
+    --       --hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+    --     --end, {remap=true})
+    --     --vim.keymap.set('', 'F', function()
+    --       --hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+    --     --end, {remap=true})
+    --     --vim.keymap.set('', 't', function()
+    --       --hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+    --     --end, {remap=true})
+    --     --vim.keymap.set('', 'T', function()
+    --       --hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+    --     --end, {remap=true})
+    --   end,
+    -- },
     {
-      'phaazon/hop.nvim',
-      branch = 'v2', -- optional but strongly recommended
-      event = "BufRead",
+      "tpope/vim-repeat"
+    },
+    {
+      "ggandor/leap.nvim", 
       config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
-        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        require('leap').add_default_mappings()
+        -- Disable auto jump first match
+        -- require('leap').opts.safe_labels = {}
+        require('leap').opts.highlight_unlabeled_phase_one_targets = true
+
+        vim.keymap.set({'x', 'o', 'n'}, 'r', '<Plug>(leap-forward-to)')
+        vim.keymap.set({'x', 'o', 'n'}, 'R', '<Plug>(leap-backward-to)')
       end,
     },
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
+    {
+      "ggandor/flit.nvim",
+      config = function()
+        require('flit').setup {
+          keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+          -- A string like "nv", "nvo", "o", etc.
+          labeled_modes = "v",
+          multiline = true,
+          opts = {}
+        } 
+      end,
+    }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

@@ -1,2 +1,17 @@
 ../../shell/brew/init
+
+
 # vim 
+
+
+# 关闭 mrt 
+# 停用自启动
+sudo launchctl stop com.apple.mrt
+# 停用服务
+sudo defaults write /System/Library/LaunchDaemons/com.apple.mrt.plist Disabled -bool false
+
+# 关闭 spotlight
+## 关闭：
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+## 打开：
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
