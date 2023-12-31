@@ -1,7 +1,7 @@
 # https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
 [user]
-	name = Wu Wenbin
-	email = 541330190@qq.com
+	name = wu wenbin
+	email = bin2302@gmail.com
 	signingkey = 2A44306DF172793D
 	; signingkey =
 [github]
@@ -12,7 +12,7 @@
 	defaultBranch = main
 	templatedir = ~/.local/share/dotfiles/tools/vcs/git/template
 [core]
-	excludesfile = /Users/eqielb/.gitignore
+	excludesfile = /Users/wuwenbin/.gitignore_global
 	attributesfile = ~/.gitattributes
     editor = vim
 	ignorecase = false

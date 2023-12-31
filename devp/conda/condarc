@@ -1,7 +1,11 @@
 auto_activate_base: true
 env_prompt: '({default_env}) '
 channels:
+  - https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   - defaults
   - conda-forge
   - pytorch
 changeps1: false
+show_channel_urls: true

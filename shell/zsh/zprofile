@@ -1,8 +1,9 @@
 echo "init zprofile"
 
-
 # .zprofile 是给 ksh 用户的一个 .zlogin 的替代品
 # 所以我们如果使用了 .zlogin 就不必再关心此文件
 
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

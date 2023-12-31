@@ -1,2 +1,4 @@
 - brew:
     - miniconda
+- link:
+    ~/.condarc: devp/conda/condarc

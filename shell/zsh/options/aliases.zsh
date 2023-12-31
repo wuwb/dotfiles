@@ -109,9 +109,9 @@ alias glog_simplify="git log --color=always --simplify-by-decoration --decorate"
 alias gitlog="git ls-files -z | xargs -0n1 git blame -w --show-email | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -n"
 
 # neovim
+alias vim=nvim
 # alias nvim=lvim
-alias vim=lvim
-alias vi=lvim
+# alias vi=lvim
  
 # tmux
 alias tl=tmux list-sessions
@@ -146,7 +146,7 @@ alias rmds="find . -name '*.DS_Store' -type f -delete && echo 'ALL .DS_STORE FIL
 alias rme="trash-put"
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 alias server="python -m http.server 8000"
-alias chrome="open -a 'Google Chrome' --args --disable-web-security --user-data-dir"
+# alias chrome="open -a 'Google Chrome' --args --disable-web-security --user-data-dir"
 alias xz="cd ~/Downloads && aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c"
 alias signode="codesign--sign - --force --deep - /usr/local/bin/node"
 alias sudoinstall="sudo spctl --master-disable" # xattr -cr app
@@ -224,13 +224,6 @@ alias map="xargs -n1"
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume output volume 100'"
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Programs
 alias bat="bat --theme OneHalfLight"

@@ -28,7 +28,7 @@ Host A1
   IdentityFile ~/.ssh/id_rsa
   ForwardAgent yes
 
-Host A3
+Host A2
   # HostName 192.168.68.11
   HostName 10.0.0.14
   User root

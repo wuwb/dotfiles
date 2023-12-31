@@ -40,12 +40,12 @@ zi light romkatv/zsh-defer
 # add oh my zsh，加载 OMZ 框架及部分插件
 ## completion 提供了一些补全的基本设置。这个文件里很坑的一点是把$WORDCHAR—— Zsh 用来分词的配置——设置成了空，并且为了兼容无法改回来。如果用了它的话记得重新设置 $WORDCHAR
 zi wait lucid for is-snippet \
-  OMZL::correction.zsh \
   OMZL::directories.zsh \
   OMZL::history.zsh \
   OMZL::key-bindings.zsh \
   OMZL::completion.zsh \
   OMZL::compfix.zsh # \
+  # OMZL::correction.zsh # 不好用，经常错误
   # OMZL::theme-and-appearance.zsh # 主题，套到 VM 中
 
 # 其他 library
@@ -260,8 +260,8 @@ zi ice wait lucid
 zi light paulirish/git-open
 
 # 不好用，有行号影响复制，可以加载，不要把 cat alias 成 bat
-zi ice wait lucid as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zi light sharkdp/bat
+# zi ice wait lucid as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+# zi light sharkdp/bat
 
 zinit ice as"program" from"gh-r" mv"exa* -> exa"
 zinit light ogham/exa
@@ -383,9 +383,6 @@ export CASE_SENSITIVE=false
 
 
 # homebrew
-export HOMEBREW_HOME="/usr/local/bin"
-export PATH="$HOMEBREW_HOME:$PATH"
-export PATH="/usr/local/sbin:$PATH"
 export HOMEBREW_NO_ANALYTICS=1 # 不发送分析报告，https://docs.brew.sh/Analytics
 export HOMEBREW_NO_INSTALL_CLEANUP=false # 安装后执行 cleanup
 export HOMEBREW_NO_ENV_HINTS=false # 不用提示
@@ -401,22 +398,13 @@ export HOMEBREW_INSTALL_FROM_API=1
 # export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 
 # node
-export NODE_PATH="/usr/local/lib/node_modules"
-export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node/repl_history" # Enable persistent REPL history for `node`.
+
 export N_PRESERVE_NPM=1 # 当切换 Node.js 版本时保留 npm
 # export NODE_REPL_HISTORY_SIZE='32768'; # Allow 32³ entries; the default is 1000.
 export NODE_REPL_MODE="repl"; # sloppy Use sloppy mode by default, matching web browsers.
 # export NODE_TLS_REJECT_UNAUTHORIZED=1
-
-# pnpm，npm 安装自动添加，不设置的话，无法使用 node 环境切换功能
-export PNPM_HOME="$XDG_DATA_HOME/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 # bun
-# bun completions
-[ -s "$XDG_DATA_HOME/bun/_bun" ] && source "$XDG_DATA_HOME/bun/_bun"
-export BUN_INSTALL="$XDG_DATA_HOME/bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+
 
 # electron
 # export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
@@ -431,24 +419,24 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # brew python3
 export PYTHONIOENCODING="UTF-8" # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PATH="/usr/local/opt/python@3.11/bin:$PATH"
+# export PATH="/usr/local/opt/python@3.11/bin:$PATH"
 
 # conda python
-export PYTHON_HOME="/usr/local/Caskroom/miniconda/base/bin"
-export PATH="$PYTHON_HOME:$PATH"
+# export PYTHON_HOME="/usr/local/Caskroom/miniconda/base/bin"
+# export PATH="$PYTHON_HOME:$PATH"
 
 # conda
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 
 # qt
 # export PATH="/usr/local/opt/qt/bin:$PATH"
@@ -462,9 +450,9 @@ unset __conda_setup
 # export PKG_CONFIG_PATH="$RUBY/lib/pkgconfig"
 
 # go
-export GOPATH="/usr/local/lib/go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$PATH"
+# export GOPATH="/usr/local/lib/go"
+# export GOROOT="$(brew --prefix golang)/libexec"
+# export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$PATH"
 #test -d "$GOPATH" || mkdir "$GOPATH"
 #test -d "$GOPATH/src/github.com" || mkdir -p "$GOPATH/src/github.com"
 #go env -w GO111MODULE=on
@@ -475,20 +463,20 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$PATH"
 # export ERL_AFLAGS="-kernel shell_history enabled"
 
 # rust cargo
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # php
-export COMPOSER_HOME="/usr/local/lib/composer"
-export PATH=$COMPOSER_HOME/vendor/bin:$PATH
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+# export COMPOSER_HOME="/usr/local/lib/composer"
+# export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+# export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # valet-php
 # export PATH="/usr/local/opt/valet-php@7.4/bin:$PATH"
 # export PATH="/usr/local/opt/valet-php@7.4/sbin:$PATH"
 
 # android
-export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
-export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
+# export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+# export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
 
 # gradle
 # export GRADLE_USER_HOME="$XDG_CONFIG_HOME/gradle"
@@ -500,7 +488,7 @@ export ADB_VENDOR_KEYS="$ANDROID_SDK_HOME/.android"
 # mysql
 
 # postgresql
-export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+# export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
 # export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
 # export PKG_CONFIG_PATH="/usr/local/opt/postgresql@15/lib/pkgconfig"
@@ -510,8 +498,8 @@ export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 # export DOCKER_TLS_VERIFY=1
 
 # k8s
-export PATH="$HOME/.krew/bin:$PATH"
-alias kube="kubectl --insecure-skip-tls-verify"
+# export PATH="$HOME/.krew/bin:$PATH"
+# alias kube="kubectl --insecure-skip-tls-verify"
 
 # rancher desktop
 # export PATH="/Users/eqielb/.rd/bin:$PATH"
@@ -532,18 +520,18 @@ alias kube="kubectl --insecure-skip-tls-verify"
 # gnupg
 
 # sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # tmux
 tmux source $HOME/.tmux.conf
 
 
 # libs
-export PATH="/opt/homebrew/opt/libarchive/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/libarchive/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libarchive/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libarchive/lib/pkgconfig"
+# export PATH="/opt/homebrew/opt/libarchive/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/libarchive/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libarchive/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/libarchive/lib/pkgconfig"
 
 #############################
 
@@ -567,3 +555,11 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/libarchive/lib/pkgconfig"
 #     autosuggest-accept
 # )
 
+
+# pnpm
+export PNPM_HOME="/Users/wuwenbin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
